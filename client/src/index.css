@@ -87,10 +87,6 @@
     background: radial-gradient(ellipse at top left, #161B22, #0D1117);
   }
 
-  .bg-gradient-radial {
-    background: radial-gradient(circle, var(--tw-gradient-stops));
-  }
-
   .glow-hover:hover {
     box-shadow: 0 0 15px 3px rgba(0, 160, 176, 0.4);
   }
