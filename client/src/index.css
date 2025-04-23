@@ -1,0 +1,116 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 240 10% 3.9%;
+  --foreground: 0 0% 98%;
+  --muted: 240 3.7% 15.9%;
+  --muted-foreground: 240 5% 64.9%;
+  --popover: 240 10% 3.9%;
+  --popover-foreground: 0 0% 98%;
+  --card: 240 10% 3.9%;
+  --card-foreground: 0 0% 98%;
+  --border: 240 3.7% 15.9%;
+  --input: 240 3.7% 15.9%;
+  --primary: 187 100% 33%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 240 3.7% 15.9%;
+  --secondary-foreground: 0 0% 98%;
+  --accent: 187 100% 33%;
+  --accent-foreground: 0 0% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+  --ring: 240 4.9% 83.9%;
+  --radius: 0.5rem;
+
+  /* Custom Digital Studio Labs Variables */
+  --color-bg-primary: #0D1117;
+  --color-bg-secondary: #161B22;
+  --color-text-primary: #E6EDF3;
+  --color-text-secondary: #8B949E;
+  --color-border: #30363D;
+  --color-accent-teal: #00A0B0;
+  --color-accent-blue: #4D4DFF;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-[#0D1117] text-[#E6EDF3] font-inter;
+    font-size: 17px;
+    line-height: 1.6;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-poppins font-bold;
+  }
+}
+
+@layer utilities {
+  .font-inter {
+    font-family: 'Inter', sans-serif;
+  }
+
+  .font-poppins {
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, #00A0B0 0%, #4D4DFF 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .gradient-bg {
+    background: linear-gradient(135deg, #00A0B0 0%, #4D4DFF 100%);
+  }
+
+  .gradient-bg-hover:hover {
+    background: linear-gradient(135deg, #00B4C4 0%, #5D5DFF 100%);
+  }
+
+  .bg-radial {
+    background: radial-gradient(ellipse at top left, #161B22, #0D1117);
+  }
+
+  .glow-hover:hover {
+    box-shadow: 0 0 15px 3px rgba(0, 160, 176, 0.4);
+  }
+
+  .ambient-glow {
+    box-shadow: 0 5px 30px 10px rgba(77, 77, 255, 0.15);
+  }
+
+  .text-glow {
+    text-shadow: 0 0 8px rgba(230, 237, 243, 0.3);
+  }
+
+  .card-scale {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .card-scale:hover {
+    transform: translateY(-5px) scale(1.01);
+  }
+
+  .animate-fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .animate-fade-in.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .active-nav {
+    border-bottom: 2px solid;
+    border-image: linear-gradient(135deg, #00A0B0 0%, #4D4DFF 100%) 1;
+  }
+}
