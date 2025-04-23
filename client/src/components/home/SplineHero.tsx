@@ -1,28 +1,10 @@
 import { SplineScene } from "@/components/ui/spline";
-import { Card } from "@/components/ui/card";
-import { Spotlight } from "@/components/ui/spotlight";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 
 export function SplineHero() {
   return (
-    <Card className="w-full h-[700px] md:h-[600px] bg-black/[0.96] relative overflow-hidden border-none rounded-none">
-      {/* Enhanced spotlight effect */}
-      <Spotlight
-        className=""
-        fill="rgba(0, 160, 176, 0.25)"
-        size={600}
-        springOptions={{ stiffness: 100, damping: 15 }}
-      />
-      
-      {/* Optional second spotlight for layered effect */}
-      <Spotlight
-        className=""
-        fill="rgba(77, 77, 255, 0.15)"
-        size={800}
-        springOptions={{ stiffness: 80, damping: 20 }}
-      />
-      
+    <section className="w-full h-[700px] md:h-[600px] relative overflow-hidden">      
       <div className="flex flex-col md:flex-row h-full">
         {/* Left content */}
         <div className="flex-1 p-8 relative z-10 flex flex-col justify-center">
@@ -70,6 +52,6 @@ export function SplineHero() {
           <div className="spline-attribution-blocker"></div>
         </div>
       </div>
-    </Card>
+    </section>
   );
 }

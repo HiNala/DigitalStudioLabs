@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Spotlight } from "@/components/ui/spotlight";
 import { cn } from "@/lib/utils";
 
@@ -17,6 +17,22 @@ export function SpotlightLayout({
   withMultipleSpotlights = true,
   ...props
 }: SpotlightLayoutProps) {
+  // Add state to track mouse position for spotlight positioning
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  
+  // Update mouse position
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+    
+    window.addEventListener('mousemove', handleMouseMove);
+    
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, []);
+
   return (
     <div 
       className={cn(
@@ -25,28 +41,33 @@ export function SpotlightLayout({
       )}
       {...props}
     >
-      {/* Primary spotlight */}
-      <Spotlight 
-        fill={spotlightColor}
-        size={spotlightSize}
-        springOptions={{ stiffness: 100, damping: 15 }}
-      />
+      {/* Primary spotlight with fixed position that follows mouse */}
+      <div className="fixed inset-0 pointer-events-none z-0">
+        <Spotlight 
+          className="fixed"
+          fill={spotlightColor}
+          size={spotlightSize}
+          springOptions={{ stiffness: 100, damping: 15 }}
+        />
 
-      {/* Optional secondary spotlights for layered effect */}
-      {withMultipleSpotlights && (
-        <>
-          <Spotlight
-            fill="rgba(77, 77, 255, 0.1)"
-            size={spotlightSize * 1.2}
-            springOptions={{ stiffness: 80, damping: 20 }}
-          />
-          <Spotlight
-            fill="rgba(255, 255, 255, 0.05)"
-            size={spotlightSize * 0.8}
-            springOptions={{ stiffness: 120, damping: 12 }}
-          />
-        </>
-      )}
+        {/* Optional secondary spotlights for layered effect */}
+        {withMultipleSpotlights && (
+          <>
+            <Spotlight
+              className="fixed"
+              fill="rgba(77, 77, 255, 0.1)"
+              size={spotlightSize * 1.2}
+              springOptions={{ stiffness: 80, damping: 20 }}
+            />
+            <Spotlight
+              className="fixed"
+              fill="rgba(255, 255, 255, 0.05)"
+              size={spotlightSize * 0.8}
+              springOptions={{ stiffness: 120, damping: 12 }}
+            />
+          </>
+        )}
+      </div>
 
       {/* Content */}
       <div className="relative z-10">

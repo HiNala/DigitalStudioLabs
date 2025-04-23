@@ -21,75 +21,41 @@ const HomePage = () => {
   return (
     <>
       <Header />
-      <main className="pt-20 bg-[#0D1117]">
-        {/* Hero section with its own spotlights */}
-        <SplineHero />
-        
-        {/* Services section with spotlights */}
-        <SpotlightLayout
-          spotlightColor="rgba(0, 160, 176, 0.15)"
-          spotlightSize={900}
-        >
+      <SpotlightLayout
+        className="pt-20 min-h-screen"
+        spotlightColor="rgba(0, 160, 176, 0.15)"
+        spotlightSize={1200}
+        withMultipleSpotlights={true}
+      >
+        <main>
+          {/* Hero section */}
+          <SplineHero />
+          
+          {/* Services section */}
           <ServicesSection />
-        </SpotlightLayout>
-        
-        {/* Industry section with different spotlight color */}
-        <SpotlightLayout
-          spotlightColor="rgba(77, 77, 255, 0.15)"
-          spotlightSize={1000}
-        >
+          
+          {/* Industry section */}
           <IndustrySection />
-        </SpotlightLayout>
-        
-        {/* Portfolio section with spotlights */}
-        <SpotlightLayout
-          spotlightColor="rgba(0, 160, 176, 0.2)"
-          spotlightSize={850}
-        >
+          
+          {/* Portfolio section */}
           <PortfolioSection />
-        </SpotlightLayout>
-        
-        {/* Process section with different spotlight color */}
-        <SpotlightLayout
-          spotlightColor="rgba(130, 71, 229, 0.15)"
-          spotlightSize={950}
-        >
+          
+          {/* Process section */}
           <ProcessSection />
-        </SpotlightLayout>
-        
-        {/* Testimonials section with spotlights */}
-        <SpotlightLayout
-          spotlightColor="rgba(0, 160, 176, 0.15)"
-          spotlightSize={800}
-        >
+          
+          {/* Testimonials section */}
           <TestimonialsSection />
-        </SpotlightLayout>
-        
-        {/* Pricing section with different spotlight color */}
-        <SpotlightLayout
-          spotlightColor="rgba(77, 77, 255, 0.15)"
-          spotlightSize={750}
-        >
+          
+          {/* Pricing section */}
           <PricingSection />
-        </SpotlightLayout>
-        
-        {/* CTA section with spotlights */}
-        <SpotlightLayout
-          spotlightColor="rgba(0, 160, 176, 0.2)"
-          spotlightSize={700}
-          withMultipleSpotlights={false}
-        >
+          
+          {/* CTA section */}
           <CTASection />
-        </SpotlightLayout>
-        
-        {/* Contact section with spotlights */}
-        <SpotlightLayout
-          spotlightColor="rgba(0, 160, 176, 0.1)"
-          spotlightSize={600}
-        >
+          
+          {/* Contact section */}
           <ContactSection />
-        </SpotlightLayout>
-      </main>
+        </main>
+      </SpotlightLayout>
       <Footer />
     </>
   );
