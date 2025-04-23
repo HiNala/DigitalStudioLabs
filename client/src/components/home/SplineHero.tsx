@@ -48,8 +48,8 @@ export function SplineHero() {
             className="w-full h-full"
             hideAttribution={true}
             followCursor={true}
-            followSpeed={0.08}
-            followDistance={1.2}
+            followSpeed={0.04}  
+            followDistance={2.5}
           />
           {/* Additional overlay to cover the Spline attribution */}
           <div className="spline-attribution-blocker"></div>

@@ -19,24 +19,32 @@ declare global {
       >;
     }
   }
+  
+  interface Window {
+    globalCursorPosition: { x: number, y: number, isActive: boolean };
+    hasLoggedSplineAnimation?: boolean;
+  }
 }
 
 // Global cursor position that can be accessed by multiple components
-export const globalCursorPosition = {
-  x: 0,
-  y: 0,
-  isActive: true
-};
+// Using window instead of export to avoid Fast Refresh issues
+if (!window.globalCursorPosition) {
+  window.globalCursorPosition = {
+    x: 0,
+    y: 0,
+    isActive: true
+  };
+}
 
 // Set up global cursor tracking (will only be initialized once)
 if (typeof window !== 'undefined') {
   window.addEventListener('mousemove', (e) => {
-    globalCursorPosition.x = e.clientX;
-    globalCursorPosition.y = e.clientY;
+    window.globalCursorPosition.x = e.clientX;
+    window.globalCursorPosition.y = e.clientY;
     
     // Dispatch a global event that Spline components can listen for
     window.dispatchEvent(new CustomEvent('global-cursor-move', { 
-      detail: globalCursorPosition 
+      detail: window.globalCursorPosition 
     }));
   }, { passive: true });
 }
@@ -140,10 +148,24 @@ export function SplineScene({
               splineAppRef.current = app;
               setSplineReady(true);
               console.log("Spline app is ready for cursor following");
+              
+              // Debug available objects in the scene
+              try {
+                const objects = app.findObjectsByType('Object3D');
+                console.log("Available Spline objects:", 
+                  objects.map((obj: any) => ({ 
+                    name: obj.name, 
+                    type: obj.type,
+                    hasPosition: !!obj.position
+                  }))
+                );
+              } catch (err) {
+                console.log("Couldn't list Spline objects:", err);
+              }
             }
           }
         } catch (e) {
-          // Spline app not ready yet
+          console.log("Spline app not ready yet:", e);
         }
       };
       
@@ -182,59 +204,155 @@ export function SplineScene({
       if (!splineAppRef.current) return;
       
       try {
-        // Find objects in the scene to animate
-        const objects = splineAppRef.current.findObjectsByType('Object3D');
+        // Get normalized cursor position regardless of container
+        const normalizedX = (lastCursorPosition.current.x / window.innerWidth) - 0.5;
+        const normalizedY = (lastCursorPosition.current.y / window.innerHeight) - 0.5;
         
-        // Try to find main character by common naming patterns
-        const mainCharacter = objects.find((obj: any) => 
-          obj.name.includes('Character') || 
-          obj.name.includes('Robot') ||
-          obj.name.includes('Avatar') ||
-          obj.name.includes('Person') ||
-          obj.name.includes('Model')
-        );
+        // Scale factors for movement and rotation
+        const targetX = normalizedX * followDistance;
+        const targetY = -normalizedY * followDistance; // Invert Y for 3D space
+        const rotationSpeed = followSpeed * 0.5;
         
-        if (mainCharacter) {
-          // Get container bounds for relative positioning
-          const containerBounds = containerRef.current?.getBoundingClientRect();
-          if (!containerBounds) return;
-          
-          // Calculate normalized position within viewport
-          const normalizedX = (lastCursorPosition.current.x / window.innerWidth) - 0.5;
-          const normalizedY = (lastCursorPosition.current.y / window.innerHeight) - 0.5;
-          
-          // Apply smooth movement with easing
-          // The actual position values may need adjustment based on your specific Spline scene
-          const targetX = normalizedX * followDistance;
-          // Invert Y for 3D space (positive Y is up in 3D)
-          const targetY = -normalizedY * followDistance;
-          
-          // Apply movement with smooth easing
-          mainCharacter.position.x += (targetX - mainCharacter.position.x) * followSpeed;
-          mainCharacter.position.y += (targetY - mainCharacter.position.y) * followSpeed;
-          
-          // Optional: rotate character to face cursor direction
-          const rotationSpeed = followSpeed * 0.5;
-          mainCharacter.rotation.y += (normalizedX * Math.PI * 0.25 - mainCharacter.rotation.y) * rotationSpeed;
-        } else {
-          // If we can't find a character, try to use the camera as fallback
-          try {
-            if (splineAppRef.current.camera) {
-              const camera = splineAppRef.current.camera;
-              const lookX = globalCursorPosition.x / window.innerWidth;
-              const lookY = globalCursorPosition.y / window.innerHeight;
+        // APPROACH 1: Try accessing a specific object by name
+        try {
+          // Attempt a direct lookup of objects in the scene
+          const scene = splineAppRef.current.scene;
+          if (scene && scene.children) {
+            // Look through scene children for objects with common names
+            const possibleCharacters = scene.children.filter((obj: any) => 
+              obj.name && (
+                obj.name.includes('Character') || 
+                obj.name.includes('Robot') ||
+                obj.name.includes('Avatar') ||
+                obj.name.includes('Person') ||
+                obj.name.includes('Model') ||
+                obj.name.includes('Head') ||
+                // Try to find a nested object in the hierarchy
+                (obj.children && obj.children.some((child: any) => 
+                  child.name && (
+                    child.name.includes('Head') || 
+                    child.name.includes('Character') || 
+                    child.name.includes('Face')
+                  )
+                ))
+              )
+            );
+            
+            if (possibleCharacters.length > 0) {
+              // Use the first matching character
+              const character = possibleCharacters[0];
               
-              // Make camera look in cursor direction
-              camera.lookAt(
-                camera.position.x + (lookX - 0.5) * followDistance,
-                camera.position.y + (0.5 - lookY) * followDistance,
-                0
-              );
+              // Animate the character's position
+              if (character.position) {
+                character.position.x += (targetX - character.position.x) * followSpeed;
+                character.position.y += (targetY - character.position.y) * followSpeed;
+              }
+              
+              // Animate the character's rotation
+              if (character.rotation) {
+                character.rotation.y += (normalizedX * Math.PI * 0.25 - character.rotation.y) * rotationSpeed;
+              }
+              
+              // Debug that we're animating - only log once
+              if (!window.hasLoggedSplineAnimation) {
+                console.log("Animating Spline character by direct scene access");
+                window.hasLoggedSplineAnimation = true;
+              }
             }
-          } catch (e) {
-            // Camera manipulation failed
           }
+        } catch (e) {
+          // Direct scene manipulation failed
+          console.log("Direct scene access approach failed:", e);
         }
+        
+        // APPROACH 2: Try using findObjectsByType method
+        try {
+          // Find objects in the scene to animate
+          const objects = splineAppRef.current.findObjectsByType('Object3D');
+          
+          // Try to find main character by common naming patterns
+          // Broaden the search to catch more potential objects
+          const mainCharacter = objects.find((obj: any) => 
+            obj.name && (
+              obj.name.toLowerCase().includes('character') || 
+              obj.name.toLowerCase().includes('robot') ||
+              obj.name.toLowerCase().includes('avatar') ||
+              obj.name.toLowerCase().includes('person') ||
+              obj.name.toLowerCase().includes('model') ||
+              obj.name.toLowerCase().includes('head') ||
+              obj.name.toLowerCase().includes('figure') ||
+              obj.name.toLowerCase().includes('mesh') ||
+              obj.name.toLowerCase().includes('body')
+            )
+          );
+          
+          if (mainCharacter) {
+            // Apply movement with smooth easing
+            if (mainCharacter.position) {
+              mainCharacter.position.x += (targetX - mainCharacter.position.x) * followSpeed;
+              mainCharacter.position.y += (targetY - mainCharacter.position.y) * followSpeed;
+              
+              // Optional: rotate character to face cursor direction
+              if (mainCharacter.rotation) {
+                mainCharacter.rotation.y += (normalizedX * Math.PI * 0.25 - mainCharacter.rotation.y) * rotationSpeed;
+              }
+            }
+            
+            // Debug that we're animating
+            console.log("Animating Spline character by findObjectsByType");
+          }
+        } catch (e) {
+          // Object finding failed
+          console.log("FindObjectsByType approach failed:", e);
+        }
+        
+        // APPROACH 3: If all else fails, try to animate the camera
+        try {
+          const camera = splineAppRef.current.camera;
+          if (camera) {
+            // Get lookAt target position
+            const lookAtTarget = {
+              x: camera.position.x + normalizedX * followDistance,
+              y: camera.position.y - normalizedY * followDistance, // Invert Y again
+              z: 0 // Focus on the center of the scene
+            };
+            
+            // Make camera look in cursor direction
+            camera.lookAt(lookAtTarget.x, lookAtTarget.y, lookAtTarget.z);
+            
+            // Debug that we're using camera
+            console.log("Animating Spline camera as fallback");
+          }
+        } catch (e) {
+          // Camera animation failed
+          console.log("Camera animation approach failed:", e);
+        }
+        
+        // APPROACH 4: Try direct DOM events to Spline viewer
+        try {
+          if (splineRef.current) {
+            // Create a synthetic mouse event and dispatch it to the Spline viewer
+            const event = new CustomEvent('spline:interact', {
+              detail: {
+                position: { 
+                  x: lastCursorPosition.current.x, 
+                  y: lastCursorPosition.current.y 
+                },
+                type: 'mousemove'
+              }
+            });
+            
+            // Dispatch the event
+            splineRef.current.dispatchEvent(event);
+            
+            // Debug
+            console.log("Dispatched synthetic interaction event to Spline");
+          }
+        } catch (e) {
+          // Event dispatch failed
+          console.log("Event dispatch approach failed:", e);
+        }
+        
       } catch (error) {
         console.error("Error animating Spline:", error);
       }
