@@ -7,10 +7,20 @@ import { motion } from "framer-motion";
 export function SplineHero() {
   return (
     <Card className="w-full h-[700px] md:h-[600px] bg-black/[0.96] relative overflow-hidden border-none rounded-none">
+      {/* Enhanced spotlight effect */}
       <Spotlight
-        className="-top-40 left-0 md:left-60 md:-top-20"
+        className=""
         fill="rgba(0, 160, 176, 0.25)"
+        size={600}
+        springOptions={{ stiffness: 100, damping: 15 }}
+      />
+      
+      {/* Optional second spotlight for layered effect */}
+      <Spotlight
+        className=""
+        fill="rgba(77, 77, 255, 0.15)"
         size={800}
+        springOptions={{ stiffness: 80, damping: 20 }}
       />
       
       <div className="flex flex-col md:flex-row h-full">
