@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
-import HeroSection from '@/components/home/HeroSection';
 import TrustBar from '@/components/home/TrustBar';
 import ServicesSection from '@/components/home/ServicesSection';
 import IndustrySection from '@/components/home/IndustrySection';
@@ -11,6 +10,7 @@ import TestimonialsSection from '@/components/home/TestimonialsSection';
 import PricingSection from '@/components/home/PricingSection';
 import CTASection from '@/components/home/CTASection';
 import ContactSection from '@/components/home/ContactSection';
+import { SplineHero } from '@/components/home/SplineHero';
 
 const HomePage = () => {
   useEffect(() => {
@@ -22,7 +22,7 @@ const HomePage = () => {
     <>
       <Header />
       <main className="pt-20">
-        <HeroSection />
+        <SplineHero />
         <TrustBar />
         <ServicesSection />
         <IndustrySection />
