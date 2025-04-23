@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
-import TrustBar from '@/components/home/TrustBar';
 import ServicesSection from '@/components/home/ServicesSection';
 import IndustrySection from '@/components/home/IndustrySection';
 import PortfolioSection from '@/components/home/PortfolioSection';
@@ -23,7 +22,6 @@ const HomePage = () => {
       <Header />
       <main className="pt-20">
         <SplineHero />
-        <TrustBar />
         <ServicesSection />
         <IndustrySection />
         <PortfolioSection />

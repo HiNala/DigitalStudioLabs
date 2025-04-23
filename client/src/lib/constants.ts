@@ -10,37 +10,37 @@ export const SERVICES = [
     id: 1,
     title: "Custom Website Design",
     description: "Premium, conversion-focused websites that establish credibility and generate leads for your business.",
-    icon: "bx-globe"
+    icon: "design"
   },
   {
     id: 2,
     title: "Web Application Development",
     description: "Robust, scalable web applications that streamline operations and enhance customer experiences.",
-    icon: "bx-code-alt"
+    icon: "development"
   },
   {
     id: 3,
     title: "AI Integration & Automation",
     description: "Custom AI solutions that automate workflows, personalize experiences, and drive efficiency.",
-    icon: "bx-bot"
+    icon: "ai"
   },
   {
     id: 4,
     title: "SEO & Lead Generation",
     description: "Strategic optimization that increases visibility and converts traffic into qualified leads.",
-    icon: "bx-search-alt"
+    icon: "seo"
   },
   {
     id: 5,
     title: "Data Scraping & Processing",
     description: "Custom solutions to gather, process, and leverage data for business intelligence and growth.",
-    icon: "bx-data"
+    icon: "data"
   },
   {
     id: 6,
     title: "Digital Strategy Consulting",
     description: "Expert guidance on leveraging technology to achieve your business objectives.",
-    icon: "bx-bulb"
+    icon: "strategy"
   }
 ];
 
