@@ -3,6 +3,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "./lib/queryClient";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { CursorSpotlight } from "@/components/ui/cursor-spotlight";
 import NotFound from "@/pages/not-found";
 
 // Pages
@@ -34,6 +35,13 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <div className="min-h-screen bg-[#0D1117] text-[#E6EDF3] overflow-x-hidden">
+          {/* Add global cursor spotlight with layered effect */}
+          <CursorSpotlight 
+            size={450} 
+            color="rgba(0, 160, 176, 0.15)" 
+            opacity={0.65}
+            blurSize={120}
+          />
           <Toaster />
           <Router />
         </div>
