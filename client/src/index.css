@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Performance optimizations for cursor effects */
+.will-change-transform {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+
 :root {
   --background: 240 10% 3.9%;
   --foreground: 0 0% 98%;
