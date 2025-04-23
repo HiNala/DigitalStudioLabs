@@ -10,7 +10,6 @@ import {
   FaDatabase, 
   FaLightbulb 
 } from 'react-icons/fa';
-import { LampContainer } from '@/components/ui/lamp';
 
 // Map service icons to corresponding React Icons
 const ServiceIcon = ({ icon }: { icon: string }) => {
@@ -94,14 +93,8 @@ const ServicesSection = () => {
 
   return (
     <section id="services" ref={sectionRef} className="py-24">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <div className="absolute inset-0 -top-12">
-          <LampContainer className="h-64">
-            {/* Empty container for background effect only */}
-          </LampContainer>
-        </div>
-        
-        <div className="max-w-3xl mx-auto text-center mb-16 animate-fade-in relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-3xl mx-auto text-center mb-16 animate-fade-in">
           <h2 className="text-3xl md:text-4xl font-poppins font-bold mb-6">
             Our Premium <span className="gradient-text">Services</span>
           </h2>
