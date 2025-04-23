@@ -1,12 +1,11 @@
 import { SplineScene } from "@/components/ui/spline";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
-import { LampContainer } from "@/components/ui/lamp";
 
 export function SplineHero() {
   return (
-    <section className="w-full relative overflow-hidden">      
-      <div className="flex flex-col md:flex-row h-[700px] md:h-[600px]">
+    <section className="w-full h-[700px] md:h-[600px] relative overflow-hidden">      
+      <div className="flex flex-col md:flex-row h-full">
         {/* Left content */}
         <div className="flex-1 p-8 relative z-10 flex flex-col justify-center">
           <motion.h1 
@@ -52,14 +51,6 @@ export function SplineHero() {
           {/* Additional overlay to cover the Spline attribution */}
           <div className="spline-attribution-blocker"></div>
         </div>
-      </div>
-      
-      {/* Lamp component at the bottom */}
-      <div className="relative -mt-24 z-10">
-        <LampContainer 
-          className="w-full transform scale-y-75" 
-          iconOnly={true}
-        />
       </div>
     </section>
   );
