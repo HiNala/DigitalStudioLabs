@@ -10,6 +10,7 @@ import {
   FaDatabase, 
   FaLightbulb 
 } from 'react-icons/fa';
+import { GlowingEffect } from '@/components/ui/glowing-effect';
 
 // Map service icons to corresponding React Icons
 const ServiceIcon = ({ icon }: { icon: string }) => {
@@ -113,10 +114,20 @@ const ServicesSection = () => {
           {SERVICES.map((service) => (
             <motion.div 
               key={service.id}
-              className="bg-[#161B22] p-8 rounded-xl border border-[#30363D] hover:border-[#00A0B0]/50 transition-all duration-300"
+              className="relative bg-[#161B22] p-8 rounded-xl border border-[#30363D] transition-all duration-300"
               variants={itemVariants}
-              whileHover={{ y: -5, boxShadow: "0 10px 30px -15px rgba(0, 160, 176, 0.15)" }}
+              whileHover={{ y: -5 }}
             >
+              {/* Add the GlowingEffect component with customized settings */}
+              <GlowingEffect
+                spread={25}
+                glow={true}
+                disabled={false}
+                proximity={80}
+                inactiveZone={0.01}
+                borderWidth={1.25}
+              />
+              
               <motion.div 
                 className="w-20 h-20 bg-gradient-to-br from-[#00A0B0] to-[#4D4DFF] rounded-2xl flex items-center justify-center mb-6 p-5"
                 variants={iconBgVariants}
