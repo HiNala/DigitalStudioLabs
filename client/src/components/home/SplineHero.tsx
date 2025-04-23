@@ -64,7 +64,10 @@ export function SplineHero() {
           <SplineScene 
             scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
             className="w-full h-full"
+            hideAttribution={true}
           />
+          {/* Additional overlay to cover the Spline attribution */}
+          <div className="spline-attribution-blocker"></div>
         </div>
       </div>
     </Card>

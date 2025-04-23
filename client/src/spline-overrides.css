@@ -1,0 +1,29 @@
+/* CSS to hide the Spline attribution buttons */
+spline-viewer::part(logo),
+spline-viewer::shadow(a),
+spline-viewer::shadow(.attribution),
+spline-viewer::part(attribution) {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+/* Hide any elements with Spline text content */
+spline-viewer::shadow(a:contains("Spline")), 
+spline-viewer::shadow([href*="spline"]) {
+  display: none !important;
+  opacity: 0 !important;
+}
+
+/* Absolute overlay for bottom-right corner where attribution usually appears */
+.spline-attribution-blocker {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100px; 
+  height: 40px;
+  background-color: transparent;
+  z-index: 9999;
+  pointer-events: none;
+}

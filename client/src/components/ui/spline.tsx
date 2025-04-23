@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 
 interface SplineSceneProps extends React.HTMLAttributes<HTMLDivElement> {
   scene: string;
+  hideAttribution?: boolean;
 }
 
 // Create a type declaration for the custom element to avoid TS errors
@@ -20,11 +21,13 @@ declare global {
 export function SplineScene({
   className,
   scene,
+  hideAttribution = true,
   ...props
 }: SplineSceneProps) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const splineRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     // Check if script is already loaded
@@ -45,6 +48,55 @@ export function SplineScene({
     return () => {};
   }, []);
 
+  // Hide the attribution "Built with Spline" button
+  useEffect(() => {
+    if (isLoaded && hideAttribution) {
+      // Need to wait for the spline viewer to fully load
+      const removeAttribution = () => {
+        // Check if the splineRef is set and then find attribution link within it
+        if (splineRef.current) {
+          const attributionLinks = splineRef.current.shadowRoot?.querySelectorAll('a');
+          
+          if (attributionLinks) {
+            attributionLinks.forEach(link => {
+              // Find the "Built with Spline" link and hide it
+              if (link.textContent?.includes('Spline')) {
+                link.style.display = 'none';
+              }
+            });
+          }
+        }
+      };
+
+      // Try multiple times as the viewer might take time to initialize
+      const interval = setInterval(removeAttribution, 500);
+      setTimeout(() => clearInterval(interval), 3000); // Stop trying after 3 seconds
+
+      return () => clearInterval(interval);
+    }
+  }, [isLoaded, hideAttribution]);
+
+  // Additional CSS to hide attribution using a different approach
+  useEffect(() => {
+    if (isLoaded && hideAttribution) {
+      // Add a style tag to hide attribution through CSS
+      const style = document.createElement('style');
+      style.textContent = `
+        spline-viewer::part(logo),
+        spline-viewer::part(attribution) {
+          display: none !important;
+          opacity: 0 !important;
+          visibility: hidden !important;
+        }
+      `;
+      document.head.appendChild(style);
+      
+      return () => {
+        document.head.removeChild(style);
+      };
+    }
+  }, [isLoaded, hideAttribution]);
+
   // Create a 3D scene placeholder visualization
   const renderPlaceholder = () => (
     <div className="absolute inset-0 flex items-center justify-center flex-col">
@@ -62,12 +114,21 @@ export function SplineScene({
       {/* The custom element will be defined once the script loads */}
       {isLoaded && (
         <spline-viewer 
+          ref={(el: HTMLElement | null) => { splineRef.current = el; }}
           url={scene}
           style={{
             width: '100%',
             height: '100%',
           }}
         ></spline-viewer>
+      )}
+      
+      {/* Overlay div to block the attribution if other methods fail */}
+      {hideAttribution && (
+        <div 
+          className="absolute bottom-0 right-0 w-32 h-10 bg-transparent z-10" 
+          style={{ pointerEvents: 'none' }}
+        />
       )}
     </div>
   );
