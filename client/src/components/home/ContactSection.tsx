@@ -81,7 +81,7 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" ref={sectionRef} className="py-20 bg-radial relative overflow-hidden">
+    <section id="contact" ref={sectionRef} className="py-20 relative overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-3xl mx-auto text-center mb-16 animate-fade-in">
           <h2 className="text-3xl md:text-4xl font-poppins font-bold mb-6">Get In Touch</h2>
