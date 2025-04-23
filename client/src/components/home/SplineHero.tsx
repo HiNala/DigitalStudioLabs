@@ -1,13 +1,42 @@
 import { SplineScene } from "@/components/ui/spline";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
+import { useEffect, useState, useRef } from "react";
 
 export function SplineHero() {
+  // Track mouse position for a more accurate Spline interaction
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+    
+    window.addEventListener('mousemove', handleMouseMove);
+    
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, []);
+
   return (
-    <section className="w-full h-[700px] md:h-[600px] relative overflow-hidden">      
-      <div className="flex flex-col md:flex-row h-full">
+    <section ref={sectionRef} className="w-full h-[700px] md:h-[600px] relative overflow-hidden">
+      {/* Full-width spline scene container positioned absolutely to cover the entire hero area */}
+      <div className="absolute inset-0 z-0">
+        <SplineScene 
+          scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
+          className="w-full h-full"
+          hideAttribution={true}
+          globalInteraction={true}
+        />
+        {/* Additional overlay to cover the Spline attribution */}
+        <div className="spline-attribution-blocker"></div>
+      </div>
+      
+      <div className="flex flex-col md:flex-row h-full relative z-10">
         {/* Left content */}
-        <div className="flex-1 p-8 relative z-10 flex flex-col justify-center">
+        <div className="flex-1 p-8 flex flex-col justify-center backdrop-blur-sm bg-black/10 rounded-xl md:ml-8 md:my-8">
           <motion.h1 
             className="text-4xl md:text-5xl lg:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-neutral-300 font-poppins"
             initial={{ opacity: 0, y: 20 }}
@@ -41,16 +70,8 @@ export function SplineHero() {
           </motion.div>
         </div>
 
-        {/* Right content */}
-        <div className="flex-1 relative">
-          <SplineScene 
-            scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
-            className="w-full h-full"
-            hideAttribution={true}
-          />
-          {/* Additional overlay to cover the Spline attribution */}
-          <div className="spline-attribution-blocker"></div>
-        </div>
+        {/* Right content area - intentionally empty to let the 3D scene show through */}
+        <div className="flex-1 relative"></div>
       </div>
     </section>
   );
