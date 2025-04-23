@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 export function SplineHero() {
   return (
-    <Card className="w-full h-[700px] md:h-[600px] bg-black/[0.96] relative overflow-hidden border-none rounded-none">
+    <div className="w-full h-[700px] md:h-[600px] bg-black/[0.96] relative overflow-visible border-none rounded-none">
       <Spotlight
         className="-top-40 left-0 md:left-60 md:-top-20"
         fill="rgba(0, 160, 176, 0.25)"
@@ -15,7 +15,7 @@ export function SplineHero() {
       
       <div className="flex flex-col md:flex-row h-full">
         {/* Left content */}
-        <div className="flex-1 p-8 relative z-10 flex flex-col justify-center">
+        <div className="flex-1 p-8 relative z-10 flex flex-col justify-center bg-transparent">
           <motion.h1 
             className="text-4xl md:text-5xl lg:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-neutral-300 font-poppins"
             initial={{ opacity: 0, y: 20 }}
@@ -50,13 +50,16 @@ export function SplineHero() {
         </div>
 
         {/* Right content */}
-        <div className="flex-1 relative">
+        <div className="flex-1 relative overflow-visible">
           <SplineScene 
             scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
-            className="w-full h-full"
+            className="w-full h-full overflow-visible"
           />
         </div>
       </div>
-    </Card>
+      
+      {/* Optional gradient overlay at the bottom to help with transition */}
+      <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-[#0D1117] to-transparent"></div>
+    </div>
   );
 }

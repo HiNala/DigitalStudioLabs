@@ -56,7 +56,7 @@ export function SplineScene({
   );
 
   return (
-    <div className={cn("relative", className)} ref={containerRef} {...props}>
+    <div className={cn("relative overflow-visible", className)} ref={containerRef} {...props}>
       {!isLoaded && renderPlaceholder()}
       
       {/* The custom element will be defined once the script loads */}
@@ -66,6 +66,9 @@ export function SplineScene({
           style={{
             width: '100%',
             height: '100%',
+            overflow: 'visible',
+            position: 'relative',
+            zIndex: 5
           }}
         ></spline-viewer>
       )}
