@@ -42,7 +42,7 @@ const Header = () => {
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link href="/" className="flex items-center">
-              <span className="text-2xl font-poppins font-bold gradient-text">{COMPANY_NAME}</span>
+              <span className="text-2xl font-poppins font-bold gradient-text-animated">{COMPANY_NAME}</span>
             </Link>
           </div>
           
