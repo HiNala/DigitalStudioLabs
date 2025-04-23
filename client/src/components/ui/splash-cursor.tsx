@@ -781,16 +781,16 @@ export function SplashCursor({
 
     const defaultColors = {
       crimson: [0.87, 0.09, 0.09],
-      teal: [0.15, 0.85, 0.6],
-      blue: [0.25, 0.44, 0.86],
-      purple: [0.59, 0.15, 0.85],
+      teal: [0.0, 0.63, 0.69],  // #00A0B0 equivalent
+      blue: [0.0, 0.27, 0.6],   // Darker blue 
+      purple: [0.3, 0.3, 1.0],  // Bright purple #4D4DFF equivalent
       magenta: [0.85, 0.15, 0.56],
       orange: [0.85, 0.44, 0.15],
       green: [0.44, 0.85, 0.15],
       custom: [0.0, 0.68, 0.94],  // Custom blue-aqua color
     };
 
-    let colors = [defaultColors.custom, defaultColors.teal, defaultColors.blue, defaultColors.purple];
+    let colors = [defaultColors.custom, defaultColors.teal, defaultColors.purple, defaultColors.blue];
     let colorIndex = 0;
 
     const displayMaterial = new Material(
@@ -1145,7 +1145,7 @@ export function SplashCursor({
     }
 
     // Start with some initial splats
-    multipleSplats(parseInt(Math.random() * 20) + 5);
+    multipleSplats(30);
 
     // Start the animation
     update();
@@ -1192,8 +1192,8 @@ export function SplashCursor({
   return (
     <canvas
       ref={canvasRef}
-      className="fixed top-0 left-0 w-full h-full pointer-events-none z-50"
-      style={{ opacity: 0.75 }}
+      className="fixed top-0 left-0 w-full h-full pointer-events-none z-[100]"
+      style={{ opacity: 1 }}
     />
   );
 }
