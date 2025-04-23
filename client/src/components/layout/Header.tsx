@@ -84,7 +84,7 @@ const Header = () => {
         </div>
         
         {/* Mobile Navigation Menu */}
-        <div className={`md:hidden ${isMenuOpen ? 'block' : 'hidden'} bg-[#161B22] rounded-lg mt-2 p-4 border border-[#30363D]`}>
+        <div className={`md:hidden ${isMenuOpen ? 'block' : 'hidden'} bg-[#0D1117] rounded-lg mt-2 p-4 border border-[#30363D]`}>
           <nav className="flex flex-col space-y-4">
             {NAV_LINKS.map((link) => (
               <Link 

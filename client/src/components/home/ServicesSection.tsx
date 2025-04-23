@@ -92,7 +92,7 @@ const ServicesSection = () => {
   };
 
   return (
-    <section id="services" ref={sectionRef} className="py-24 bg-[#0D1117]">
+    <section id="services" ref={sectionRef} className="py-24">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto text-center mb-16 animate-fade-in">
           <h2 className="text-3xl md:text-4xl font-poppins font-bold mb-6">
