@@ -19,7 +19,7 @@ const ServicesPage = () => {
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="max-w-3xl mx-auto text-center">
               <h1 className="text-4xl md:text-5xl font-poppins font-bold mb-6">
-                Our <span className="gradient-text">Premium Services</span>
+                Our <span className="gradient-text-animated gradient-text-glow">Premium Services</span>
               </h1>
               <p className="text-xl text-[#8B949E] mb-6">
                 Comprehensive digital solutions tailored to your unique business needs.

@@ -14,7 +14,7 @@ export function SplineHero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            Transform Your Business With <span className="gradient-text">Custom Digital Solutions</span>
+            Transform Your Business With <span className="gradient-text-animated gradient-text-glow">Custom Digital Solutions</span>
           </motion.h1>
           
           <motion.p 

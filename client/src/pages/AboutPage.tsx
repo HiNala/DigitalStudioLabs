@@ -45,7 +45,7 @@ const AboutPage = () => {
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="max-w-3xl mx-auto text-center">
               <h1 className="text-4xl md:text-5xl font-poppins font-bold mb-6">
-                About <span className="gradient-text">Digital Studio Labs</span>
+                About <span className="gradient-text-animated gradient-text-glow">Digital Studio Labs</span>
               </h1>
               <p className="text-xl text-[#8B949E] mb-6">
                 We build digital solutions that transform businesses and deliver measurable results.
