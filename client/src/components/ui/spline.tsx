@@ -4,7 +4,6 @@ import React, { useState, useEffect, useRef } from "react";
 interface SplineSceneProps extends React.HTMLAttributes<HTMLDivElement> {
   scene: string;
   hideAttribution?: boolean;
-  globalInteraction?: boolean; // Whether to respond to global mouse position instead of just within container
 }
 
 // Create a type declaration for the custom element to avoid TS errors
@@ -12,10 +11,7 @@ declare global {
   namespace JSX {
     interface IntrinsicElements {
       'spline-viewer': React.DetailedHTMLProps<
-        React.HTMLAttributes<HTMLElement> & { 
-          url?: string;
-          'event-target'?: 'global' | 'local';
-        },
+        React.HTMLAttributes<HTMLElement> & { url?: string },
         HTMLElement
       >;
     }
@@ -26,7 +22,6 @@ export function SplineScene({
   className,
   scene,
   hideAttribution = true,
-  globalInteraction = false,
   ...props
 }: SplineSceneProps) {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -101,40 +96,6 @@ export function SplineScene({
       };
     }
   }, [isLoaded, hideAttribution]);
-  
-  // Setup global mouse position tracking for Spline if globalInteraction is enabled
-  useEffect(() => {
-    if (!isLoaded || !globalInteraction || !splineRef.current) return;
-    
-    // Function to forward mouse events to the spline viewer
-    const handleGlobalMouseMove = (e: MouseEvent) => {
-      // The spline viewer needs mouse coordinates to update the scene
-      if (splineRef.current) {
-        // Create and dispatch a new mouse event to the spline-viewer
-        const mouseEvent = new MouseEvent('mousemove', {
-          clientX: e.clientX,
-          clientY: e.clientY,
-          bubbles: true
-        });
-        
-        // Try to dispatch to the viewer or its shadow root
-        if (splineRef.current.shadowRoot) {
-          splineRef.current.shadowRoot.dispatchEvent(mouseEvent);
-        } else {
-          splineRef.current.dispatchEvent(mouseEvent);
-        }
-      }
-    };
-    
-    // Only add listener if globalInteraction is true
-    if (globalInteraction) {
-      window.addEventListener('mousemove', handleGlobalMouseMove);
-      
-      return () => {
-        window.removeEventListener('mousemove', handleGlobalMouseMove);
-      };
-    }
-  }, [isLoaded, globalInteraction]);
 
   // Create a 3D scene placeholder visualization
   const renderPlaceholder = () => (
@@ -155,7 +116,6 @@ export function SplineScene({
         <spline-viewer 
           ref={(el: HTMLElement | null) => { splineRef.current = el; }}
           url={scene}
-          event-target={globalInteraction ? 'global' : 'local'}
           style={{
             width: '100%',
             height: '100%',
