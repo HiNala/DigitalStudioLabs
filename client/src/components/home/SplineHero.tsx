@@ -47,6 +47,9 @@ export function SplineHero() {
             scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
             className="w-full h-full"
             hideAttribution={true}
+            followCursor={true}
+            followSpeed={0.08}
+            followDistance={1.2}
           />
           {/* Additional overlay to cover the Spline attribution */}
           <div className="spline-attribution-blocker"></div>
