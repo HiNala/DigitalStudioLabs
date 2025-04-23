@@ -3,6 +3,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "./lib/queryClient";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { SplashCursor } from "@/components/ui/splash-cursor";
 import NotFound from "@/pages/not-found";
 
 // Pages
@@ -34,6 +35,15 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <div className="min-h-screen bg-[#0D1117] text-[#E6EDF3] overflow-x-hidden">
+          {/* Splash cursor effect for the entire site */}
+          <SplashCursor 
+            SPLAT_RADIUS={0.25}
+            TRANSPARENT={true}
+            COLOR_UPDATE_SPEED={12}
+            DENSITY_DISSIPATION={3}
+            VELOCITY_DISSIPATION={1.8}
+            BACK_COLOR={{ r: 0, g: 0, b: 0 }}
+          />
           <Toaster />
           <Router />
         </div>
