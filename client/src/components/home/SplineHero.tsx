@@ -35,8 +35,8 @@ export function SplineHero() {
             <Link href="/contact" className="gradient-bg gradient-bg-hover px-8 py-4 rounded-md font-medium text-lg transition-all duration-300 glow-hover">
               Schedule Free Consultation
             </Link>
-            <Link href="/portfolio" className="bg-[#161B22] hover:bg-[#30363D] px-8 py-4 rounded-md font-medium text-lg transition-all duration-300">
-              View Our Portfolio
+            <Link href="/services" className="bg-[#161B22] hover:bg-[#30363D] px-8 py-4 rounded-md font-medium text-lg transition-all duration-300">
+              Explore Our Services
             </Link>
           </motion.div>
         </div>

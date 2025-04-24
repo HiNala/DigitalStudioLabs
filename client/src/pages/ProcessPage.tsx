@@ -6,32 +6,32 @@ import Footer from '@/components/layout/Footer';
 const steps = [
   {
     number: 1,
-    title: "Discovery",
-    description: "We start by understanding your business, goals, and requirements through in-depth consultation.",
+    title: "Discovery & Alignment",
+    description: "Through stakeholder interviews and workshops, we uncover your pain points, hidden opportunities, and define clear project objectives.",
     details: [
       "Initial consultation to understand your business objectives",
       "Analysis of your target audience and market position",
-      "Review of existing digital assets and competitive landscape",
+      "Identification of pain points and growth opportunities",
       "Definition of project scope, timeline, and success metrics"
     ]
   },
   {
     number: 2,
-    title: "Strategy & Design",
-    description: "We create a tailored solution design and project roadmap based on your specific needs.",
+    title: "Blueprint & Prototyping",
+    description: "We translate insights into wireframes, information architectures, and clickable prototypes, validating assumptions and gathering feedback before writing code.",
     details: [
       "Development of comprehensive digital strategy",
       "Creation of wireframes and user experience flows",
       "Design of visual concepts and brand integration",
-      "Presentation and refinement of proposed solutions"
+      "Prototype testing and refinement based on feedback"
     ]
   },
   {
     number: 3,
-    title: "Development",
-    description: "Our experts build your solution using modern technology and best practices with regular updates.",
+    title: "Agile Development",
+    description: "Our sprint-based approach delivers incremental value every 1–2 weeks. You'll see working features early, ensuring the end product aligns with your evolving needs.",
     details: [
-      "Agile development approach with regular sprints",
+      "Agile development with regular sprints",
       "Frontend and backend implementation",
       "Integration of third-party services and APIs",
       "Continuous testing and quality assurance",
@@ -40,14 +40,38 @@ const steps = [
   },
   {
     number: 4,
-    title: "Launch & Support",
-    description: "We deploy your solution and provide ongoing maintenance and optimization support.",
+    title: "Quality Assurance & Security",
+    description: "Rigorous testing—unit, integration, performance, and security audits—guarantees an enterprise-grade, reliable solution.",
     details: [
-      "Comprehensive pre-launch testing and quality assurance",
+      "Comprehensive testing across multiple devices and environments",
+      "Security assessments and vulnerability testing",
+      "Performance optimization and benchmarking",
+      "Code reviews and documentation",
+      "Final quality verification and approval"
+    ]
+  },
+  {
+    number: 5,
+    title: "Launch & Adoption",
+    description: "We orchestrate seamless deployments, train your team, and provide comprehensive documentation for a smooth handoff.",
+    details: [
+      "Pre-launch testing and final preparation",
       "Smooth deployment and go-live procedures",
-      "Staff training and documentation",
-      "Post-launch monitoring and performance optimization",
-      "Ongoing maintenance and support options"
+      "Staff training and detailed documentation",
+      "Post-launch monitoring and fine-tuning",
+      "Knowledge transfer and handover"
+    ]
+  },
+  {
+    number: 6,
+    title: "Continuous Improvement",
+    description: "Post-launch, we monitor performance, gather user feedback, and iterate rapidly—turning your software into a lasting competitive advantage.",
+    details: [
+      "Analytics tracking and performance monitoring",
+      "User feedback collection and analysis",
+      "Regular updates and security patches",
+      "Feature enhancements based on real-world usage",
+      "Ongoing optimization and support"
     ]
   }
 ];
@@ -70,7 +94,7 @@ const ProcessPage = () => {
                 Our <span className="gradient-text-animated gradient-text-glow">Process</span>
               </h1>
               <p className="text-xl text-[#8B949E] mb-6">
-                A transparent and effective approach to delivering exceptional digital solutions.
+                We follow a structured yet flexible methodology that keeps you informed and in control every step of the way.
               </p>
             </div>
           </div>
@@ -124,8 +148,49 @@ const ProcessPage = () => {
           </div>
         </section>
 
-        {/* FAQ */}
+        {/* Why Partner with Us */}
         <section className="py-20 bg-radial">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-3xl mx-auto text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-poppins font-bold mb-6">Why Partner with Us</h2>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+              <div className="bg-[#161B22] rounded-xl p-8 border border-[#30363D] card-scale">
+                <div className="w-14 h-14 gradient-bg rounded-lg flex items-center justify-center mb-6">
+                  <i className='bx bx-bulb text-2xl'></i>
+                </div>
+                <h3 className="text-xl font-poppins font-semibold mb-4">Tailored Expertise</h3>
+                <p className="text-[#8B949E]">
+                  We immerse ourselves in your industry—whether it's food production, healthcare, or technology—to deliver precisely the features you need.
+                </p>
+              </div>
+              
+              <div className="bg-[#161B22] rounded-xl p-8 border border-[#30363D] card-scale">
+                <div className="w-14 h-14 gradient-bg rounded-lg flex items-center justify-center mb-6">
+                  <i className='bx bx-conversation text-2xl'></i>
+                </div>
+                <h3 className="text-xl font-poppins font-semibold mb-4">Transparent Collaboration</h3>
+                <p className="text-[#8B949E]">
+                  Agile sprints, regular demos, and clear milestones mean you always know where your project stands.
+                </p>
+              </div>
+              
+              <div className="bg-[#161B22] rounded-xl p-8 border border-[#30363D] card-scale">
+                <div className="w-14 h-14 gradient-bg rounded-lg flex items-center justify-center mb-6">
+                  <i className='bx bx-support text-2xl'></i>
+                </div>
+                <h3 className="text-xl font-poppins font-semibold mb-4">Local & Responsive</h3>
+                <p className="text-[#8B949E]">
+                  Based in Rohnert Park with clients in Boise and beyond, we offer personal attention with the capabilities of a global firm.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ */}
+        <section className="py-20">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-3xl mx-auto text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-poppins font-bold mb-6">Frequently Asked Questions</h2>

@@ -8,39 +8,39 @@ export const COMPANY_LOCATION = "Boise, Idaho";
 export const SERVICES = [
   {
     id: 1,
-    title: "Custom Website Design",
-    description: "Premium, conversion-focused websites that establish credibility and generate leads for your business.",
-    icon: "design"
-  },
-  {
-    id: 2,
-    title: "Web Application Development",
-    description: "Robust, scalable web applications that streamline operations and enhance customer experiences.",
+    title: "Custom Web & Mobile Apps",
+    description: "High-performance applications designed to engage users, built with cutting-edge technologies that deliver exceptional experiences.",
     icon: "development"
   },
   {
+    id: 2,
+    title: "Automation & Integrations",
+    description: "Seamlessly connect your existing systems and automate routine tasks to improve efficiency and productivity company-wide.",
+    icon: "strategy"
+  },
+  {
     id: 3,
-    title: "AI Integration & Automation",
-    description: "Custom AI solutions that automate workflows, personalize experiences, and drive efficiency.",
+    title: "AI & Advanced Analytics",
+    description: "Custom AI solutions and predictive analytics that help you make smarter decisions and gain valuable business insights.",
     icon: "ai"
   },
   {
     id: 4,
-    title: "SEO & Lead Generation",
-    description: "Strategic optimization that increases visibility and converts traffic into qualified leads.",
-    icon: "seo"
-  },
-  {
-    id: 5,
-    title: "Data Scraping & Processing",
-    description: "Custom solutions to gather, process, and leverage data for business intelligence and growth.",
+    title: "Data Visualization",
+    description: "Beautiful, intuitive dashboards that transform complex data into clear, actionable insights for your business.",
     icon: "data"
   },
   {
+    id: 5,
+    title: "Process Optimization",
+    description: "Streamline operations, eliminate bottlenecks, and enhance workflows with custom software solutions.",
+    icon: "seo"
+  },
+  {
     id: 6,
-    title: "Digital Strategy Consulting",
-    description: "Expert guidance on leveraging technology to achieve your business objectives.",
-    icon: "strategy"
+    title: "Digital Strategy",
+    description: "Expert guidance on leveraging technology to achieve your business objectives and stay ahead of the competition.",
+    icon: "design"
   }
 ];
 
@@ -48,38 +48,45 @@ export const SERVICES = [
 export const INDUSTRIES = [
   {
     id: 1,
-    title: "Real Estate",
-    description: "IDX integrations, virtual tours, lead generation systems, and marketing automation.",
-    background: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1073&q=80",
-    tags: ["Lead Gen", "Virtual Tours", "IDX Integration"]
+    title: "Food & Beverage",
+    description: "Traceability systems, sustainability reporting, inventory management, and regulatory compliance solutions.",
+    background: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+    tags: ["Traceability", "Sustainability", "Inventory Mgmt"]
   },
   {
     id: 2,
-    title: "B2B Services",
-    description: "Client portals, CRM integrations, proposal systems, and automated workflows.",
-    background: "https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-    tags: ["Client Portals", "CRM Integration", "Automation"]
+    title: "Healthcare",
+    description: "Secure patient portals, telehealth integration, automated administrative tasks, and patient analytics tools.",
+    background: "https://images.unsplash.com/photo-1631815587646-b85a1bb027e5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80",
+    tags: ["Patient Portals", "Telehealth", "Analytics"]
   },
   {
     id: 3,
-    title: "Startups & MVPs",
-    description: "Rapid prototype development, scalable architecture, and investor-ready applications.",
+    title: "Technology & SaaS",
+    description: "Developer productivity tools, internal automation, seamless API integrations, and custom analytics solutions.",
     background: "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-    tags: ["MVPs", "Scalable Apps", "Fast Deployment"]
+    tags: ["API Integration", "Automation", "Analytics"]
   },
   {
     id: 4,
-    title: "E-commerce",
-    description: "Custom shopping experiences, payment processing, and inventory management systems.",
-    background: "https://images.unsplash.com/photo-1578916171728-46686eac8d58?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80",
-    tags: ["Custom Stores", "Inventory Mgmt", "Payment Systems"]
+    title: "Startups & MVPs",
+    description: "Rapid prototype development, scalable architecture, and investor-ready applications to accelerate your growth.",
+    background: "https://images.unsplash.com/photo-1559028012-481c04fa702d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1536&q=80",
+    tags: ["MVPs", "Scalable Apps", "Fast Deployment"]
   },
   {
     id: 5,
-    title: "Restaurants & Hospitality",
-    description: "Online ordering, reservation systems, and customized loyalty programs.",
-    background: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-    tags: ["Online Ordering", "Reservations", "Loyalty Apps"]
+    title: "E-commerce",
+    description: "Custom shopping experiences, inventory management, and order fulfillment systems to optimize your online business.",
+    background: "https://images.unsplash.com/photo-1578916171728-46686eac8d58?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80",
+    tags: ["Custom Stores", "Inventory", "Fulfillment"]
+  },
+  {
+    id: 6,
+    title: "Manufacturing",
+    description: "Production tracking, quality control systems, supply chain visibility, and operational efficiency solutions.",
+    background: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+    tags: ["Production", "Quality Control", "Efficiency"]
   }
 ];
 

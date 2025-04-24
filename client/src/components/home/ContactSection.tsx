@@ -97,72 +97,100 @@ const ContactSection = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <div>
                   <label htmlFor="name" className="block mb-2 font-medium">Name</label>
-                  <input 
-                    type="text" 
-                    id="name" 
-                    name="name" 
-                    className="w-full px-4 py-3 bg-[#0D1117] border border-[#30363D] rounded-md focus:outline-none focus:border-[#00A0B0] transition-colors" 
-                    required
-                    value={formData.name}
-                    onChange={handleChange}
-                  />
+                  <div className="relative">
+                    <input 
+                      type="text" 
+                      id="name" 
+                      name="name" 
+                      className="w-full pl-10 px-4 py-3 bg-[#0D1117] border border-[#30363D] rounded-md focus:outline-none focus:ring-2 focus:ring-[#00A0B0] focus:border-transparent transition-all" 
+                      required
+                      value={formData.name}
+                      onChange={handleChange}
+                    />
+                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center">
+                      <i className='bx bx-user text-[#8B949E]'></i>
+                    </div>
+                  </div>
                 </div>
                 <div>
                   <label htmlFor="email" className="block mb-2 font-medium">Email</label>
-                  <input 
-                    type="email" 
-                    id="email" 
-                    name="email" 
-                    className="w-full px-4 py-3 bg-[#0D1117] border border-[#30363D] rounded-md focus:outline-none focus:border-[#00A0B0] transition-colors" 
-                    required
-                    value={formData.email}
-                    onChange={handleChange}
-                  />
+                  <div className="relative">
+                    <input 
+                      type="email" 
+                      id="email" 
+                      name="email" 
+                      className="w-full pl-10 px-4 py-3 bg-[#0D1117] border border-[#30363D] rounded-md focus:outline-none focus:ring-2 focus:ring-[#00A0B0] focus:border-transparent transition-all" 
+                      required
+                      value={formData.email}
+                      onChange={handleChange}
+                    />
+                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center">
+                      <i className='bx bx-envelope text-[#8B949E]'></i>
+                    </div>
+                  </div>
                 </div>
               </div>
               
               <div className="mb-6">
                 <label htmlFor="phone" className="block mb-2 font-medium">Phone</label>
-                <input 
-                  type="tel" 
-                  id="phone" 
-                  name="phone" 
-                  className="w-full px-4 py-3 bg-[#0D1117] border border-[#30363D] rounded-md focus:outline-none focus:border-[#00A0B0] transition-colors"
-                  value={formData.phone}
-                  onChange={handleChange}
-                />
+                <div className="relative">
+                  <input 
+                    type="tel" 
+                    id="phone" 
+                    name="phone" 
+                    className="w-full pl-10 px-4 py-3 bg-[#0D1117] border border-[#30363D] rounded-md focus:outline-none focus:ring-2 focus:ring-[#00A0B0] focus:border-transparent transition-all"
+                    value={formData.phone}
+                    onChange={handleChange}
+                  />
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center">
+                    <i className='bx bx-phone text-[#8B949E]'></i>
+                  </div>
+                </div>
               </div>
               
               <div className="mb-6">
                 <label htmlFor="service" className="block mb-2 font-medium">Service Interested In</label>
-                <select 
-                  id="service" 
-                  name="service" 
-                  className="w-full px-4 py-3 bg-[#0D1117] border border-[#30363D] rounded-md focus:outline-none focus:border-[#00A0B0] transition-colors"
-                  value={formData.service}
-                  onChange={handleChange}
-                >
-                  <option value="">Select a service</option>
-                  <option value="website">Website Design</option>
-                  <option value="webapp">Web Application</option>
-                  <option value="ai">AI Integration</option>
-                  <option value="ecommerce">E-commerce</option>
-                  <option value="seo">SEO & Lead Generation</option>
-                  <option value="other">Other</option>
-                </select>
+                <div className="relative">
+                  <select 
+                    id="service" 
+                    name="service" 
+                    className="w-full pl-10 px-4 py-3 bg-[#0D1117] border border-[#30363D] rounded-md focus:outline-none focus:ring-2 focus:ring-[#00A0B0] focus:border-transparent transition-all appearance-none"
+                    value={formData.service}
+                    onChange={handleChange}
+                  >
+                    <option value="">Select a service</option>
+                    <option value="website">Website Design</option>
+                    <option value="webapp">Web Application</option>
+                    <option value="ai">AI Integration</option>
+                    <option value="ecommerce">E-commerce</option>
+                    <option value="seo">SEO & Lead Generation</option>
+                    <option value="other">Other</option>
+                  </select>
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center">
+                    <i className='bx bx-list-ul text-[#8B949E]'></i>
+                  </div>
+                  <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                    <i className='bx bx-chevron-down text-[#8B949E]'></i>
+                  </div>
+                </div>
               </div>
               
               <div className="mb-6">
                 <label htmlFor="message" className="block mb-2 font-medium">Your Message</label>
-                <textarea 
-                  id="message" 
-                  name="message" 
-                  rows={5} 
-                  className="w-full px-4 py-3 bg-[#0D1117] border border-[#30363D] rounded-md focus:outline-none focus:border-[#00A0B0] transition-colors"
-                  required
-                  value={formData.message}
-                  onChange={handleChange}
-                ></textarea>
+                <div className="relative">
+                  <textarea 
+                    id="message" 
+                    name="message" 
+                    rows={5} 
+                    className="w-full pl-10 px-4 py-3 bg-[#0D1117] border border-[#30363D] rounded-md focus:outline-none focus:ring-2 focus:ring-[#00A0B0] focus:border-transparent transition-all"
+                    required
+                    value={formData.message}
+                    onChange={handleChange}
+                  ></textarea>
+                  <div className="absolute top-3 left-0 pl-3 flex items-center">
+                    <i className='bx bx-message-detail text-[#8B949E]'></i>
+                  </div>
+                </div>
               </div>
               
               <div className="mb-6">

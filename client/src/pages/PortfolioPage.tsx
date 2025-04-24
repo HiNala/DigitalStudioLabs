@@ -35,13 +35,47 @@ const PortfolioPage = () => {
                 Our <span className="gradient-text-animated gradient-text-glow">Portfolio</span>
               </h1>
               <p className="text-xl text-[#8B949E] mb-6">
-                Explore our work and the results we've delivered for our clients.
+                Building Your Success Story
               </p>
             </div>
           </div>
           
           {/* Background Decoration */}
           <div className="ambient-glow absolute -top-20 -right-20 w-96 h-96 rounded-full opacity-10 bg-[#4D4DFF]"></div>
+        </section>
+
+        {/* Portfolio Intro */}
+        <section className="py-12">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-3xl mx-auto prose prose-lg prose-invert">
+              <p className="text-[#8B949E]">
+                We're just getting started, and while our official case studies are forthcoming, we've already laid the groundwork for transformative solutions. Here's how your project will feature:
+              </p>
+              
+              <div className="mt-10 space-y-8">
+                <div className="bg-[#161B22] p-6 rounded-lg border border-[#30363D]">
+                  <h3 className="text-xl font-poppins font-semibold mb-2">Concept-to-Completion Showcase</h3>
+                  <p className="text-[#8B949E] m-0">
+                    From initial wireframes to polished deployments, you'll see every milestone tracked—demonstrating our commitment to transparency and measurable outcomes.
+                  </p>
+                </div>
+                
+                <div className="bg-[#161B22] p-6 rounded-lg border border-[#30363D]">
+                  <h3 className="text-xl font-poppins font-semibold mb-2">Pilot & Prototype Highlights</h3>
+                  <p className="text-[#8B949E] m-0">
+                    Early prototypes across industries (food manufacturing traceability, healthcare portals, AI-driven dashboards) illustrate the depth of our approach and technical mastery.
+                  </p>
+                </div>
+                
+                <div className="bg-[#161B22] p-6 rounded-lg border border-[#30363D]">
+                  <h3 className="text-xl font-poppins font-semibold mb-2">Your Future Case Study</h3>
+                  <p className="text-[#8B949E] m-0">
+                    Once we partner, your success will become one of our signature stories—complete with data-backed impact metrics, before-and-after analyses, and client testimonials.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
 
         {/* Portfolio */}
@@ -107,9 +141,9 @@ const PortfolioPage = () => {
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="bg-[#161B22] rounded-xl p-8 md:p-12 lg:p-16 relative overflow-hidden">
               <div className="relative z-10 max-w-3xl mx-auto text-center">
-                <h2 className="text-3xl md:text-4xl font-poppins font-bold mb-6">Ready to Create Your Success Story?</h2>
+                <h2 className="text-3xl md:text-4xl font-poppins font-bold mb-6">Let's Make Your Project Our Next Success Story</h2>
                 <p className="text-[#8B949E] text-lg mb-10">
-                  Let's discuss how we can deliver similar results for your business.
+                  Partner with us to build something exceptional that drives meaningful growth for your business.
                 </p>
                 <Link href="/contact" className="gradient-bg gradient-bg-hover px-8 py-4 rounded-md font-medium text-lg transition-all duration-300 glow-hover inline-block">
                   Start Your Project

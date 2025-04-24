@@ -48,7 +48,7 @@ const AboutPage = () => {
                 About <span className="gradient-text-animated gradient-text-glow">Digital Studio Labs</span>
               </h1>
               <p className="text-xl text-[#8B949E] mb-6">
-                We build digital solutions that transform businesses and deliver measurable results.
+                Passionate About Creating Exceptional Software
               </p>
             </div>
           </div>
@@ -64,7 +64,7 @@ const AboutPage = () => {
               <div className="bg-[#161B22] rounded-xl p-8 md:p-12 border border-[#30363D] mb-12">
                 <h2 className="text-3xl font-poppins font-bold mb-6">Our Story</h2>
                 <p className="text-[#8B949E] mb-6">
-                  Digital Studio Labs was founded with a simple mission: to help businesses achieve real, measurable results through custom digital solutions. We saw too many companies invest in websites and applications that looked good but failed to deliver business impact.
+                  At Digital Studio Labs, we believe that exceptional software is more than just code—it's a strategic asset designed around your unique business goals. We're a dynamic team of software developers, designers, and data experts dedicated to delivering tailored solutions that simplify complexity and empower innovation.
                 </p>
                 <p className="text-[#8B949E] mb-6">
                   Our approach combines strategic thinking, creative design, and technical excellence to create digital solutions that not only impress visually but drive growth, generate leads, and improve operational efficiency.
@@ -82,23 +82,19 @@ const AboutPage = () => {
                   </p>
                 </div>
                 <div>
-                  <h2 className="text-3xl font-poppins font-bold mb-6">Our Values</h2>
+                  <h2 className="text-3xl font-poppins font-bold mb-6">Why Choose Digital Studio Labs?</h2>
                   <ul className="space-y-4">
                     <li className="flex items-start">
                       <i className='bx bx-check-circle text-[#00A0B0] mr-2 text-xl'></i>
-                      <span><strong>Results-Focused:</strong> We measure success by the outcomes we deliver for our clients.</span>
+                      <span><strong>Customized Solutions:</strong> Every solution is thoughtfully tailored specifically to your unique challenges and goals.</span>
                     </li>
                     <li className="flex items-start">
                       <i className='bx bx-check-circle text-[#00A0B0] mr-2 text-xl'></i>
-                      <span><strong>Excellence:</strong> We maintain the highest standards in everything we do.</span>
+                      <span><strong>Unmatched Expertise:</strong> Our team blends deep technical knowledge with strategic insight to deliver solutions that genuinely add value.</span>
                     </li>
                     <li className="flex items-start">
                       <i className='bx bx-check-circle text-[#00A0B0] mr-2 text-xl'></i>
-                      <span><strong>Innovation:</strong> We continuously explore new technologies and approaches.</span>
-                    </li>
-                    <li className="flex items-start">
-                      <i className='bx bx-check-circle text-[#00A0B0] mr-2 text-xl'></i>
-                      <span><strong>Transparency:</strong> We maintain open, honest communication with our clients.</span>
+                      <span><strong>Dedicated Partnership:</strong> We treat your project as if it were our own, ensuring proactive communication, reliable execution, and genuine commitment to your long-term success.</span>
                     </li>
                   </ul>
                 </div>
@@ -141,14 +137,71 @@ const AboutPage = () => {
           <div className="ambient-glow absolute bottom-1/4 -left-20 w-96 h-96 rounded-full opacity-10 bg-[#00A0B0]"></div>
         </section>
 
-        {/* CTA */}
+        {/* Values */}
         <section className="py-20">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-3xl mx-auto text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-poppins font-bold mb-6">Our Values</h2>
+              <p className="text-[#8B949E] text-lg">
+                Guiding principles that define our work and relationships.
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+              {[
+                {
+                  icon: "bx-target-lock",
+                  title: "Results-Focused",
+                  description: "We measure success by the outcomes we deliver for our clients."
+                },
+                {
+                  icon: "bx-star",
+                  title: "Excellence",
+                  description: "We maintain the highest standards in everything we do."
+                },
+                {
+                  icon: "bx-bulb",
+                  title: "Innovation",
+                  description: "We continuously explore new technologies and approaches."
+                },
+                {
+                  icon: "bx-conversation",
+                  title: "Transparency",
+                  description: "We maintain open, honest communication with our clients."
+                },
+                {
+                  icon: "bx-group",
+                  title: "Collaboration",
+                  description: "We work closely with our clients to ensure their success."
+                },
+                {
+                  icon: "bx-trending-up",
+                  title: "Continuous Improvement",
+                  description: "We're always learning and refining our process."
+                }
+              ].map((value, index) => (
+                <div key={index} className="bg-[#161B22] rounded-xl p-8 border border-[#30363D] card-scale">
+                  <div className="w-14 h-14 gradient-bg rounded-lg flex items-center justify-center mb-6">
+                    <i className={`bx ${value.icon} text-2xl`}></i>
+                  </div>
+                  <h3 className="text-xl font-poppins font-semibold mb-4">{value.title}</h3>
+                  <p className="text-[#8B949E]">
+                    {value.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* CTA */}
+        <section className="py-20 bg-radial">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="bg-[#161B22] rounded-xl p-8 md:p-12 lg:p-16 relative overflow-hidden">
               <div className="relative z-10 max-w-3xl mx-auto text-center">
-                <h2 className="text-3xl md:text-4xl font-poppins font-bold mb-6">Ready to Work With Us?</h2>
+                <h2 className="text-3xl md:text-4xl font-poppins font-bold mb-6">Together, Let's Create Something Extraordinary</h2>
                 <p className="text-[#8B949E] text-lg mb-10">
-                  Let's discuss how our team can help you achieve your digital goals.
+                  Ready to discuss how our expertise can transform your digital presence?
                 </p>
                 <Link href="/contact" className="gradient-bg gradient-bg-hover px-8 py-4 rounded-md font-medium text-lg transition-all duration-300 glow-hover inline-block">
                   Get In Touch

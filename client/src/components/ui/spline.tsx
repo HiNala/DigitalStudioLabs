@@ -93,22 +93,51 @@ export function SplineScene({
       const removeAttribution = () => {
         // Check if the splineRef is set and then find attribution link within it
         if (splineRef.current) {
-          const attributionLinks = splineRef.current.shadowRoot?.querySelectorAll('a');
-          
-          if (attributionLinks) {
-            attributionLinks.forEach(link => {
-              // Find the "Built with Spline" link and hide it
-              if (link.textContent?.includes('Spline')) {
-                link.style.display = 'none';
-              }
-            });
+          try {
+            const shadowRoot = splineRef.current.shadowRoot;
+            if (shadowRoot) {
+              // Find ALL elements that could be part of the attribution
+              const attributionLinks = shadowRoot.querySelectorAll('a');
+              const attributionElements = shadowRoot.querySelectorAll('[class*="attribution"], [id*="attribution"], [part*="attribution"], [part*="logo"]');
+              
+              // Hide all attribution links
+              attributionLinks.forEach(link => {
+                if (link.textContent?.toLowerCase().includes('spline') || link.href?.includes('spline')) {
+                  link.style.display = 'none';
+                  link.style.opacity = '0';
+                  link.style.visibility = 'hidden';
+                  link.style.width = '0';
+                  link.style.height = '0';
+                  link.style.overflow = 'hidden';
+                  link.style.position = 'absolute';
+                  link.setAttribute('aria-hidden', 'true');
+                }
+              });
+              
+              // Hide all attribution elements
+              attributionElements.forEach(element => {
+                // Cast the element to HTMLElement to use style property
+                const htmlElement = element as HTMLElement;
+                htmlElement.style.display = 'none';
+                htmlElement.style.opacity = '0';
+                htmlElement.style.visibility = 'hidden';
+                htmlElement.style.width = '0';
+                htmlElement.style.height = '0';
+                htmlElement.style.overflow = 'hidden';
+                htmlElement.style.position = 'absolute';
+                element.setAttribute('aria-hidden', 'true');
+              });
+            }
+          } catch (error) {
+            console.log("Error removing Spline attribution:", error);
           }
         }
       };
 
-      // Try multiple times as the viewer might take time to initialize
+      // Try multiple times to catch any delayed rendering
       const interval = setInterval(removeAttribution, 500);
-      setTimeout(() => clearInterval(interval), 3000); // Stop trying after 3 seconds
+      // Try more aggressively for longer
+      setTimeout(() => clearInterval(interval), 10000); // Keep trying for 10 seconds
 
       return () => clearInterval(interval);
     }
@@ -117,14 +146,28 @@ export function SplineScene({
   // Additional CSS to hide attribution using a different approach
   useEffect(() => {
     if (isLoaded && hideAttribution) {
-      // Add a style tag to hide attribution through CSS
+      // Add a style tag to hide attribution through CSS - more comprehensive selectors
       const style = document.createElement('style');
       style.textContent = `
         spline-viewer::part(logo),
-        spline-viewer::part(attribution) {
+        spline-viewer::part(attribution),
+        spline-viewer::part(footer),
+        spline-viewer *[part="logo"],
+        spline-viewer *[part="attribution"],
+        spline-viewer *[part="footer"],
+        spline-viewer *[class*="attribution"],
+        spline-viewer *[id*="attribution"],
+        spline-viewer a[href*="spline"],
+        spline-viewer div[class*="logo"],
+        spline-viewer div[class*="brand"] {
           display: none !important;
           opacity: 0 !important;
           visibility: hidden !important;
+          width: 0 !important;
+          height: 0 !important;
+          overflow: hidden !important;
+          position: absolute !important;
+          pointer-events: none !important;
         }
       `;
       document.head.appendChild(style);
@@ -401,12 +444,18 @@ export function SplineScene({
         ></spline-viewer>
       )}
       
-      {/* Overlay div to block the attribution if other methods fail */}
+      {/* Enhanced overlay div to block the attribution if other methods fail */}
       {hideAttribution && (
-        <div 
-          className="absolute bottom-0 right-0 w-32 h-10 bg-transparent z-10" 
-          style={{ pointerEvents: 'none' }}
-        />
+        <>
+          <div 
+            className="absolute bottom-0 right-0 w-40 h-16 bg-transparent z-50" 
+            style={{ pointerEvents: 'none' }}
+          />
+          <div 
+            className="absolute bottom-0 left-0 w-full h-10 bg-transparent z-50" 
+            style={{ pointerEvents: 'none' }}
+          />
+        </>
       )}
     </div>
   );

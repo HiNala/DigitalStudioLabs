@@ -75,17 +75,26 @@ const Footer = () => {
               Get the latest news and updates from our team.
             </p>
             <form onSubmit={handleSubmit} className="mb-4">
-              <div className="flex">
-                <input 
-                  type="email" 
-                  placeholder="Your email" 
-                  className="w-full px-4 py-2 bg-[#0D1117] border border-[#30363D] rounded-l-md focus:outline-none focus:border-[#00A0B0] transition-colors"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-                <button type="submit" className="gradient-bg gradient-bg-hover px-4 rounded-r-md transition-all duration-300">
-                  <i className='bx bx-right-arrow-alt'></i>
+              <div className="space-y-2">
+                <div className="relative">
+                  <input 
+                    type="email" 
+                    placeholder="Your email address" 
+                    className="w-full px-4 py-3 bg-[#161B22] border border-[#30363D] rounded-md focus:outline-none focus:ring-2 focus:ring-[#00A0B0] focus:border-transparent transition-all"
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                  <div className="absolute inset-y-0 right-0 flex items-center pr-2">
+                    <i className='bx bx-envelope text-[#8B949E]'></i>
+                  </div>
+                </div>
+                <button 
+                  type="submit" 
+                  className="w-full gradient-bg gradient-bg-hover py-3 rounded-md font-medium transition-all duration-300 glow-hover flex items-center justify-center"
+                >
+                  <span>Subscribe</span>
+                  <i className='bx bx-right-arrow-alt ml-2'></i>
                 </button>
               </div>
             </form>

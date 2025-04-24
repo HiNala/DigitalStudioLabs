@@ -97,10 +97,10 @@ const ServicesSection = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto text-center mb-16 animate-fade-in">
           <h2 className="text-3xl md:text-4xl font-poppins font-bold mb-6">
-            Our Premium <span className="gradient-text">Services</span>
+            Innovative <span className="gradient-text">Digital Solutions</span>
           </h2>
           <p className="text-[#8B949E] text-lg">
-            Custom digital solutions tailored to your business goals and challenges.
+            Tailored technology expertise to transform your ideas into powerful digital realities
           </p>
         </div>
         
@@ -144,7 +144,7 @@ const ServicesSection = () => {
               </p>
               
               <Link href="/contact" className="group inline-flex items-center text-[#00A0B0] hover:text-[#4D4DFF] transition-colors">
-                Learn More 
+                Explore Details 
                 <motion.span 
                   className="ml-2 inline-block"
                   initial={{ x: 0 }}
@@ -165,8 +165,8 @@ const ServicesSection = () => {
           viewport={{ once: true }}
           transition={{ delay: 0.5 }}
         >
-          <Link href="/contact" className="gradient-bg gradient-bg-hover px-8 py-4 rounded-md font-medium transition-all duration-300 glow-hover inline-block">
-            Discuss Your Project
+          <Link href="/services" className="gradient-bg gradient-bg-hover px-8 py-4 rounded-md font-medium transition-all duration-300 glow-hover inline-block">
+            See All Services
           </Link>
         </motion.div>
       </div>

@@ -8,6 +8,7 @@ import NotFound from "@/pages/not-found";
 
 // Pages
 import HomePage from "@/pages/HomePage";
+import AltHomePage from "@/pages/AltHomePage";
 import ServicesPage from "@/pages/ServicesPage";
 import PortfolioPage from "@/pages/PortfolioPage";
 import ProcessPage from "@/pages/ProcessPage";
@@ -19,6 +20,7 @@ function Router() {
   return (
     <Switch>
       <Route path="/" component={HomePage} />
+      <Route path="/alt" component={AltHomePage} />
       <Route path="/services" component={ServicesPage} />
       <Route path="/portfolio" component={PortfolioPage} />
       <Route path="/process" component={ProcessPage} />

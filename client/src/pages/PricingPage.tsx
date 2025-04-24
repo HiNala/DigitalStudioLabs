@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { Link } from 'wouter';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
-import { PRICING_PLANS, MAINTENANCE_PLANS } from '@/lib/constants';
 
 const PricingPage = () => {
   useEffect(() => {
@@ -19,10 +18,10 @@ const PricingPage = () => {
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="max-w-3xl mx-auto text-center">
               <h1 className="text-4xl md:text-5xl font-poppins font-bold mb-6">
-                Transparent <span className="gradient-text-animated gradient-text-glow">Pricing</span>
+                Clear, Flexible, and <span className="gradient-text-animated gradient-text-glow">Transparent Pricing</span>
               </h1>
               <p className="text-xl text-[#8B949E] mb-6">
-                Competitive rates for premium quality digital solutions.
+                Straightforward pricing designed to align with your budget, needs, and growth objectives.
               </p>
             </div>
           </div>
@@ -35,98 +34,129 @@ const PricingPage = () => {
         <section className="py-20">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-5xl mx-auto">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {PRICING_PLANS.map((plan) => (
-                  <div 
-                    key={plan.id}
-                    className={`bg-[#161B22] rounded-xl border ${
-                      plan.isFeatured ? 'border-[#00A0B0]' : 'border-[#30363D]'
-                    } p-8 card-scale relative`}
-                  >
-                    {plan.isFeatured && (
-                      <div className="absolute top-0 inset-x-0 -translate-y-1/2 text-center">
-                        <span className="bg-[#00A0B0] px-4 py-1 rounded-full text-sm font-medium">Most Popular</span>
-                      </div>
-                    )}
-                    
-                    <h3 className="text-2xl font-poppins font-semibold mb-2">{plan.name}</h3>
-                    <p className="text-[#8B949E] mb-6">{plan.description}</p>
-                    <div className="mb-6">
-                      <span className="text-4xl font-poppins font-bold">{plan.price}</span>
-                      {plan.priceSubtext && (
-                        <span className="text-[#8B949E]"> {plan.priceSubtext}</span>
-                      )}
-                    </div>
-                    <ul className="mb-8 space-y-3">
-                      {plan.features.map((feature, featureIndex) => (
-                        <li key={featureIndex} className="flex items-start">
-                          <i className='bx bx-check-circle text-[#00A0B0] mr-2 text-xl'></i>
-                          <span>{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <Link 
-                      href="/contact" 
-                      className={`block text-center ${
-                        plan.isFeatured 
-                          ? 'gradient-bg gradient-bg-hover glow-hover' 
-                          : plan.ctaText === 'Request Quote' 
-                            ? 'bg-[#0D1117] hover:bg-[#30363D]' 
-                            : 'gradient-bg gradient-bg-hover glow-hover'
-                      } py-3 rounded-md font-medium transition-all duration-300`}
-                    >
-                      {plan.ctaText}
-                    </Link>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Maintenance Plans */}
-        <section className="py-20 bg-radial">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-4xl mx-auto">
-              <div className="mb-16 text-center">
-                <h2 className="text-3xl md:text-4xl font-poppins font-bold mb-6">Maintenance & Support Plans</h2>
-                <p className="text-[#8B949E] text-lg">
-                  Keep your digital assets secure, up-to-date, and performing at their best.
-                </p>
-              </div>
-              
-              <div className="bg-[#161B22] rounded-xl border border-[#30363D] overflow-hidden">
+              <div className="bg-[#161B22] rounded-xl border border-[#30363D] overflow-hidden mb-12">
                 <div className="overflow-x-auto">
                   <table className="w-full">
                     <thead>
                       <tr className="border-b border-[#30363D]">
-                        <th className="text-left py-6 px-6">Plan</th>
-                        <th className="text-left py-6 px-6">Price</th>
-                        <th className="text-left py-6 px-6">Includes</th>
-                        <th className="py-6 px-6"></th>
+                        <th className="text-left p-6">Engagement Type</th>
+                        <th className="text-left p-6">Starting Investment</th>
+                        <th className="text-left p-6">Includes</th>
+                        <th className="p-6"></th>
                       </tr>
                     </thead>
                     <tbody>
-                      {MAINTENANCE_PLANS.map((plan, index) => (
-                        <tr key={plan.id} className={index < MAINTENANCE_PLANS.length - 1 ? "border-b border-[#30363D]" : ""}>
-                          <td className="py-6 px-6 font-medium">{plan.name}</td>
-                          <td className="py-6 px-6">{plan.price}</td>
-                          <td className="py-6 px-6">{plan.features}</td>
-                          <td className="py-6 px-6">
-                            <Link href="/contact" className="inline-block px-4 py-2 text-center gradient-bg gradient-bg-hover rounded-md font-medium transition-all duration-300 glow-hover">Select</Link>
-                          </td>
-                        </tr>
-                      ))}
+                      <tr className="border-b border-[#30363D]">
+                        <td className="p-6 font-medium">Discovery & Strategy Session</td>
+                        <td className="p-6">Free (30-minute call)</td>
+                        <td className="p-6">Needs assessment, high-level roadmap, actionable next steps</td>
+                        <td className="p-6">
+                          <Link href="/contact" className="inline-block px-4 py-2 text-center bg-[#0D1117] hover:bg-[#30363D] rounded-md font-medium transition-all duration-300">Book Call</Link>
+                        </td>
+                      </tr>
+                      <tr className="border-b border-[#30363D]">
+                        <td className="p-6 font-medium">Fixed-Scope Development</td>
+                        <td className="p-6">$10,000</td>
+                        <td className="p-6">Requirements, design, development, testing, + 1-month support</td>
+                        <td className="p-6">
+                          <Link href="/contact" className="inline-block px-4 py-2 text-center gradient-bg gradient-bg-hover rounded-md font-medium transition-all duration-300 glow-hover">Get Quote</Link>
+                        </td>
+                      </tr>
+                      <tr className="border-b border-[#30363D]">
+                        <td className="p-6 font-medium">Complex Automations & Integrations</td>
+                        <td className="p-6">$18,000</td>
+                        <td className="p-6">Advanced API work, RPA bots, data migrations, + 2-month support</td>
+                        <td className="p-6">
+                          <Link href="/contact" className="inline-block px-4 py-2 text-center gradient-bg gradient-bg-hover rounded-md font-medium transition-all duration-300 glow-hover">Get Quote</Link>
+                        </td>
+                      </tr>
+                      <tr className="border-b border-[#30363D]">
+                        <td className="p-6 font-medium">AI & Advanced Analytics Solutions</td>
+                        <td className="p-6">$22,500</td>
+                        <td className="p-6">Custom ML pipelines, forecasting models, dashboards, + 3-month support</td>
+                        <td className="p-6">
+                          <Link href="/contact" className="inline-block px-4 py-2 text-center gradient-bg gradient-bg-hover rounded-md font-medium transition-all duration-300 glow-hover">Get Quote</Link>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="p-6 font-medium">Ongoing Support Retainer</td>
+                        <td className="p-6">From $750/month</td>
+                        <td className="p-6">Priority bug fixes, performance tuning, feature enhancements</td>
+                        <td className="p-6">
+                          <Link href="/contact" className="inline-block px-4 py-2 text-center bg-[#0D1117] hover:bg-[#30363D] rounded-md font-medium transition-all duration-300">Learn More</Link>
+                        </td>
+                      </tr>
                     </tbody>
                   </table>
                 </div>
               </div>
               
-              <div className="mt-8 text-center">
-                <p className="text-[#8B949E] mb-8">
-                  All maintenance plans include priority support and regular security updates. We also offer custom maintenance solutions for complex projects.
-                </p>
+              <div className="text-center text-[#8B949E] text-sm italic mb-12">
+                *Custom packages and volume discounts available for multi-project engagements.
               </div>
+              
+              <div className="flex justify-center">
+                <Link href="/contact" className="gradient-bg gradient-bg-hover px-8 py-4 rounded-md font-medium text-lg transition-all duration-300 glow-hover inline-block">
+                  Schedule Your Free Discovery Call
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* What's Included */}
+        <section className="py-20 bg-radial">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-3xl mx-auto text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-poppins font-bold mb-6">What's Included in Every Project</h2>
+              <p className="text-[#8B949E] text-lg">
+                No matter the size of your engagement, we deliver exceptional quality and service.
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+              {[
+                {
+                  icon: "bx-bulb",
+                  title: "Strategic Planning",
+                  description: "We identify opportunities beyond the obvious technical solutions to add maximum business value."
+                },
+                {
+                  icon: "bx-code-alt",
+                  title: "Quality Code",
+                  description: "Clean, maintainable code that follows best practices and industry standards."
+                },
+                {
+                  icon: "bx-devices",
+                  title: "Responsive Design",
+                  description: "Solutions that work seamlessly across all devices, from desktop to mobile."
+                },
+                {
+                  icon: "bx-line-chart",
+                  title: "Performance Optimization",
+                  description: "Speed and efficiency built in from the ground up, not added as an afterthought."
+                },
+                {
+                  icon: "bx-shield-quarter",
+                  title: "Security Focus",
+                  description: "Protection against common vulnerabilities and best security practices."
+                },
+                {
+                  icon: "bx-trending-up",
+                  title: "Scalable Architecture",
+                  description: "Systems designed to grow with your business and adapt to changing needs."
+                }
+              ].map((item, index) => (
+                <div key={index} className="bg-[#161B22] rounded-xl p-8 border border-[#30363D] card-scale">
+                  <div className="w-14 h-14 gradient-bg rounded-lg flex items-center justify-center mb-6">
+                    <i className={`bx ${item.icon} text-2xl`}></i>
+                  </div>
+                  <h3 className="text-xl font-poppins font-semibold mb-4">{item.title}</h3>
+                  <p className="text-[#8B949E]">
+                    {item.description}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
         </section>
@@ -176,9 +206,9 @@ const PricingPage = () => {
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="bg-[#161B22] rounded-xl p-8 md:p-12 lg:p-16 relative overflow-hidden">
               <div className="relative z-10 max-w-3xl mx-auto text-center">
-                <h2 className="text-3xl md:text-4xl font-poppins font-bold mb-6">Ready to Get Started?</h2>
+                <h2 className="text-3xl md:text-4xl font-poppins font-bold mb-6">Get Your Custom Quote Today</h2>
                 <p className="text-[#8B949E] text-lg mb-10">
-                  Contact us today for a custom quote tailored to your specific needs.
+                  Contact us today for a personalized quote tailored to your specific needs and goals.
                 </p>
                 <Link href="/contact" className="gradient-bg gradient-bg-hover px-8 py-4 rounded-md font-medium text-lg transition-all duration-300 glow-hover inline-block">
                   Request a Quote
