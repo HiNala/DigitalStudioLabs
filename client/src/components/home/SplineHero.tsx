@@ -2,9 +2,20 @@ import { SplineScene } from "@/components/ui/spline";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { useTheme } from "@/providers/ThemeProvider";
+import { useEffect, useState } from "react";
 
 export function SplineHero() {
   const { theme } = useTheme();
+  const [isLoaded, setIsLoaded] = useState(false);
+  
+  // Set isLoaded to true after components mount
+  useEffect(() => {
+    // Use requestAnimationFrame to delay until after the first paint
+    requestAnimationFrame(() => {
+      // Then use setTimeout to ensure everything has stabilized
+      setTimeout(() => setIsLoaded(true), 200);
+    });
+  }, []);
   
   return (
     <section className="w-full h-[700px] md:h-[600px] relative overflow-hidden">      
@@ -44,8 +55,8 @@ export function SplineHero() {
           </motion.div>
         </div>
 
-        {/* Right content */}
-        <div className="flex-1 relative">
+        {/* Right content - Only show when loaded */}
+        <div className={`flex-1 relative transition-opacity duration-300 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
           <SplineScene 
             scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
             className="w-full h-full"
@@ -58,20 +69,6 @@ export function SplineHero() {
           <div className="spline-attribution-blocker"></div>
         </div>
       </div>
-      
-      {/* Enhanced gradient blur transition with more subtle effect */}
-      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t dark:from-background dark:via-background/60 dark:to-transparent light:from-white light:via-white/60 light:to-transparent pointer-events-none z-20 transition-colors duration-300"></div>
-      
-      {/* Additional blur effect for light mode, positioned lower to appear above robot animation - made more subtle */}
-      {theme === 'light' && (
-        <div 
-          className="absolute -bottom-2 left-0 right-0 h-12 z-30 pointer-events-none"
-          style={{
-            background: 'linear-gradient(to top, rgba(255,255,255,1) 0%, rgba(255,255,255,0.5) 60%, rgba(255,255,255,0) 100%)',
-            backdropFilter: 'blur(2px)'
-          }}
-        ></div>
-      )}
     </section>
   );
 }

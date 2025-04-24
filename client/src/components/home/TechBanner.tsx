@@ -137,12 +137,10 @@ function TechBanner() {
   const { theme } = useTheme();
 
   return (
-    <div className="bg-radial py-8">
+    <div className="bg-radial">
       <InfiniteScrollBanner 
-        title="Technologies We Leverage"
-        description="Our expertise spans across modern technologies to deliver cutting-edge solutions"
         pauseOnHover={true}
-        speed={100} // Slowed down from 40 to 100
+        speed={100} 
         gap={32}
       >
         {logos.map(({ name, Logo }, index) => (

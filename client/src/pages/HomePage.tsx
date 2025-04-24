@@ -42,9 +42,6 @@ const HomePage = () => {
           {/* Process section */}
           <ProcessSection />
           
-          {/* Technology Banner */}
-          <TechBanner />
-          
           {/* Testimonials section */}
           <TestimonialsSection />
           
@@ -59,6 +56,21 @@ const HomePage = () => {
           
           {/* Contact section */}
           <ContactSection />
+          
+          {/* Technologies Section */}
+          <section className="py-16 md:py-20">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="max-w-3xl mx-auto text-center mb-14">
+                <h2 className="text-3xl md:text-4xl font-poppins font-bold mb-6">
+                  Technologies We <span className="gradient-text">Leverage</span>
+                </h2>
+                <p className="dark:text-[#8B949E] light:text-gray-600 text-lg">
+                  Our expertise spans across modern technologies to deliver cutting-edge solutions
+                </p>
+              </div>
+              <TechBanner />
+            </div>
+          </section>
         </main>
       </SpotlightLayout>
       <Footer />

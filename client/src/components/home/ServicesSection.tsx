@@ -99,20 +99,6 @@ const ServicesSection = () => {
 
   return (
     <section id="services" ref={sectionRef} className="py-24 relative">
-      {/* Top blur effect - more subtle */}
-      <div className="absolute top-0 left-0 right-0 h-12 bg-gradient-to-b dark:from-background/20 dark:to-transparent light:from-white/90 light:to-transparent pointer-events-none z-10 transition-colors duration-300"></div>
-      
-      {/* Additional blur effect for light mode at the top - more subtle */}
-      {theme === 'light' && (
-        <div 
-          className="absolute top-0 left-0 right-0 h-8 z-20 pointer-events-none"
-          style={{
-            background: 'linear-gradient(to bottom, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0) 100%)',
-            backdropFilter: 'blur(1px)'
-          }}
-        ></div>
-      )}
-      
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-5">
         <div className="max-w-3xl mx-auto text-center mb-16 animate-fade-in">
           <h2 className="text-3xl md:text-4xl font-poppins font-bold mb-6">
