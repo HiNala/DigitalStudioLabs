@@ -11,11 +11,13 @@ import {
   FaLightbulb 
 } from 'react-icons/fa';
 import { GlowingEffect } from '@/components/ui/glowing-effect';
+import { useTheme } from '@/providers/ThemeProvider';
 
 // Map service icons to corresponding React Icons
 const ServiceIcon = ({ icon }: { icon: string }) => {
+  const { theme } = useTheme();
   const iconSize = 36;
-  const iconClass = "text-white";
+  const iconClass = theme === 'dark' ? "text-white" : "text-white";
   
   switch (icon) {
     case 'design':
@@ -37,6 +39,7 @@ const ServiceIcon = ({ icon }: { icon: string }) => {
 
 const ServicesSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
+  const { theme } = useTheme();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -88,7 +91,9 @@ const ServicesSection = () => {
     hover: { 
       scale: 1, 
       opacity: 1,
-      boxShadow: "0 0 25px rgba(0, 160, 176, 0.5)"
+      boxShadow: theme === 'dark' 
+        ? "0 0 25px rgba(0, 160, 176, 0.5)"
+        : "0 0 25px rgba(0, 160, 176, 0.3)"
     }
   };
 
@@ -99,7 +104,7 @@ const ServicesSection = () => {
           <h2 className="text-3xl md:text-4xl font-poppins font-bold mb-6">
             Innovative <span className="gradient-text">Digital Solutions</span>
           </h2>
-          <p className="text-[#8B949E] text-lg">
+          <p className="dark:text-[#8B949E] light:text-gray-600 text-lg">
             Tailored technology expertise to transform your ideas into powerful digital realities
           </p>
         </div>
@@ -114,7 +119,7 @@ const ServicesSection = () => {
           {SERVICES.map((service) => (
             <motion.div 
               key={service.id}
-              className="relative bg-[#161B22] p-8 rounded-xl border border-[#30363D] transition-all duration-300"
+              className="relative dark:bg-[#161B22] light:bg-white light:shadow-md p-8 rounded-xl border dark:border-[#30363D] light:border-gray-200 transition-all duration-300"
               variants={itemVariants}
               whileHover={{ y: -5 }}
             >
@@ -139,7 +144,7 @@ const ServicesSection = () => {
               </motion.div>
               
               <h3 className="text-xl font-poppins font-semibold mb-4">{service.title}</h3>
-              <p className="text-[#8B949E] mb-6">
+              <p className="dark:text-[#8B949E] light:text-gray-600 mb-6">
                 {service.description}
               </p>
               

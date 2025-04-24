@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { CursorSpotlight } from "@/components/ui/cursor-spotlight";
 import NotFound from "@/pages/not-found";
+import { ThemeProvider } from "@/providers/ThemeProvider";
 
 // Pages
 import HomePage from "@/pages/HomePage";
@@ -34,21 +35,23 @@ function Router() {
 
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <div className="min-h-screen bg-[#0D1117] text-[#E6EDF3] overflow-x-hidden">
-          {/* Add global cursor spotlight with layered effect */}
-          <CursorSpotlight 
-            size={450} 
-            color="rgba(0, 160, 176, 0.15)" 
-            opacity={0.65}
-            blurSize={120}
-          />
-          <Toaster />
-          <Router />
-        </div>
-      </TooltipProvider>
-    </QueryClientProvider>
+    <ThemeProvider>
+      <QueryClientProvider client={queryClient}>
+        <TooltipProvider>
+          <div className="min-h-screen bg-background text-foreground overflow-x-hidden transition-colors duration-300">
+            {/* Add global cursor spotlight with layered effect */}
+            <CursorSpotlight 
+              size={450} 
+              color="rgba(0, 160, 176, 0.15)" 
+              opacity={0.65}
+              blurSize={120}
+            />
+            <Toaster />
+            <Router />
+          </div>
+        </TooltipProvider>
+      </QueryClientProvider>
+    </ThemeProvider>
   );
 }
 

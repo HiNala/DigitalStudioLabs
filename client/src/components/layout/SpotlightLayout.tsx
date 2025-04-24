@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Spotlight } from "@/components/ui/spotlight";
 import { cn } from "@/lib/utils";
+import { useTheme } from "@/providers/ThemeProvider";
 
 interface SpotlightLayoutProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
@@ -19,6 +20,7 @@ export function SpotlightLayout({
 }: SpotlightLayoutProps) {
   // Add state to track mouse position for spotlight positioning
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const { theme } = useTheme();
   
   // Update mouse position
   useEffect(() => {
@@ -33,10 +35,23 @@ export function SpotlightLayout({
     };
   }, []);
 
+  // Set spotlight colors based on theme
+  const primaryColor = theme === 'dark' 
+    ? "rgba(0, 160, 176, 0.15)" 
+    : "rgba(0, 160, 176, 0.10)";
+    
+  const secondaryColor = theme === 'dark'
+    ? "rgba(77, 77, 255, 0.1)"
+    : "rgba(77, 77, 255, 0.08)";
+    
+  const tertiaryColor = theme === 'dark'
+    ? "rgba(255, 255, 255, 0.05)"
+    : "rgba(0, 160, 176, 0.05)";
+
   return (
     <div 
       className={cn(
-        "relative overflow-hidden bg-[#0D1117]",
+        "relative overflow-hidden bg-background transition-colors duration-300",
         className
       )}
       {...props}
@@ -45,7 +60,7 @@ export function SpotlightLayout({
       <div className="fixed inset-0 pointer-events-none z-0">
         <Spotlight 
           className="fixed"
-          fill={spotlightColor}
+          fill={primaryColor}
           size={spotlightSize}
           springOptions={{ stiffness: 100, damping: 15 }}
         />
@@ -55,13 +70,13 @@ export function SpotlightLayout({
           <>
             <Spotlight
               className="fixed"
-              fill="rgba(77, 77, 255, 0.1)"
+              fill={secondaryColor}
               size={spotlightSize * 1.2}
               springOptions={{ stiffness: 80, damping: 20 }}
             />
             <Spotlight
               className="fixed"
-              fill="rgba(255, 255, 255, 0.05)"
+              fill={tertiaryColor}
               size={spotlightSize * 0.8}
               springOptions={{ stiffness: 120, damping: 12 }}
             />

@@ -4,10 +4,12 @@ import { apiRequest } from '@/lib/queryClient';
 import { useToast } from '@/hooks/use-toast';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Calendar, Send } from 'lucide-react';
+import { useTheme } from '@/providers/ThemeProvider';
 
 const ContactSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const { toast } = useToast();
+  const { theme } = useTheme();
   
   const [formData, setFormData] = useState({
     name: '',
@@ -98,7 +100,7 @@ const ContactSection = () => {
           <h2 className="text-3xl md:text-4xl font-poppins font-bold mb-6">
             Let's Start Your Digital <span className="gradient-text">Journey</span> Together
           </h2>
-          <p className="text-[#8B949E] text-lg">
+          <p className="dark:text-[#8B949E] light:text-gray-600 text-lg">
             Reach out to discuss your project, ask questions, or schedule a free consultation. 
             We're here to help turn your vision into reality.
           </p>
@@ -107,7 +109,7 @@ const ContactSection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           {/* Contact Form */}
           <motion.div 
-            className="lg:col-span-7 bg-[#161B22]/80 backdrop-blur-sm rounded-xl p-8 border border-[#30363D] shadow-xl"
+            className="lg:col-span-7 dark:bg-[#161B22]/80 light:bg-white/90 backdrop-blur-sm rounded-xl p-8 border dark:border-[#30363D] light:border-gray-200 shadow-xl"
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -123,13 +125,13 @@ const ContactSection = () => {
                       type="text" 
                       id="name" 
                       name="name" 
-                      className="w-full pl-10 px-4 py-3 bg-[#0D1117] border border-[#30363D] rounded-md focus:outline-none focus:ring-2 focus:ring-[#00A0B0] focus:border-transparent transition-all" 
+                      className="w-full pl-10 px-4 py-3 dark:bg-[#0D1117] light:bg-gray-50 border dark:border-[#30363D] light:border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#00A0B0] focus:border-transparent transition-all" 
                       required
                       value={formData.name}
                       onChange={handleChange}
                     />
                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center">
-                      <i className='bx bx-user text-[#8B949E]'></i>
+                      <i className='bx bx-user dark:text-[#8B949E] light:text-gray-500'></i>
                     </div>
                   </div>
                 </div>
@@ -140,13 +142,13 @@ const ContactSection = () => {
                       type="email" 
                       id="email" 
                       name="email" 
-                      className="w-full pl-10 px-4 py-3 bg-[#0D1117] border border-[#30363D] rounded-md focus:outline-none focus:ring-2 focus:ring-[#00A0B0] focus:border-transparent transition-all" 
+                      className="w-full pl-10 px-4 py-3 dark:bg-[#0D1117] light:bg-gray-50 border dark:border-[#30363D] light:border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#00A0B0] focus:border-transparent transition-all" 
                       required
                       value={formData.email}
                       onChange={handleChange}
                     />
                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center">
-                      <i className='bx bx-envelope text-[#8B949E]'></i>
+                      <i className='bx bx-envelope dark:text-[#8B949E] light:text-gray-500'></i>
                     </div>
                   </div>
                 </div>
@@ -159,12 +161,12 @@ const ContactSection = () => {
                     type="tel" 
                     id="phone" 
                     name="phone" 
-                    className="w-full pl-10 px-4 py-3 bg-[#0D1117] border border-[#30363D] rounded-md focus:outline-none focus:ring-2 focus:ring-[#00A0B0] focus:border-transparent transition-all"
+                    className="w-full pl-10 px-4 py-3 dark:bg-[#0D1117] light:bg-gray-50 border dark:border-[#30363D] light:border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#00A0B0] focus:border-transparent transition-all"
                     value={formData.phone}
                     onChange={handleChange}
                   />
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center">
-                    <i className='bx bx-phone text-[#8B949E]'></i>
+                    <i className='bx bx-phone dark:text-[#8B949E] light:text-gray-500'></i>
                   </div>
                 </div>
               </div>
@@ -175,7 +177,7 @@ const ContactSection = () => {
                   <select 
                     id="service" 
                     name="service" 
-                    className="w-full pl-10 px-4 py-3 bg-[#0D1117] border border-[#30363D] rounded-md focus:outline-none focus:ring-2 focus:ring-[#00A0B0] focus:border-transparent transition-all appearance-none"
+                    className="w-full pl-10 px-4 py-3 dark:bg-[#0D1117] light:bg-gray-50 border dark:border-[#30363D] light:border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#00A0B0] focus:border-transparent transition-all appearance-none"
                     value={formData.service}
                     onChange={handleChange}
                   >
@@ -188,10 +190,10 @@ const ContactSection = () => {
                     <option value="other">Other</option>
                   </select>
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center">
-                    <i className='bx bx-list-ul text-[#8B949E]'></i>
+                    <i className='bx bx-list-ul dark:text-[#8B949E] light:text-gray-500'></i>
                   </div>
                   <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-                    <i className='bx bx-chevron-down text-[#8B949E]'></i>
+                    <i className='bx bx-chevron-down dark:text-[#8B949E] light:text-gray-500'></i>
                   </div>
                 </div>
               </div>
@@ -203,13 +205,13 @@ const ContactSection = () => {
                     id="message" 
                     name="message" 
                     rows={5} 
-                    className="w-full pl-10 px-4 py-3 bg-[#0D1117] border border-[#30363D] rounded-md focus:outline-none focus:ring-2 focus:ring-[#00A0B0] focus:border-transparent transition-all"
+                    className="w-full pl-10 px-4 py-3 dark:bg-[#0D1117] light:bg-gray-50 border dark:border-[#30363D] light:border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#00A0B0] focus:border-transparent transition-all"
                     required
                     value={formData.message}
                     onChange={handleChange}
                   ></textarea>
                   <div className="absolute top-3 left-0 pl-3 flex items-center">
-                    <i className='bx bx-message-detail text-[#8B949E]'></i>
+                    <i className='bx bx-message-detail dark:text-[#8B949E] light:text-gray-500'></i>
                   </div>
                 </div>
               </div>
@@ -224,7 +226,7 @@ const ContactSection = () => {
                     checked={formData.consent}
                     onChange={handleCheckboxChange}
                   />
-                  <span className="text-[#8B949E] text-sm">
+                  <span className="dark:text-[#8B949E] light:text-gray-600 text-sm">
                     I agree to the <a href="/privacy" className="text-[#00A0B0] hover:text-[#4D4DFF] transition-colors">Privacy Policy</a> and consent to be contacted regarding my inquiry.
                   </span>
                 </label>
@@ -244,7 +246,7 @@ const ContactSection = () => {
           {/* Contact Info */}
           <div className="lg:col-span-5 space-y-6">
             <motion.div 
-              className="bg-[#161B22]/80 backdrop-blur-sm rounded-xl p-8 border border-[#30363D] shadow-xl"
+              className="dark:bg-[#161B22]/80 light:bg-white/90 backdrop-blur-sm rounded-xl p-8 border dark:border-[#30363D] light:border-gray-200 shadow-xl"
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -258,7 +260,7 @@ const ContactSection = () => {
                   </div>
                   <div>
                     <p className="font-medium text-lg">Email</p>
-                    <a href={`mailto:${COMPANY_EMAIL}`} className="text-[#8B949E] hover:text-[#00A0B0] transition-colors">
+                    <a href={`mailto:${COMPANY_EMAIL}`} className="dark:text-[#8B949E] light:text-gray-600 hover:text-[#00A0B0] transition-colors">
                       {COMPANY_EMAIL}
                     </a>
                   </div>
@@ -269,7 +271,7 @@ const ContactSection = () => {
                   </div>
                   <div>
                     <p className="font-medium text-lg">Phone</p>
-                    <a href={`tel:${COMPANY_PHONE.replace(/[^0-9]/g, '')}`} className="text-[#8B949E] hover:text-[#00A0B0] transition-colors">
+                    <a href={`tel:${COMPANY_PHONE.replace(/[^0-9]/g, '')}`} className="dark:text-[#8B949E] light:text-gray-600 hover:text-[#00A0B0] transition-colors">
                       {COMPANY_PHONE}
                     </a>
                   </div>
@@ -280,14 +282,14 @@ const ContactSection = () => {
                   </div>
                   <div>
                     <p className="font-medium text-lg">Location</p>
-                    <p className="text-[#8B949E]">{COMPANY_LOCATION}</p>
+                    <p className="dark:text-[#8B949E] light:text-gray-600">{COMPANY_LOCATION}</p>
                   </div>
                 </div>
               </div>
             </motion.div>
             
             <motion.div 
-              className="bg-[#161B22]/80 backdrop-blur-sm rounded-xl p-8 border border-[#30363D] shadow-xl"
+              className="dark:bg-[#161B22]/80 light:bg-white/90 backdrop-blur-sm rounded-xl p-8 border dark:border-[#30363D] light:border-gray-200 shadow-xl"
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -299,7 +301,7 @@ const ContactSection = () => {
                 </div>
                 <div>
                   <h3 className="text-2xl font-poppins font-semibold">Schedule a Call</h3>
-                  <p className="text-[#8B949E]">
+                  <p className="dark:text-[#8B949E] light:text-gray-600">
                     Book a convenient time for a free 30-minute consultation
                   </p>
                 </div>

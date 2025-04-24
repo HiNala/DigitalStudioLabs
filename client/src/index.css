@@ -12,6 +12,7 @@
 }
 
 :root {
+  /* Dark mode colors (default) */
   --background: 240 10% 3.9%;
   --foreground: 0 0% 98%;
   --muted: 240 3.7% 15.9%;
@@ -43,13 +44,45 @@
   --color-accent-blue: #4D4DFF;
 }
 
+/* Light mode overrides */
+.light {
+  --background: 0 0% 100%;
+  --foreground: 222 47% 11%;
+  --muted: 210 40% 96.1%;
+  --muted-foreground: 215.4 16.3% 46.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222 47% 11%;
+  --card: 0 0% 100%;
+  --card-foreground: 222 47% 11%;
+  --border: 214.3 31.8% 91.4%;
+  --input: 214.3 31.8% 91.4%;
+  --primary: 187 100% 33%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 210 40% 96.1%;
+  --secondary-foreground: 222 47% 11%;
+  --accent: 187 100% 33%;
+  --accent-foreground: 222 47% 11%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 98%;
+  --ring: 187 100% 33%;
+
+  /* Custom Digital Studio Labs Variables for light mode */
+  --color-bg-primary: #FFFFFF;
+  --color-bg-secondary: #F8F9FA;
+  --color-text-primary: #1A202C;
+  --color-text-secondary: #4A5568;
+  --color-border: #E2E8F0;
+  --color-accent-teal: #00A0B0;
+  --color-accent-blue: #4D4DFF;
+}
+
 @layer base {
   * {
     @apply border-border;
   }
 
   body {
-    @apply bg-[#0D1117] text-[#E6EDF3] font-inter;
+    @apply bg-background text-foreground font-inter;
     font-size: 17px;
     line-height: 1.6;
   }
@@ -89,6 +122,10 @@
     text-shadow: 0 0 8px rgba(0, 160, 176, 0.4);
   }
   
+  .light .gradient-text-animated {
+    text-shadow: 0 0 8px rgba(0, 160, 176, 0.2);
+  }
+  
   .gradient-text-glow {
     display: inline-block;
     position: relative;
@@ -106,6 +143,10 @@
     z-index: -1;
     border-radius: 4px;
     transform: scale(1.05);
+  }
+  
+  .light .gradient-text-glow::after {
+    filter: blur(15px) opacity(0.15);
   }
   
   @keyframes gradientShift {
@@ -131,17 +172,33 @@
   .bg-radial {
     background: radial-gradient(ellipse at top left, #161B22, #0D1117);
   }
+  
+  .light .bg-radial {
+    background: radial-gradient(ellipse at top left, #F8F9FA, #FFFFFF);
+  }
 
   .glow-hover:hover {
     box-shadow: 0 0 15px 3px rgba(0, 160, 176, 0.4);
+  }
+  
+  .light .glow-hover:hover {
+    box-shadow: 0 0 15px 3px rgba(0, 160, 176, 0.25);
   }
 
   .ambient-glow {
     box-shadow: 0 5px 30px 10px rgba(77, 77, 255, 0.15);
   }
+  
+  .light .ambient-glow {
+    box-shadow: 0 5px 30px 10px rgba(77, 77, 255, 0.08);
+  }
 
   .text-glow {
     text-shadow: 0 0 8px rgba(230, 237, 243, 0.3);
+  }
+  
+  .light .text-glow {
+    text-shadow: 0 0 8px rgba(26, 32, 44, 0.2);
   }
 
   .card-scale {

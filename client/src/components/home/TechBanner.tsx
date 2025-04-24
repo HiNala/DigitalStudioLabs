@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import useMeasure from 'react-use-measure';
 import { cn } from "@/lib/utils";
 import { TechLogos } from './TechLogos';
+import { useTheme } from '@/providers/ThemeProvider';
 
 interface InfiniteScrollBannerProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
@@ -32,6 +33,7 @@ export function InfiniteScrollBanner({
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [currentSpeed, setCurrentSpeed] = useState(speed);
   const [key, setKey] = useState(0);
+  const { theme } = useTheme();
 
   useEffect(() => {
     let controls;
@@ -82,7 +84,7 @@ export function InfiniteScrollBanner({
       {(title || description) && (
         <div className="container mx-auto mb-10 text-center">
           {title && <h2 className="text-3xl md:text-4xl font-poppins font-bold mb-4">{title}</h2>}
-          {description && <p className="text-lg text-[#8B949E] max-w-3xl mx-auto">{description}</p>}
+          {description && <p className="text-lg dark:text-[#8B949E] light:text-gray-600 max-w-3xl mx-auto">{description}</p>}
         </div>
       )}
       
@@ -90,7 +92,7 @@ export function InfiniteScrollBanner({
         className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 rounded-xl overflow-hidden"
       >
         <div 
-          className="absolute inset-0 bg-gradient-to-r from-[#0d1117]/80 via-[#161B22]/60 to-[#0d1117]/80 backdrop-blur-md rounded-xl z-0 border border-[#30363D]/50"
+          className="absolute inset-0 dark:bg-gradient-to-r dark:from-[#0d1117]/80 dark:via-[#161B22]/60 dark:to-[#0d1117]/80 light:bg-gradient-to-r light:from-white/80 light:via-gray-100/60 light:to-white/80 backdrop-blur-md rounded-xl z-0 border dark:border-[#30363D]/50 light:border-gray-200/50 transition-colors duration-300"
           style={{ backdropFilter: 'blur(10px)' }}
         ></div>
         
@@ -132,6 +134,7 @@ function TechBanner() {
     { name: "Backend", Logo: TechLogos.Backend },
     { name: "DevOps", Logo: TechLogos.DevOps },
   ];
+  const { theme } = useTheme();
 
   return (
     <div className="bg-radial py-8">
@@ -147,10 +150,10 @@ function TechBanner() {
             key={index}
             className="relative h-full w-fit mx-8 flex flex-col items-center justify-center group"
           >
-            <div className="w-16 h-16 flex items-center justify-center bg-[#161B22]/80 p-3 rounded-lg border border-[#30363D]/50 shadow-lg transition-all duration-300 group-hover:scale-110 group-hover:border-[#00A0B0]/50">
+            <div className="w-16 h-16 flex items-center justify-center dark:bg-[#161B22]/80 light:bg-white/80 p-3 rounded-lg border dark:border-[#30363D]/50 light:border-gray-200/50 shadow-lg transition-all duration-300 group-hover:scale-110 group-hover:border-[#00A0B0]/50">
               <Logo />
             </div>
-            <span className="text-sm font-medium text-[#E6EDF3] mt-3 opacity-80 group-hover:opacity-100 transition-opacity">{name}</span>
+            <span className="text-sm font-medium dark:text-[#E6EDF3] light:text-gray-700 mt-3 opacity-80 group-hover:opacity-100 transition-opacity">{name}</span>
           </div>
         ))}
       </InfiniteScrollBanner>

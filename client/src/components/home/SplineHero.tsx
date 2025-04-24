@@ -1,15 +1,18 @@
 import { SplineScene } from "@/components/ui/spline";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
+import { useTheme } from "@/providers/ThemeProvider";
 
 export function SplineHero() {
+  const { theme } = useTheme();
+  
   return (
     <section className="w-full h-[700px] md:h-[600px] relative overflow-hidden">      
       <div className="flex flex-col md:flex-row h-full">
         {/* Left content */}
         <div className="flex-1 p-8 relative z-10 flex flex-col justify-center">
           <motion.h1 
-            className="text-4xl md:text-5xl lg:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-neutral-300 font-poppins"
+            className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins dark:text-transparent dark:bg-clip-text dark:bg-gradient-to-r dark:from-white dark:to-neutral-300 light:text-gray-900"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -18,7 +21,7 @@ export function SplineHero() {
           </motion.h1>
           
           <motion.p 
-            className="mt-4 text-neutral-300 max-w-lg text-xl"
+            className="mt-4 text-xl dark:text-neutral-300 light:text-gray-600 max-w-lg"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -35,7 +38,7 @@ export function SplineHero() {
             <Link href="/contact" className="gradient-bg gradient-bg-hover px-8 py-4 rounded-md font-medium text-lg transition-all duration-300 glow-hover">
               Schedule Free Consultation
             </Link>
-            <Link href="/services" className="bg-[#161B22] hover:bg-[#30363D] px-8 py-4 rounded-md font-medium text-lg transition-all duration-300">
+            <Link href="/services" className="dark:bg-[#161B22] dark:hover:bg-[#30363D] light:bg-gray-100 light:hover:bg-gray-200 light:text-gray-900 px-8 py-4 rounded-md font-medium text-lg transition-all duration-300">
               Explore Our Services
             </Link>
           </motion.div>
@@ -57,7 +60,7 @@ export function SplineHero() {
       </div>
       
       {/* Gradient blur transition */}
-      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#0D1117] to-transparent pointer-events-none z-20"></div>
+      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t dark:from-[#0D1117] light:from-white to-transparent pointer-events-none z-20 transition-colors duration-300"></div>
     </section>
   );
 }
