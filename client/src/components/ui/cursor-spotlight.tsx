@@ -39,13 +39,13 @@ export const CursorSpotlight = memo(({
   };
   
   const lightModeColors = {
-    services: "rgba(255, 105, 180, 0.15)", // Pink
-    hero: "rgba(111, 66, 193, 0.15)", // Purple
-    portfolio: "rgba(0, 191, 255, 0.15)", // Sky blue
-    process: "rgba(255, 64, 129, 0.15)", // Hot pink
-    pricing: "rgba(102, 126, 234, 0.15)", // Indigo
-    contact: "rgba(236, 72, 153, 0.15)", // Bright pink
-    default: "rgba(147, 51, 234, 0.12)", // Purple
+    services: "rgba(255, 105, 180, 0.05)", // Pink
+    hero: "rgba(111, 66, 193, 0.05)", // Purple
+    portfolio: "rgba(0, 191, 255, 0.05)", // Sky blue
+    process: "rgba(255, 64, 129, 0.05)", // Hot pink
+    pricing: "rgba(102, 126, 234, 0.05)", // Indigo
+    contact: "rgba(236, 72, 153, 0.05)", // Bright pink
+    default: "rgba(147, 51, 234, 0.04)", // Purple
   };
   
   // Apply style updates directly to DOM elements for better performance
@@ -60,7 +60,7 @@ export const CursorSpotlight = memo(({
     // Get current color based on section and theme
     const sectionColors = theme === 'dark' ? darkModeColors : lightModeColors;
     const currentColor = sectionColors[currentSectionRef.current as keyof typeof sectionColors] || 
-                        (theme === 'dark' ? color : "rgba(147, 51, 234, 0.12)");
+                        (theme === 'dark' ? color : "rgba(147, 51, 234, 0.04)");
     
     primarySpotRef.current.style.background = currentColor;
     
@@ -68,13 +68,13 @@ export const CursorSpotlight = memo(({
     secondarySpotRef.current.style.transform = `translate3d(${x - size * 0.6 / 2}px, ${y - size * 0.6 / 2}px, 0)`;
     secondarySpotRef.current.style.background = theme === 'dark' 
       ? "rgba(130, 71, 229, 0.15)" 
-      : "rgba(236, 72, 153, 0.12)"; // Pink for light mode
+      : "rgba(236, 72, 153, 0.04)"; // Pink for light mode
     
     // Update tertiary spotlight
     tertiarySpotRef.current.style.transform = `translate3d(${x - size * 0.3 / 2}px, ${y - size * 0.3 / 2}px, 0)`;
     tertiarySpotRef.current.style.background = theme === 'dark' 
       ? "rgba(255, 255, 255, 0.1)" 
-      : "rgba(79, 70, 229, 0.1)"; // Indigo for light mode
+      : "rgba(79, 70, 229, 0.03)"; // Indigo for light mode
   };
   
   useEffect(() => {
@@ -175,8 +175,8 @@ export const CursorSpotlight = memo(({
         style={{
           width: size,
           height: size,
-          background: theme === 'dark' ? color : "rgba(147, 51, 234, 0.12)",
-          opacity: opacity,
+          background: theme === 'dark' ? color : "rgba(147, 51, 234, 0.04)",
+          opacity: theme === 'dark' ? opacity : 0.7,
           filter: `blur(${blurSize}px)`,
           backfaceVisibility: "hidden",
           transition: "background 0.5s ease",
@@ -192,8 +192,8 @@ export const CursorSpotlight = memo(({
           height: size * 0.6,
           background: theme === 'dark' 
             ? "rgba(130, 71, 229, 0.15)" 
-            : "rgba(236, 72, 153, 0.12)",
-          opacity: opacity * 0.7,
+            : "rgba(236, 72, 153, 0.04)",
+          opacity: theme === 'dark' ? opacity * 0.7 : 0.6,
           filter: `blur(${blurSize * 0.7}px)`,
           backfaceVisibility: "hidden",
           transition: "background 0.5s ease",
@@ -209,8 +209,8 @@ export const CursorSpotlight = memo(({
           height: size * 0.3,
           background: theme === 'dark' 
             ? "rgba(255, 255, 255, 0.1)" 
-            : "rgba(79, 70, 229, 0.1)",
-          opacity: opacity * 0.5,
+            : "rgba(79, 70, 229, 0.03)",
+          opacity: theme === 'dark' ? opacity * 0.5 : 0.5,
           filter: `blur(${blurSize * 0.4}px)`,
           backfaceVisibility: "hidden",
           transition: "background 0.5s ease",

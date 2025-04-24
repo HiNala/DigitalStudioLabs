@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'wouter';
-import { NAV_LINKS, COMPANY_NAME } from '@/lib/constants';
+import { NAV_LINKS } from '@/lib/constants';
 import { ThemeToggle } from '@/components/ui/theme-toggle';
 import { AnimatePresence, motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { AnimatedDSLLogo } from '@/components/ui/dsl-logo';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -52,8 +53,9 @@ const Header = () => {
         <div className="flex justify-between items-center">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <Link href="/" className="flex items-center">
-              <span className="text-2xl font-poppins font-bold gradient-text-animated">{COMPANY_NAME}</span>
+            <Link href="/" className="flex items-center space-x-2">
+              <AnimatedDSLLogo size="md" />
+              <span className="text-xl font-poppins font-bold gradient-text-animated">DSL</span>
             </Link>
           </div>
           

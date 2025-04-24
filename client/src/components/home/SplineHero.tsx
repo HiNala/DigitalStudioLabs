@@ -59,8 +59,19 @@ export function SplineHero() {
         </div>
       </div>
       
-      {/* Improved gradient blur transition with greater height and opacity */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t dark:from-background dark:via-background/90 dark:to-transparent light:from-white light:via-white/90 light:to-transparent pointer-events-none z-20 transition-colors duration-300"></div>
+      {/* Enhanced gradient blur transition with more subtle effect */}
+      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t dark:from-background dark:via-background/60 dark:to-transparent light:from-white light:via-white/60 light:to-transparent pointer-events-none z-20 transition-colors duration-300"></div>
+      
+      {/* Additional blur effect for light mode, positioned lower to appear above robot animation - made more subtle */}
+      {theme === 'light' && (
+        <div 
+          className="absolute -bottom-2 left-0 right-0 h-12 z-30 pointer-events-none"
+          style={{
+            background: 'linear-gradient(to top, rgba(255,255,255,1) 0%, rgba(255,255,255,0.5) 60%, rgba(255,255,255,0) 100%)',
+            backdropFilter: 'blur(2px)'
+          }}
+        ></div>
+      )}
     </section>
   );
 }

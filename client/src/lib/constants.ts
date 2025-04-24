@@ -57,7 +57,7 @@ export const INDUSTRIES = [
     id: 2,
     title: "Healthcare",
     description: "Secure patient portals, telehealth integration, automated administrative tasks, and patient analytics tools.",
-    background: "https://images.unsplash.com/photo-1631815587646-b85a1bb027e5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80",
+    background: "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
     tags: ["Patient Portals", "Telehealth", "Analytics"]
   },
   {
@@ -255,8 +255,6 @@ export const MAINTENANCE_PLANS = [
 export const NAV_LINKS = [
   { name: "Home", path: "/" },
   { name: "Services", path: "/services" },
-  { name: "Portfolio", path: "/portfolio" },
   { name: "Process", path: "/process" },
-  { name: "About", path: "/about" },
-  { name: "Pricing", path: "/pricing" }
+  { name: "About", path: "/about" }
 ];

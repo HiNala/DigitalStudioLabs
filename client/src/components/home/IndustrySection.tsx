@@ -90,7 +90,7 @@ const IndustrySection = () => {
               }}
             >
               <div 
-                className="absolute inset-0 opacity-5 bg-cover bg-center transition-opacity duration-500 group-hover:opacity-10" 
+                className="absolute inset-0 opacity-10 bg-cover bg-center transition-opacity duration-500 group-hover:opacity-15" 
                 style={{ backgroundImage: `url('${industry.background}')` }}
               ></div>
               <div className="relative z-10">
