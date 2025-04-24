@@ -8,38 +8,38 @@ export const COMPANY_LOCATION = "Boise, Idaho";
 export const SERVICES = [
   {
     id: 1,
-    title: "Custom Web & Mobile Apps",
-    description: "High-performance applications designed to engage users, built with cutting-edge technologies that deliver exceptional experiences.",
+    title: "Modern Web Applications",
+    description: "Scalable, high-performance web applications built with cutting-edge technologies that deliver exceptional user experiences across all devices.",
     icon: "development"
   },
   {
     id: 2,
-    title: "Automation & Integrations",
-    description: "Seamlessly connect your existing systems and automate routine tasks to improve efficiency and productivity company-wide.",
+    title: "Smart Business Automation",
+    description: "Custom workflows and system integrations that streamline operations, eliminate manual tasks, and boost your team's productivity and efficiency.",
     icon: "strategy"
   },
   {
     id: 3,
-    title: "AI & Advanced Analytics",
-    description: "Custom AI solutions and predictive analytics that help you make smarter decisions and gain valuable business insights.",
+    title: "AI & Machine Learning",
+    description: "Intelligent solutions that leverage the latest in artificial intelligence to provide predictive insights, enhance decision-making, and create competitive advantage.",
     icon: "ai"
   },
   {
     id: 4,
-    title: "Data Visualization",
-    description: "Beautiful, intuitive dashboards that transform complex data into clear, actionable insights for your business.",
+    title: "Interactive Data Dashboards",
+    description: "Real-time visualization tools that transform complex data into actionable insights through intuitive, customizable, and beautiful dashboard interfaces.",
     icon: "data"
   },
   {
     id: 5,
-    title: "Process Optimization",
-    description: "Streamline operations, eliminate bottlenecks, and enhance workflows with custom software solutions.",
+    title: "Digital Transformation",
+    description: "End-to-end consultation and implementation services to modernize your business processes and create new digital-first opportunities for growth.",
     icon: "seo"
   },
   {
     id: 6,
-    title: "Digital Strategy",
-    description: "Expert guidance on leveraging technology to achieve your business objectives and stay ahead of the competition.",
+    title: "UX/UI Design Systems",
+    description: "User-centered design solutions that create cohesive, intuitive experiences across your digital products while establishing a consistent brand identity.",
     icon: "design"
   }
 ];

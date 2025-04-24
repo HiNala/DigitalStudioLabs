@@ -55,6 +55,9 @@ export function SplineHero() {
           <div className="spline-attribution-blocker"></div>
         </div>
       </div>
+      
+      {/* Gradient blur transition */}
+      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#0D1117] to-transparent pointer-events-none z-20"></div>
     </section>
   );
 }

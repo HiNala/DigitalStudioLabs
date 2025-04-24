@@ -69,7 +69,7 @@ const Header = () => {
               href="/contact" 
               className="gradient-bg gradient-bg-hover px-5 py-2 rounded-md font-medium transition-all duration-300 glow-hover inline-block"
             >
-              Get a Quote
+              Get in Touch
             </Link>
           </div>
           
@@ -105,7 +105,7 @@ const Header = () => {
               onClick={handleLinkClick}
               className="gradient-bg gradient-bg-hover px-4 py-2 rounded-md font-medium text-center transition-all duration-300"
             >
-              Get a Quote
+              Get in Touch
             </Link>
           </nav>
         </div>
