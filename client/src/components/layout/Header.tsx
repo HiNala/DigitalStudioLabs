@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { Link, useLocation } from 'wouter';
 import { NAV_LINKS, COMPANY_NAME } from '@/lib/constants';
 import { ThemeToggle } from '@/components/ui/theme-toggle';
 import { AnimatePresence, motion } from "framer-motion";
@@ -9,7 +8,7 @@ import { Button } from "@/components/ui/button";
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [pathname] = usePathname();
+  const [pathname] = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -113,11 +112,11 @@ const Header = () => {
                 <nav className="flex flex-col space-y-4">
                   {NAV_LINKS.map((link) => (
                     <Link
-                      key={link.id}
-                      href={link.href}
+                      key={link.path}
+                      href={link.path}
                       onClick={handleLinkClick}
                       className={`block py-2 ${
-                        pathname === link.href
+                        pathname === link.path
                           ? 'text-primary font-medium'
                           : 'text-foreground/80 hover:text-primary'
                       }`}

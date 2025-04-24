@@ -1,25 +1,16 @@
 import { useEffect } from 'react';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
-import ServicesSection from '@/components/home/ServicesSection';
-import IndustrySection from '@/components/home/IndustrySection';
-import PortfolioSection from '@/components/home/PortfolioSection';
-import ProcessSection from '@/components/home/ProcessSection';
-import TestimonialsSection from '@/components/home/TestimonialsSection';
-import PricingSection from '@/components/home/PricingSection';
-import CTASection from '@/components/home/CTASection';
-import ContactSection from '@/components/home/ContactSection';
-import { SplineHero } from '@/components/home/SplineHero';
 import { LightSpotlightLayout } from '@/components/layout/LightSpotlightLayout';
 
 const AltHomePage = () => {
   useEffect(() => {
-    document.title = 'Digital Studio Labs | Light Theme';
+    document.title = 'Digital Studio Labs | New Landing';
     window.scrollTo(0, 0);
   }, []);
 
   return (
-    <div className="bg-white text-gray-900">
+    <div className="bg-background text-foreground">
       <Header />
       <LightSpotlightLayout
         className="pt-20 min-h-screen"
@@ -27,33 +18,13 @@ const AltHomePage = () => {
         spotlightSize={1200}
         withMultipleSpotlights={true}
       >
-        <main>
-          {/* Hero section */}
-          <SplineHero />
-          
-          {/* Services section */}
-          <ServicesSection />
-          
-          {/* Industry section */}
-          <IndustrySection />
-          
-          {/* Portfolio section */}
-          <PortfolioSection />
-          
-          {/* Process section */}
-          <ProcessSection />
-          
-          {/* Testimonials section */}
-          <TestimonialsSection />
-          
-          {/* Pricing section */}
-          <PricingSection />
-          
-          {/* CTA section */}
-          <CTASection />
-          
-          {/* Contact section */}
-          <ContactSection />
+        <main className="container mx-auto px-4 py-16">
+          <h1 className="text-4xl md:text-6xl font-bold text-center mb-8">
+            New Landing Page
+          </h1>
+          <p className="text-lg text-center max-w-2xl mx-auto">
+            This page will be rebuilt with our new light/dark theme components.
+          </p>
         </main>
       </LightSpotlightLayout>
       <Footer />
