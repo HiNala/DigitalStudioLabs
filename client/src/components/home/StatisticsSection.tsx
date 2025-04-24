@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
+import { useTheme } from '@/providers/ThemeProvider';
 
 const statistics = [
   {
@@ -61,8 +62,10 @@ const Counter = ({ value, duration = 2000, suffix = '' }: { value: number; durat
 };
 
 const StatisticsSection = () => {
+  const { theme } = useTheme();
+  
   return (
-    <section className="py-20 bg-[#0D1117] relative overflow-hidden">
+    <section className="py-20 bg-background relative overflow-hidden transition-colors duration-300">
       {/* Background Decoration */}
       <div className="ambient-glow absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full opacity-10 bg-[#00A0B0]"></div>
       
@@ -77,7 +80,7 @@ const StatisticsSection = () => {
           <h2 className="text-3xl md:text-4xl font-poppins font-bold mb-6">
             Our <span className="gradient-text">Commitment</span> to Excellence
           </h2>
-          <p className="text-[#8B949E] text-lg">
+          <p className="dark:text-[#8B949E] light:text-gray-600 text-lg">
             While we're a new studio, our founding team brings years of industry expertise
           </p>
         </motion.div>
@@ -86,7 +89,7 @@ const StatisticsSection = () => {
           {statistics.map((stat, index) => (
             <motion.div
               key={stat.id}
-              className="bg-[#161B22]/80 p-8 rounded-xl border border-[#30363D] text-center"
+              className="dark:bg-[#161B22]/80 light:bg-white/90 p-8 rounded-xl border dark:border-[#30363D] light:border-gray-200 text-center transition-colors duration-300"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -101,7 +104,7 @@ const StatisticsSection = () => {
                 <Counter value={stat.value} suffix={stat.suffix || ''} />
               </h3>
               
-              <p className="text-[#8B949E] text-lg">{stat.label}</p>
+              <p className="dark:text-[#8B949E] light:text-gray-600 text-lg">{stat.label}</p>
             </motion.div>
           ))}
         </div>
@@ -113,7 +116,7 @@ const StatisticsSection = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.5 }}
         >
-          <a href="/about" className="text-[#E6EDF3] border border-[#30363D] px-8 py-3 rounded-md inline-flex items-center space-x-2 hover:border-[#00A0B0] transition-all">
+          <a href="/about" className="dark:text-[#E6EDF3] light:text-gray-900 border dark:border-[#30363D] light:border-gray-300 px-8 py-3 rounded-md inline-flex items-center space-x-2 hover:border-[#00A0B0] transition-all">
             <span>Our story and approach</span>
             <i className='bx bx-right-arrow-alt'></i>
           </a>

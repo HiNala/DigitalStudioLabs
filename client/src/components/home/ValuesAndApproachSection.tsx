@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+import { useTheme } from '@/providers/ThemeProvider';
 
 const values = [
   {
@@ -45,6 +46,7 @@ const approaches = [
 
 const ValuesAndApproachSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
+  const { theme } = useTheme();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -103,7 +105,7 @@ const ValuesAndApproachSection = () => {
           <h2 className="text-3xl md:text-4xl font-poppins font-bold mb-6">
             Our Values & <span className="gradient-text">Approach</span>
           </h2>
-          <p className="text-[#8B949E] text-lg">
+          <p className="dark:text-[#8B949E] light:text-gray-600 text-lg">
             Guiding principles that define our work and help us deliver exceptional results
           </p>
         </motion.div>
@@ -130,7 +132,7 @@ const ValuesAndApproachSection = () => {
               {values.map((value) => (
                 <motion.div 
                   key={value.id}
-                  className="bg-[#161B22] p-6 rounded-xl border border-[#30363D] flex items-start space-x-4"
+                  className="dark:bg-[#161B22] light:bg-white p-6 rounded-xl border dark:border-[#30363D] light:border-gray-200 flex items-start space-x-4 transition-colors duration-300"
                   variants={itemVariants}
                   whileHover={{ y: -5, borderColor: 'rgba(0, 160, 176, 0.5)' }}
                 >
@@ -139,7 +141,7 @@ const ValuesAndApproachSection = () => {
                   </div>
                   <div>
                     <h4 className="text-xl font-poppins font-semibold mb-2">{value.title}</h4>
-                    <p className="text-[#8B949E]">{value.description}</p>
+                    <p className="dark:text-[#8B949E] light:text-gray-600">{value.description}</p>
                   </div>
                 </motion.div>
               ))}
@@ -167,7 +169,7 @@ const ValuesAndApproachSection = () => {
               {approaches.map((approach) => (
                 <motion.div 
                   key={approach.id}
-                  className="bg-[#161B22] p-6 rounded-xl border border-[#30363D] flex items-start space-x-4"
+                  className="dark:bg-[#161B22] light:bg-white p-6 rounded-xl border dark:border-[#30363D] light:border-gray-200 flex items-start space-x-4 transition-colors duration-300"
                   variants={itemVariants}
                   whileHover={{ y: -5, borderColor: 'rgba(77, 77, 255, 0.5)' }}
                 >
@@ -176,7 +178,7 @@ const ValuesAndApproachSection = () => {
                   </div>
                   <div>
                     <h4 className="text-xl font-poppins font-semibold mb-2">{approach.title}</h4>
-                    <p className="text-[#8B949E]">{approach.description}</p>
+                    <p className="dark:text-[#8B949E] light:text-gray-600">{approach.description}</p>
                   </div>
                 </motion.div>
               ))}
@@ -188,4 +190,4 @@ const ValuesAndApproachSection = () => {
   );
 };
 
-export default ValuesAndApproachSection; 
+export default ValuesAndApproachSection;

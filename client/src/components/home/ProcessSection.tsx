@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { Link } from 'wouter';
+import { useTheme } from '@/providers/ThemeProvider';
 
 const processSteps = [
   {
@@ -26,6 +27,7 @@ const processSteps = [
 
 const ProcessSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
+  const { theme } = useTheme();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -52,7 +54,7 @@ const ProcessSection = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-3xl mx-auto text-center mb-16 animate-fade-in">
           <h2 className="text-3xl md:text-4xl font-poppins font-bold mb-6">Our Proven Process</h2>
-          <p className="text-[#8B949E] text-lg">
+          <p className="dark:text-[#8B949E] light:text-gray-600 text-lg">
             We follow a structured approach to ensure every project exceeds expectations.
           </p>
         </div>
@@ -61,14 +63,14 @@ const ProcessSection = () => {
           {processSteps.map((step, index) => (
             <div 
               key={step.number}
-              className="bg-[#161B22] p-8 rounded-xl border border-[#30363D] card-scale animate-fade-in relative"
+              className="dark:bg-[#161B22] light:bg-white p-8 rounded-xl border dark:border-[#30363D] light:border-gray-200 card-scale animate-fade-in relative transition-colors duration-300"
               style={{ transitionDelay: `${index * 100}ms` }}
             >
               <div className="w-12 h-12 gradient-bg rounded-full flex items-center justify-center font-poppins font-bold text-xl mb-6">
                 {step.number}
               </div>
               <h3 className="text-xl font-poppins font-semibold mb-4">{step.title}</h3>
-              <p className="text-[#8B949E]">
+              <p className="dark:text-[#8B949E] light:text-gray-600">
                 {step.description}
               </p>
             </div>

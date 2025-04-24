@@ -38,7 +38,7 @@ export function SplineHero() {
             <Link href="/contact" className="gradient-bg gradient-bg-hover px-8 py-4 rounded-md font-medium text-lg transition-all duration-300 glow-hover">
               Schedule Free Consultation
             </Link>
-            <Link href="/services" className="dark:bg-[#161B22] dark:hover:bg-[#30363D] light:bg-gray-100 light:hover:bg-gray-200 light:text-gray-900 px-8 py-4 rounded-md font-medium text-lg transition-all duration-300">
+            <Link href="/services" className="dark:bg-[#161B22] dark:hover:bg-[#30363D] light:bg-gray-100 light:hover:bg-gray-200 light:text-gray-900 px-8 py-4 rounded-md font-medium text-lg transition-all border-0 duration-300">
               Explore Our Services
             </Link>
           </motion.div>
@@ -59,8 +59,8 @@ export function SplineHero() {
         </div>
       </div>
       
-      {/* Gradient blur transition */}
-      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t dark:from-[#0D1117] light:from-white to-transparent pointer-events-none z-20 transition-colors duration-300"></div>
+      {/* Improved gradient blur transition with greater height and opacity */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t dark:from-background dark:via-background/90 dark:to-transparent light:from-white light:via-white/90 light:to-transparent pointer-events-none z-20 transition-colors duration-300"></div>
     </section>
   );
 }

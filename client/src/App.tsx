@@ -39,13 +39,8 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <TooltipProvider>
           <div className="min-h-screen bg-background text-foreground overflow-x-hidden transition-colors duration-300">
-            {/* Add global cursor spotlight with layered effect */}
-            <CursorSpotlight 
-              size={450} 
-              color="rgba(0, 160, 176, 0.15)" 
-              opacity={0.65}
-              blurSize={120}
-            />
+            {/* Add global cursor spotlight */}
+            <CursorSpotlight />
             <Toaster />
             <Router />
           </div>

@@ -2,9 +2,11 @@ import { useEffect, useRef } from 'react';
 import { Link } from 'wouter';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
+import { useTheme } from '@/providers/ThemeProvider';
 
 const CTASection = () => {
   const sectionRef = useRef<HTMLElement>(null);
+  const { theme } = useTheme();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -29,7 +31,7 @@ const CTASection = () => {
   return (
     <section ref={sectionRef} className="py-24 relative overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="bg-gradient-to-br from-[#161B22]/90 to-[#0D1117]/90 backdrop-blur-sm rounded-xl border border-[#30363D] overflow-hidden animate-fade-in shadow-2xl">
+        <div className="bg-gradient-to-br dark:from-[#161B22]/90 dark:to-[#0D1117]/90 light:from-white light:to-gray-50 backdrop-blur-sm rounded-xl border dark:border-[#30363D] light:border-gray-200 overflow-hidden animate-fade-in shadow-2xl transition-colors duration-300">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
             {/* Main CTA content */}
             <div className="lg:col-span-2 p-10 md:p-14 lg:p-16 relative">
@@ -55,7 +57,7 @@ const CTASection = () => {
                 </motion.h2>
                 
                 <motion.p 
-                  className="text-[#8B949E] text-lg mb-10"
+                  className="dark:text-[#8B949E] light:text-gray-600 text-lg mb-10"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -75,7 +77,7 @@ const CTASection = () => {
                   <Link href="/contact" className="gradient-bg gradient-bg-hover px-8 py-4 rounded-md font-medium text-lg transition-all duration-300 glow-hover inline-flex items-center">
                     Schedule Consultation <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
-                  <Link href="/pricing" className="bg-[#0D1117] hover:bg-[#30363D] px-8 py-4 rounded-md font-medium text-lg transition-colors border border-[#30363D] hover:border-[#4D4DFF]">
+                  <Link href="/pricing" className="dark:bg-[#0D1117] light:bg-gray-100 hover:bg-[#30363D] dark:hover:bg-[#30363D] light:hover:bg-gray-200 dark:text-white light:text-gray-900 px-8 py-4 rounded-md font-medium text-lg transition-colors border dark:border-[#30363D] light:border-gray-200 hover:border-[#4D4DFF]">
                     View Pricing
                   </Link>
                 </motion.div>
@@ -86,31 +88,31 @@ const CTASection = () => {
             </div>
             
             {/* Right side visual element */}
-            <div className="hidden lg:block bg-gradient-to-br from-[#161B22] to-[#0D1117] relative overflow-hidden">
+            <div className="hidden lg:block dark:bg-gradient-to-br dark:from-[#161B22] dark:to-[#0D1117] light:bg-gradient-to-br light:from-gray-50 light:to-white relative overflow-hidden transition-colors duration-300">
               <div className="absolute inset-0 flex items-center justify-center p-10">
                 <div className="relative w-full aspect-square max-w-md">
                   {/* Circular gradient background */}
                   <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full rounded-full bg-gradient-to-br from-[#00A0B0]/20 to-[#4D4DFF]/20 blur-xl"></div>
                   
                   {/* Stats elements */}
-                  <div className="absolute top-0 left-1/4 bg-[#161B22] p-4 rounded-xl border border-[#30363D] shadow-lg text-center">
+                  <div className="absolute top-0 left-1/4 dark:bg-[#161B22] light:bg-white p-4 rounded-xl border dark:border-[#30363D] light:border-gray-200 shadow-lg text-center transition-colors duration-300">
                     <div className="text-[#00A0B0] text-3xl font-bold">100%</div>
-                    <div className="text-sm text-[#8B949E]">Client Satisfaction</div>
+                    <div className="text-sm dark:text-[#8B949E] light:text-gray-600">Client Satisfaction</div>
                   </div>
                   
-                  <div className="absolute bottom-0 right-1/4 bg-[#161B22] p-4 rounded-xl border border-[#30363D] shadow-lg text-center">
+                  <div className="absolute bottom-0 right-1/4 dark:bg-[#161B22] light:bg-white p-4 rounded-xl border dark:border-[#30363D] light:border-gray-200 shadow-lg text-center transition-colors duration-300">
                     <div className="text-[#4D4DFF] text-3xl font-bold">24/7</div>
-                    <div className="text-sm text-[#8B949E]">Support</div>
+                    <div className="text-sm dark:text-[#8B949E] light:text-gray-600">Support</div>
                   </div>
                   
-                  <div className="absolute top-1/3 right-0 bg-[#161B22] p-4 rounded-xl border border-[#30363D] shadow-lg text-center">
+                  <div className="absolute top-1/3 right-0 dark:bg-[#161B22] light:bg-white p-4 rounded-xl border dark:border-[#30363D] light:border-gray-200 shadow-lg text-center transition-colors duration-300">
                     <div className="text-[#00A0B0] text-3xl font-bold">2x</div>
-                    <div className="text-sm text-[#8B949E]">Faster Delivery</div>
+                    <div className="text-sm dark:text-[#8B949E] light:text-gray-600">Faster Delivery</div>
                   </div>
                   
-                  <div className="absolute bottom-1/3 left-0 bg-[#161B22] p-4 rounded-xl border border-[#30363D] shadow-lg text-center">
+                  <div className="absolute bottom-1/3 left-0 dark:bg-[#161B22] light:bg-white p-4 rounded-xl border dark:border-[#30363D] light:border-gray-200 shadow-lg text-center transition-colors duration-300">
                     <div className="text-[#4D4DFF] text-3xl font-bold">10+</div>
-                    <div className="text-sm text-[#8B949E]">Technologies</div>
+                    <div className="text-sm dark:text-[#8B949E] light:text-gray-600">Technologies</div>
                   </div>
                   
                   {/* Center element */}

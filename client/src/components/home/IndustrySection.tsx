@@ -1,9 +1,11 @@
 import { useEffect, useRef } from 'react';
 import { INDUSTRIES } from '@/lib/constants';
 import { motion } from 'framer-motion';
+import { useTheme } from '@/providers/ThemeProvider';
 
 const IndustrySection = () => {
   const sectionRef = useRef<HTMLElement>(null);
+  const { theme } = useTheme();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -62,7 +64,7 @@ const IndustrySection = () => {
           <h2 className="text-3xl md:text-4xl font-poppins font-bold mb-6">
             Solutions For <span className="gradient-text">Your Industry</span>
           </h2>
-          <p className="text-[#8B949E] text-lg">
+          <p className="dark:text-[#8B949E] light:text-gray-600 text-lg">
             We serve a diverse range of industries with tailored digital solutions.
           </p>
         </motion.div>
@@ -77,11 +79,13 @@ const IndustrySection = () => {
           {INDUSTRIES.map((industry) => (
             <motion.div 
               key={industry.id}
-              className="bg-[#161B22] p-8 rounded-xl border border-[#30363D] relative overflow-hidden group"
+              className="dark:bg-[#161B22] light:bg-white p-8 rounded-xl border dark:border-[#30363D] light:border-gray-200 relative overflow-hidden group transition-colors duration-300"
               variants={itemVariants}
               whileHover={{ 
                 y: -5, 
-                boxShadow: "0 10px 30px -15px rgba(77, 77, 255, 0.15)",
+                boxShadow: theme === 'dark' 
+                  ? "0 10px 30px -15px rgba(77, 77, 255, 0.15)"
+                  : "0 10px 30px -15px rgba(77, 77, 255, 0.1)",
                 borderColor: "rgba(77, 77, 255, 0.3)"
               }}
             >
@@ -91,17 +95,19 @@ const IndustrySection = () => {
               ></div>
               <div className="relative z-10">
                 <h3 className="text-xl font-poppins font-semibold mb-4">{industry.title}</h3>
-                <p className="text-[#8B949E] mb-6">
+                <p className="dark:text-[#8B949E] light:text-gray-600 mb-6">
                   {industry.description}
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {industry.tags.map((tag, tagIndex) => (
                     <motion.span 
                       key={tagIndex} 
-                      className="text-xs bg-[#30363D]/50 px-3 py-1 rounded-full"
+                      className="text-xs dark:bg-[#30363D]/50 light:bg-gray-100 px-3 py-1 rounded-full transition-colors duration-300"
                       whileHover={{ 
-                        backgroundColor: "rgba(77, 77, 255, 0.2)",
-                        color: "#ffffff"
+                        backgroundColor: theme === 'dark' 
+                          ? "rgba(77, 77, 255, 0.2)"
+                          : "rgba(77, 77, 255, 0.1)",
+                        color: theme === 'dark' ? "#ffffff" : "#00A0B0"
                       }}
                     >
                       {tag}

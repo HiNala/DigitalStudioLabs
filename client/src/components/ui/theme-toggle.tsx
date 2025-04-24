@@ -8,7 +8,7 @@ export function ThemeToggle() {
   return (
     <button
       onClick={toggleTheme}
-      className="relative flex items-center justify-center w-10 h-10 rounded-md bg-transparent hover:bg-slate-800/30 dark:hover:bg-slate-800/30 light:hover:bg-slate-200/50 transition-colors group"
+      className="relative flex items-center justify-center w-10 h-10 rounded-md bg-transparent hover:bg-slate-800/30 dark:hover:bg-slate-800/30 light:hover:bg-slate-200/50 transition-colors"
       aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
     >
       <div className="relative w-8 h-8 overflow-hidden flex items-center justify-center rounded-full">
@@ -46,11 +46,6 @@ export function ThemeToggle() {
         transition={{ duration: 0.3 }}
         className="absolute inset-0 rounded-md z-0"
       />
-      
-      {/* Tooltip */}
-      <span className="absolute z-10 bottom-full mb-2 left-1/2 transform -translate-x-1/2 px-2 py-1 text-xs font-medium text-white bg-zinc-800 dark:bg-zinc-700 light:bg-zinc-800 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap">
-        {theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
-      </span>
     </button>
   );
 } 

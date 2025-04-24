@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { TESTIMONIALS } from '@/lib/constants';
+import { useTheme } from '@/providers/ThemeProvider';
 
 const TestimonialsSection = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
+  const { theme } = useTheme();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -51,7 +53,7 @@ const TestimonialsSection = () => {
           <h2 className="text-3xl md:text-4xl font-poppins font-bold mb-6">
             What Our <span className="gradient-text">Clients</span> Say
           </h2>
-          <p className="text-[#8B949E] text-lg">
+          <p className="dark:text-[#8B949E] light:text-gray-600 text-lg">
             Read what our clients have to say about their experience working with us
           </p>
         </motion.div>
@@ -61,7 +63,7 @@ const TestimonialsSection = () => {
             {TESTIMONIALS.map((testimonial, index) => (
               <motion.div
                 key={testimonial.id}
-                className="bg-[#161B22] p-8 md:p-10 rounded-xl border border-[#30363D] mb-6"
+                className="dark:bg-[#161B22] light:bg-white p-8 md:p-10 rounded-xl border dark:border-[#30363D] light:border-gray-200 mb-6 transition-colors duration-300"
                 initial={{ opacity: 0, x: 100 }}
                 animate={{ 
                   opacity: index === activeIndex ? 1 : 0,
@@ -83,13 +85,13 @@ const TestimonialsSection = () => {
                   </div>
                   
                   <div className="flex-1">
-                    <p className="text-lg md:text-xl text-[#E6EDF3] italic mb-6 leading-relaxed">
+                    <p className="text-lg md:text-xl dark:text-[#E6EDF3] light:text-gray-800 italic mb-6 leading-relaxed">
                       "{testimonial.quote}"
                     </p>
                     
                     <div>
-                      <h4 className="font-poppins font-semibold text-[#E6EDF3]">{testimonial.name}</h4>
-                      <p className="text-[#8B949E]">{testimonial.title}</p>
+                      <h4 className="font-poppins font-semibold dark:text-[#E6EDF3] light:text-gray-900">{testimonial.name}</h4>
+                      <p className="dark:text-[#8B949E] light:text-gray-600">{testimonial.title}</p>
                     </div>
                   </div>
                 </div>
@@ -102,7 +104,7 @@ const TestimonialsSection = () => {
               <button
                 key={index}
                 className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  index === activeIndex ? 'bg-[#00A0B0] w-6' : 'bg-[#30363D]'
+                  index === activeIndex ? 'bg-[#00A0B0] w-6' : 'dark:bg-[#30363D] light:bg-gray-300'
                 }`}
                 onClick={() => setActiveIndex(index)}
                 aria-label={`View testimonial ${index + 1}`}
