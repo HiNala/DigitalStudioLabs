@@ -11,6 +11,30 @@ import { GlowingEffect } from '@/components/ui/glowing-effect';
 import { useTheme } from '@/providers/ThemeProvider';
 import { SpotlightLayout } from '@/components/layout/SpotlightLayout';
 
+// ServiceIcon component - similar to home page
+const ServiceIcon = ({ icon }: { icon: string }) => {
+  const { theme } = useTheme();
+  const iconSize = 36;
+  const iconClass = "text-white";
+  
+  switch (icon) {
+    case 'design':
+      return <FaPalette size={iconSize} className={iconClass} />;
+    case 'development':
+      return <FaLaptopCode size={iconSize} className={iconClass} />;
+    case 'ai':
+      return <FaRobot size={iconSize} className={iconClass} />;
+    case 'seo':
+      return <FaChartLine size={iconSize} className={iconClass} />;
+    case 'data':
+      return <FaDatabase size={iconSize} className={iconClass} />;
+    case 'strategy':
+      return <FaLightbulb size={iconSize} className={iconClass} />;
+    default:
+      return <FaLaptopCode size={iconSize} className={iconClass} />;
+  }
+};
+
 // Service Card Component
 interface ServiceCardProps {
   id: number;
@@ -21,21 +45,51 @@ interface ServiceCardProps {
 }
 
 const ServiceCard = ({ title, description, icon, features }: ServiceCardProps) => {
+  const { theme } = useTheme();
+  
+  // Icon background animation state
+  const iconBgVariants = {
+    lit: { 
+      scale: 1, 
+      opacity: 1,
+      boxShadow: theme === 'dark' 
+        ? "0 0 25px rgba(0, 160, 176, 0.5)"
+        : "0 0 25px rgba(0, 160, 176, 0.3)"
+    }
+  };
+
   return (
     <motion.div 
-      className="bg-[#161B22] rounded-xl p-8 border border-[#30363D] card-scale h-full"
+      className="relative dark:bg-[#161B22] light:bg-white light:shadow-md p-8 rounded-xl border dark:border-[#30363D] light:border-gray-200 transition-all duration-300 group h-full"
       whileHover={{ y: -5 }}
       transition={{ duration: 0.2 }}
     >
-      <div className="w-16 h-16 gradient-bg rounded-lg flex items-center justify-center mb-6">
-        <i className={`bx ${icon} text-2xl text-white`}></i>
-      </div>
+      <GlowingEffect
+        spread={20}
+        glow={true}
+        disabled={false}
+        proximity={100}
+        inactiveZone={0}
+        borderWidth={1}
+        movementDuration={0.5}
+        className="will-change-transform"
+      />
+      
+      <motion.div 
+        className="w-20 h-20 bg-gradient-to-br from-[#00A0B0] to-[#4D4DFF] rounded-2xl flex items-center justify-center mb-6 p-5 group-hover:scale-110 transition-all duration-300"
+        variants={iconBgVariants}
+        animate="lit"
+        transition={{ duration: 0.3 }}
+      >
+        <ServiceIcon icon={icon} />
+      </motion.div>
+      
       <h2 className="text-2xl font-poppins font-bold mb-4">{title}</h2>
       <ul className="space-y-3 mb-6">
         {features.map((feature, index) => (
           <li key={index} className="flex items-start">
             <CheckCircle className="text-[#00A0B0] mr-2 h-5 w-5 flex-shrink-0 mt-0.5" />
-            <span>{feature}</span>
+            <span className="dark:text-[#8B949E] light:text-gray-600">{feature}</span>
           </li>
         ))}
       </ul>
@@ -57,43 +111,52 @@ interface FeatureComparisonProps {
 }
 
 const FeatureComparison = ({ features }: FeatureComparisonProps) => {
+  const { theme } = useTheme();
+  
   return (
     <div className="overflow-x-auto">
       <table className="w-full border-collapse">
         <thead>
-          <tr className="bg-[#161B22]">
-            <th className="p-4 text-left border-b border-[#30363D] w-[300px]">Feature</th>
-            <th className="p-4 text-center border-b border-[#30363D]">Basic</th>
-            <th className="p-4 text-center border-b border-[#30363D]">Professional</th>
-            <th className="p-4 text-center border-b border-[#30363D]">Enterprise</th>
+          <tr className="dark:bg-[#161B22] light:bg-gray-50">
+            <th className="p-4 text-left border-b dark:border-[#30363D] light:border-gray-200 w-[300px] font-bold">Feature</th>
+            <th className="p-4 text-center border-b dark:border-[#30363D] light:border-gray-200 font-bold">Basic</th>
+            <th className="p-4 text-center border-b dark:border-[#30363D] light:border-gray-200 font-bold">Professional</th>
+            <th className="p-4 text-center border-b dark:border-[#30363D] light:border-gray-200 font-bold">Enterprise</th>
           </tr>
         </thead>
         <tbody>
           {features.map((feature, index) => (
-            <tr key={index} className="border-b border-[#30363D] bg-[#161B22]/50">
+            <motion.tr 
+              key={index} 
+              className="border-b dark:border-[#30363D] light:border-gray-200 dark:bg-[#161B22]/50 light:bg-white hover:bg-opacity-80 transition-colors"
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.3, delay: index * 0.05 }}
+            >
               <td className="p-4 font-medium">{feature.name}</td>
               <td className="p-4 text-center">
                 {feature.basic ? (
                   <CheckCircle className="h-5 w-5 text-[#00A0B0] mx-auto" />
                 ) : (
-                  <XCircle className="h-5 w-5 text-[#8B949E] mx-auto" />
+                  <XCircle className="h-5 w-5 dark:text-[#8B949E] light:text-gray-300 mx-auto" />
                 )}
               </td>
               <td className="p-4 text-center">
                 {feature.professional ? (
                   <CheckCircle className="h-5 w-5 text-[#00A0B0] mx-auto" />
                 ) : (
-                  <XCircle className="h-5 w-5 text-[#8B949E] mx-auto" />
+                  <XCircle className="h-5 w-5 dark:text-[#8B949E] light:text-gray-300 mx-auto" />
                 )}
               </td>
               <td className="p-4 text-center">
                 {feature.enterprise ? (
                   <CheckCircle className="h-5 w-5 text-[#00A0B0] mx-auto" />
                 ) : (
-                  <XCircle className="h-5 w-5 text-[#8B949E] mx-auto" />
+                  <XCircle className="h-5 w-5 dark:text-[#8B949E] light:text-gray-300 mx-auto" />
                 )}
               </td>
-            </tr>
+            </motion.tr>
           ))}
         </tbody>
       </table>
@@ -111,18 +174,23 @@ interface ProcessStepProps {
 const ProcessStep = ({ number, title, description }: ProcessStepProps) => {
   return (
     <motion.div 
-      className="flex gap-6"
+      className="flex gap-6 relative group"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
+      whileHover={{ x: 5 }}
     >
-      <div className="flex-shrink-0 flex items-center justify-center w-14 h-14 rounded-lg bg-gradient-to-br from-[#00A0B0] to-[#4D4DFF] font-poppins font-bold text-xl">
+      <motion.div 
+        className="flex-shrink-0 flex items-center justify-center w-14 h-14 rounded-lg bg-gradient-to-br from-[#00A0B0] to-[#4D4DFF] font-poppins font-bold text-xl shadow-lg"
+        whileHover={{ scale: 1.05 }}
+        transition={{ type: "spring", stiffness: 300 }}
+      >
         {number}
-      </div>
+      </motion.div>
       <div>
         <h3 className="text-xl font-poppins font-semibold mb-2">{title}</h3>
-        <p className="text-[#8B949E]">{description}</p>
+        <p className="dark:text-[#8B949E] light:text-gray-600">{description}</p>
       </div>
     </motion.div>
   );
@@ -262,47 +330,31 @@ const ServicesPage = () => {
     }
   ];
 
-  // Testimonials from constants
-  const testimonials = [
-    {
-      quote: "Digital Studio Labs transformed our outdated website into a lead-generating machine. Our conversion rate increased by 78% within the first month after launch.",
-      name: "Michael Thompson",
-      title: "CEO, Thompson Real Estate",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"
-    },
-    {
-      quote: "The custom AI solution Digital Studio Labs built for our customer service team reduced response times by 62% and helped us scale without adding headcount.",
-      name: "Sarah Johnson",
-      title: "Operations Director, TechSoft",
-      image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"
-    },
-    {
-      quote: "Working with Digital Studio Labs on our MVP was a game-changer. They delivered a polished product in half the time we expected, helping us secure our next round of funding.",
-      name: "David Wilson",
-      title: "Founder, DataViz Analytics",
-      image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"
-    }
-  ];
+  // Use testimonials from constants file
+  const [selectedTestimonials] = useState(TESTIMONIALS.slice(0, 3));
 
   return (
     <>
       <Header />
       <main className="pt-20">
         {/* Hero */}
-        <section className="bg-radial relative overflow-hidden py-16 md:py-24">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="max-w-3xl mx-auto text-center">
-              <h1 className="text-4xl md:text-5xl font-poppins font-bold mb-6">
-                Innovative <span className="gradient-text-animated gradient-text-glow">Digital Solutions</span>
-              </h1>
-              <p className="text-xl text-[#8B949E] mb-6">
-                Transform your business with our cutting-edge technology expertise
-              </p>
+        <section className="relative overflow-hidden py-16 md:py-24">
+          <SpotlightLayout withMultipleSpotlights spotlightSize={600} spotlightColor="#4D4DFF">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+              <div className="max-w-3xl mx-auto text-center">
+                <h1 className="text-4xl md:text-5xl font-poppins font-bold mb-6">
+                  Innovative <span className="gradient-text-animated gradient-text-glow">Digital Solutions</span>
+                </h1>
+                <p className="text-xl dark:text-[#8B949E] light:text-gray-600 mb-8">
+                  Transform your business with our cutting-edge technology expertise. Discover how our
+                  premium services can elevate your digital presence and operational efficiency.
+                </p>
+                <Link href="/contact" className="gradient-bg gradient-bg-hover px-8 py-4 rounded-md font-medium transition-all duration-300 glow-hover inline-block mt-4">
+                  Schedule a Consultation
+                </Link>
+              </div>
             </div>
-          </div>
-          
-          {/* Background Decoration */}
-          <div className="ambient-glow absolute -top-20 -right-20 w-96 h-96 rounded-full opacity-10 bg-[#4D4DFF]"></div>
+          </SpotlightLayout>
         </section>
 
         {/* Tech Banner */}
@@ -311,14 +363,21 @@ const ServicesPage = () => {
         {/* Services Grid */}
         <section className="py-20">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-3xl mx-auto text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-poppins font-bold mb-6">Our Services</h2>
-              <p className="text-xl text-[#8B949E]">
-                Comprehensive technology solutions tailored to meet your business needs
+            <div className="max-w-3xl mx-auto text-center mb-16 animate-fade-in">
+              <h2 className="text-3xl md:text-4xl font-poppins font-bold mb-6">
+                Our <span className="gradient-text">Services</span>
+              </h2>
+              <p className="text-xl dark:text-[#8B949E] light:text-gray-600">
+                Comprehensive technology solutions tailored to meet your business needs and drive digital innovation
               </p>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <motion.div 
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ staggerChildren: 0.1, delayChildren: 0.3 }}
+            >
               {SERVICES.map((service) => (
                 <ServiceCard 
                   key={service.id}
@@ -326,30 +385,56 @@ const ServicesPage = () => {
                   features={serviceFeatures[service.icon as keyof typeof serviceFeatures]}
                 />
               ))}
-            </div>
+            </motion.div>
           </div>
         </section>
 
         {/* Feature Comparison */}
-        <section className="py-20 bg-radial">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-3xl mx-auto text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-poppins font-bold mb-6">Service Tiers</h2>
-              <p className="text-xl text-[#8B949E]">
-                Compare our service packages to find the right fit for your organization
-              </p>
+        <section className="py-20 relative">
+          <SpotlightLayout spotlightSize={800} spotlightColor="#4D4DFF">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="max-w-3xl mx-auto text-center mb-16 animate-fade-in">
+                <h2 className="text-3xl md:text-4xl font-poppins font-bold mb-6">
+                  <span className="gradient-text">Service Tiers</span>
+                </h2>
+                <p className="text-xl dark:text-[#8B949E] light:text-gray-600">
+                  Compare our service packages to find the right fit for your organization's needs and budget
+                </p>
+              </div>
+              
+              <motion.div 
+                className="dark:bg-[#0D1117]/60 light:bg-white dark:border-[#30363D] light:border-gray-200 rounded-xl border p-6 overflow-hidden relative"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+              >
+                <GlowingEffect
+                  spread={20}
+                  glow={true}
+                  disabled={false}
+                  proximity={100}
+                  inactiveZone={0}
+                  borderWidth={1}
+                  movementDuration={0.5}
+                  className="will-change-transform"
+                />
+                <FeatureComparison features={featureComparison} />
+              </motion.div>
+              
+              <motion.div 
+                className="text-center mt-12"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+              >
+                <Link href="/pricing" className="gradient-bg gradient-bg-hover px-8 py-4 rounded-md font-medium text-lg transition-all duration-300 glow-hover inline-flex items-center">
+                  View Detailed Pricing <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
+              </motion.div>
             </div>
-            
-            <div className="bg-[#0D1117]/60 rounded-xl border border-[#30363D] p-6 overflow-hidden">
-              <FeatureComparison features={featureComparison} />
-            </div>
-            
-            <div className="text-center mt-12">
-              <Link href="/pricing" className="gradient-bg gradient-bg-hover px-8 py-4 rounded-md font-medium text-lg transition-all duration-300 glow-hover inline-flex items-center">
-                View Detailed Pricing <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-            </div>
-          </div>
+          </SpotlightLayout>
         </section>
 
         {/* Process Steps */}
@@ -381,8 +466,14 @@ const ServicesPage = () => {
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {testimonials.map((testimonial, index) => (
-                <TestimonialCard key={index} {...testimonial} />
+              {selectedTestimonials.map((testimonial, index) => (
+                <TestimonialCard 
+                  key={testimonial.id}
+                  quote={testimonial.quote}
+                  name={testimonial.name}
+                  title={testimonial.title}
+                  image={testimonial.image}
+                />
               ))}
             </div>
           </div>

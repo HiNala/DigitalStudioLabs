@@ -91,10 +91,11 @@ const GlowingEffect = memo(
       if (disabled) return;
 
       const handleScroll = () => handleMove();
+      const handleMouseMove = (e: MouseEvent) => handleMove(e);
       const handlePointerMove = (e: PointerEvent) => handleMove(e);
       
       // Use mousemove for more frequent updates on desktop
-      window.addEventListener("mousemove", handlePointerMove, { 
+      window.addEventListener("mousemove", handleMouseMove, { 
         passive: true,
         capture: false
       });
@@ -114,7 +115,7 @@ const GlowingEffect = memo(
           cancelAnimationFrame(animationFrameRef.current);
         }
         window.removeEventListener("scroll", handleScroll);
-        window.removeEventListener("mousemove", handlePointerMove);
+        window.removeEventListener("mousemove", handleMouseMove);
         document.removeEventListener("pointermove", handlePointerMove);
       };
     }, [handleMove, disabled]);
