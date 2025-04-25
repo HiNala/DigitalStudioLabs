@@ -55,10 +55,10 @@ export const INDUSTRIES = [
   },
   {
     id: 2,
-    title: "Healthcare",
-    description: "Secure patient portals, telehealth integration, automated administrative tasks, and patient analytics tools.",
-    background: "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
-    tags: ["Patient Portals", "Telehealth", "Analytics"]
+    title: "Retail",
+    description: "Omnichannel experiences, inventory management, personalized shopping journeys, and customer loyalty systems.",
+    background: "https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+    tags: ["Omnichannel", "Inventory", "Customer Loyalty"]
   },
   {
     id: 3,
