@@ -14,25 +14,25 @@ const team = [
     name: "Alex Permut",
     title: "Founder & CEO",
     bio: "Visionary leader with 15+ years of experience transforming businesses through innovative digital solutions and strategic technology implementations.",
-    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"
+    image: "/images/team/Alex-permut.jpg"
   },
   {
     name: "Brian Permut",
-    title: "CTO & Technical Director",
+    title: "CTO & Technical Director", 
     bio: "Engineering mastermind behind our most complex solutions, Brian crafts scalable architectures and drives technical excellence across all projects.",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"
+    image: "/images/team/brian-permut.jpeg"
   },
   {
-    name: "Romano Mittani",
+    name: "Luis Amaturo",
     title: "Lead Designer",
     bio: "Award-winning designer uniting aesthetic brilliance with UX strategy to create immersive digital experiences that captivate and convert.",
-    image: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"
+    image: "/images/team/Luis-Amaturo.jpeg"
   },
   {
-    name: "Julian Frost",
+    name: "Racquel Frisbie",
     title: "AI & Innovation Director",
     bio: "Leading our AI initiatives with cutting-edge expertise in machine learning, data science, and developing intelligent solutions that transform businesses.",
-    image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"
+    image: "/images/team/Racquel Frisbie.jpeg"
   }
 ];
 
