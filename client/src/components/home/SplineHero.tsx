@@ -3,7 +3,6 @@ import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { useTheme } from "@/providers/ThemeProvider";
 import { useEffect, useState } from "react";
-import SpaceButton from "@/components/ui/space-button";
 
 export function SplineHero() {
   const { theme } = useTheme();
@@ -47,8 +46,8 @@ export function SplineHero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <Link href="/contact">
-              <SpaceButton text="CONSULTATION" />
+            <Link href="/contact" className="gradient-bg gradient-bg-hover px-8 py-4 rounded-md font-medium text-lg transition-all duration-300 glow-hover">
+              Schedule Free Consultation
             </Link>
             <Link href="/services" className="dark:bg-[#161B22] dark:hover:bg-[#30363D] light:bg-gray-100 light:hover:bg-gray-200 light:text-gray-900 px-8 py-4 rounded-md font-medium text-lg transition-all border-0 duration-300">
               Explore Our Services
