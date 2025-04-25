@@ -7,6 +7,7 @@ import Footer from '@/components/layout/Footer';
 import { SpotlightLayout } from '@/components/layout/SpotlightLayout';
 import StarButton from '@/components/ui/star-button';
 import { GlowingEffect } from '@/components/ui/glowing-effect';
+import { FloatingOrbs } from '@/components/ui/floating-orbs';
 
 const team = [
   {
@@ -45,6 +46,20 @@ const AboutPage = () => {
     <>
       <Header />
       <main className="pt-20">
+        {/* Floating Orbs Background - Spans entire page */}
+        <div className="fixed inset-0 w-full h-full overflow-hidden pointer-events-none">
+          <FloatingOrbs 
+            count={12}
+            colors={['#4D4DFF', '#00A0B0']}
+            minSize={100}
+            maxSize={400}
+            minSpeed={0.1}
+            maxSpeed={0.3}
+            minOpacity={0.03}
+            maxOpacity={0.08}
+          />
+        </div>
+        
         {/* Hero */}
         <SpotlightLayout
           className="relative overflow-hidden py-20 md:py-28"
@@ -75,10 +90,6 @@ const AboutPage = () => {
               </div>
             </motion.div>
           </div>
-          
-          {/* Background Decoration */}
-          <div className="ambient-glow absolute -top-20 -right-20 w-96 h-96 rounded-full opacity-15 bg-[#4D4DFF]"></div>
-          <div className="ambient-glow absolute -bottom-40 -left-20 w-96 h-96 rounded-full opacity-15 bg-[#00A0B0]"></div>
         </SpotlightLayout>
 
         {/* Our Story */}
@@ -112,67 +123,83 @@ const AboutPage = () => {
                 </motion.div>
               </div>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
-                <motion.div
-                  initial={{ opacity: 0, x: -30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+              <div className="mb-24 relative">
+                <div className="bg-gradient-to-r from-transparent via-[#4D4DFF]/10 to-transparent h-px w-full absolute top-0 left-0"></div>
+                
+                <motion.div 
+                  className="max-w-4xl mx-auto py-16"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                  className="bg-[#161B22]/80 backdrop-blur-sm rounded-2xl p-8 border border-[#30363D] relative"
+                  transition={{ duration: 0.8 }}
                 >
-                  <div className="absolute -top-6 -left-6 w-12 h-12 bg-gradient-to-br from-[#00A0B0] to-[#4D4DFF] rounded-lg flex items-center justify-center shadow-lg">
-                    <Star className="text-white w-6 h-6" />
+                  <div className="text-center mb-16">
+                    <h2 className="text-3xl md:text-4xl font-poppins font-bold mb-8 gradient-text inline-block">Our Mission</h2>
+                    <div className="text-lg space-y-6 max-w-3xl mx-auto">
+                      <p className="text-[#8B949E]">
+                        To elevate businesses through <span className="text-white">transformative digital experiences</span> that combine technical excellence with strategic insight—creating solutions that don't just meet expectations but redefine them.
+                      </p>
+                      <p className="text-[#8B949E]">
+                        We measure our success not by the complexity of our work, but by the <span className="text-white">tangible growth</span> and <span className="text-white">measurable outcomes</span> we generate for our partners.
+                      </p>
+                    </div>
                   </div>
-                  <h2 className="text-2xl md:text-3xl font-poppins font-bold mb-6 gradient-text">Our Mission</h2>
-                  <p className="text-[#8B949E] text-lg">
-                    To elevate businesses through <span className="text-white">transformative digital experiences</span> that combine technical excellence with strategic insight—creating solutions that don't just meet expectations but redefine them.
-                  </p>
-                  <p className="text-[#8B949E] text-lg mt-4">
-                    We measure our success not by the complexity of our work, but by the <span className="text-white">tangible growth</span> and <span className="text-white">measurable outcomes</span> we generate for our partners.
-                  </p>
+                  
+                  <div className="mt-20">
+                    <h2 className="text-3xl md:text-4xl font-poppins font-bold mb-8 gradient-text text-center">Why Choose Us</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                      <motion.div 
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: 0.1 }}
+                      >
+                        <h3 className="text-2xl font-semibold text-white mb-4">Strategic Innovation</h3>
+                        <p className="text-[#8B949E] text-lg">
+                          We don't just build what you ask for—we collaborate to discover what your business truly needs to excel. Our approach transforms challenges into opportunities for growth and differentiation.
+                        </p>
+                      </motion.div>
+                      
+                      <motion.div 
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: 0.2 }}
+                      >
+                        <h3 className="text-2xl font-semibold text-white mb-4">Technical Excellence</h3>
+                        <p className="text-[#8B949E] text-lg">
+                          Our solutions are crafted with meticulous attention to detail, scalability, and future-proof architecture. We leverage cutting-edge technologies to deliver robust, high-performance systems.
+                        </p>
+                      </motion.div>
+                      
+                      <motion.div 
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: 0.3 }}
+                      >
+                        <h3 className="text-2xl font-semibold text-white mb-4">Transformative Results</h3>
+                        <p className="text-[#8B949E] text-lg">
+                          The digital assets we create become pivotal tools for growth, user engagement, and operational efficiency. We focus on delivering measurable outcomes that align with your business objectives.
+                        </p>
+                      </motion.div>
+                      
+                      <motion.div 
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: 0.4 }}
+                      >
+                        <h3 className="text-2xl font-semibold text-white mb-4">Collaborative Partnership</h3>
+                        <p className="text-[#8B949E] text-lg">
+                          We view ourselves as an extension of your team, bringing our expertise and creativity to the table while respecting your vision and business goals throughout the entire process.
+                        </p>
+                      </motion.div>
+                    </div>
+                  </div>
                 </motion.div>
                 
-                <motion.div
-                  initial={{ opacity: 0, x: 30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.3 }}
-                  className="bg-[#161B22]/80 backdrop-blur-sm rounded-2xl p-8 border border-[#30363D] relative"
-                >
-                  <div className="absolute -top-6 -right-6 w-12 h-12 bg-gradient-to-br from-[#4D4DFF] to-[#00A0B0] rounded-lg flex items-center justify-center shadow-lg">
-                    <Check className="text-white w-6 h-6" />
-                  </div>
-                  <h2 className="text-2xl md:text-3xl font-poppins font-bold mb-6 gradient-text">Why Choose Us</h2>
-                  <ul className="space-y-6 text-lg">
-                    <li className="flex items-start">
-                      <div className="w-10 h-10 bg-gradient-to-br from-[#00A0B0] to-[#4D4DFF] opacity-80 rounded-full flex items-center justify-center mr-4 flex-shrink-0 mt-1">
-                        <span className="text-white font-semibold">1</span>
-                      </div>
-                      <div>
-                        <span className="text-white font-semibold block mb-1">Strategic Innovation</span>
-                        <span className="text-[#8B949E]">We don't just build what you ask for—we collaborate to discover what your business truly needs to excel.</span>
-                      </div>
-                    </li>
-                    <li className="flex items-start">
-                      <div className="w-10 h-10 bg-gradient-to-br from-[#00A0B0] to-[#4D4DFF] opacity-80 rounded-full flex items-center justify-center mr-4 flex-shrink-0 mt-1">
-                        <span className="text-white font-semibold">2</span>
-                      </div>
-                      <div>
-                        <span className="text-white font-semibold block mb-1">Technical Excellence</span>
-                        <span className="text-[#8B949E]">Our solutions are crafted with meticulous attention to detail, scalability, and future-proof architecture.</span>
-                      </div>
-                    </li>
-                    <li className="flex items-start">
-                      <div className="w-10 h-10 bg-gradient-to-br from-[#00A0B0] to-[#4D4DFF] opacity-80 rounded-full flex items-center justify-center mr-4 flex-shrink-0 mt-1">
-                        <span className="text-white font-semibold">3</span>
-                      </div>
-                      <div>
-                        <span className="text-white font-semibold block mb-1">Transformative Results</span>
-                        <span className="text-[#8B949E]">The digital assets we create become pivotal tools for growth, user engagement, and operational efficiency.</span>
-                      </div>
-                    </li>
-                  </ul>
-                </motion.div>
+                <div className="bg-gradient-to-r from-transparent via-[#00A0B0]/10 to-transparent h-px w-full absolute bottom-0 left-0"></div>
               </div>
             </div>
           </div>
@@ -259,10 +286,7 @@ const AboutPage = () => {
                 </StarButton>
               </motion.div>
             </div>
-            
-            {/* Background Decoration */}
-            <div className="ambient-glow absolute bottom-1/4 -left-20 w-96 h-96 rounded-full opacity-15 bg-[#00A0B0]"></div>
-            <div className="ambient-glow absolute top-1/4 -right-20 w-96 h-96 rounded-full opacity-15 bg-[#4D4DFF]"></div>
+
           </SpotlightLayout>
         </section>
 
@@ -386,11 +410,7 @@ const AboutPage = () => {
                 </div>
               </div>
               
-              {/* Background Decoration */}
-              <div className="absolute inset-0 opacity-5">
-                <div className="absolute -top-20 -right-20 w-96 h-96 rounded-full bg-[#4D4DFF]"></div>
-                <div className="absolute -bottom-20 -left-20 w-96 h-96 rounded-full bg-[#00A0B0]"></div>
-              </div>
+
             </motion.div>
           </div>
         </SpotlightLayout>
