@@ -10,6 +10,7 @@ import { FaLaptopCode, FaPalette, FaRobot, FaChartLine, FaDatabase, FaLightbulb 
 import { GlowingEffect } from '@/components/ui/glowing-effect';
 import { useTheme } from '@/providers/ThemeProvider';
 import { SpotlightLayout } from '@/components/layout/SpotlightLayout';
+import { GradientButton } from '@/components/ui/gradient-button';
 
 // ServiceIcon component - similar to home page
 const ServiceIcon = ({ icon }: { icon: string }) => {
@@ -93,8 +94,10 @@ const ServiceCard = ({ title, description, icon, features }: ServiceCardProps) =
           </li>
         ))}
       </ul>
-      <Link href="/contact" className="inline-flex items-center gradient-bg gradient-bg-hover px-6 py-3 rounded-md font-medium transition-all duration-300 glow-hover">
-        Discuss Your Project <ArrowRight className="ml-2 h-4 w-4" />
+      <Link href="/contact">
+        <GradientButton className="inline-flex items-center text-sm">
+          Discuss Your Project <ArrowRight className="ml-2 h-4 w-4" />
+        </GradientButton>
       </Link>
     </motion.div>
   );
@@ -308,8 +311,10 @@ const ServicesPage = () => {
                   Transform your business with our cutting-edge technology expertise. Discover how our
                   premium services can elevate your digital presence and operational efficiency.
                 </p>
-                <Link href="/contact" className="gradient-bg gradient-bg-hover px-8 py-4 rounded-md font-medium transition-all duration-300 glow-hover inline-block mt-4">
-                  Schedule a Consultation
+                <Link href="/contact">
+                  <GradientButton className="mt-4">
+                    Schedule a Consultation
+                  </GradientButton>
                 </Link>
               </div>
             </div>
@@ -420,8 +425,10 @@ const ServicesPage = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.3 }}
               >
-                <Link href="/pricing" className="gradient-bg gradient-bg-hover px-8 py-4 rounded-md font-medium text-lg transition-all duration-300 glow-hover inline-flex items-center">
-                  View Detailed Pricing <ArrowRight className="ml-2 h-5 w-5" />
+                <Link href="/pricing">
+                  <GradientButton className="inline-flex items-center">
+                    View Detailed Pricing <ArrowRight className="ml-2 h-5 w-5" />
+                  </GradientButton>
                 </Link>
               </motion.div>
             </div>
@@ -503,8 +510,10 @@ const ServicesPage = () => {
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: 0.4 }}
                 >
-                  <Link href="/contact" className="gradient-bg gradient-bg-hover px-8 py-4 rounded-md font-medium text-lg transition-all duration-300 glow-hover inline-flex items-center">
-                    Get Started <ArrowRight className="ml-2 h-5 w-5" />
+                  <Link href="/contact">
+                    <GradientButton variant="variant" className="inline-flex items-center">
+                      Get Started <ArrowRight className="ml-2 h-5 w-5" />
+                    </GradientButton>
                   </Link>
                 </motion.div>
               </div>
