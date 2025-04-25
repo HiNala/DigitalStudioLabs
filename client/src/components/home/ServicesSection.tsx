@@ -12,6 +12,7 @@ import {
 } from 'react-icons/fa';
 import { GlowingEffect } from '@/components/ui/glowing-effect';
 import { useTheme } from '@/providers/ThemeProvider';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 // Map service icons to corresponding React Icons
 const ServiceIcon = ({ icon }: { icon: string }) => {
@@ -40,6 +41,7 @@ const ServiceIcon = ({ icon }: { icon: string }) => {
 const ServicesSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const { theme } = useTheme();
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -94,6 +96,13 @@ const ServicesSection = () => {
       boxShadow: theme === 'dark' 
         ? "0 0 25px rgba(0, 160, 176, 0.5)"
         : "0 0 25px rgba(0, 160, 176, 0.3)"
+    },
+    mobile: {
+      scale: 1,
+      opacity: 1,
+      boxShadow: theme === 'dark' 
+        ? "0 0 25px rgba(0, 160, 176, 0.5)"
+        : "0 0 25px rgba(0, 160, 176, 0.3)"
     }
   };
 
@@ -119,7 +128,7 @@ const ServicesSection = () => {
           {SERVICES.map((service) => (
             <motion.div 
               key={service.id}
-              className="relative dark:bg-[#161B22] light:bg-white light:shadow-md p-8 rounded-xl border dark:border-[#30363D] light:border-gray-200 transition-all duration-300"
+              className="relative dark:bg-[#161B22] light:bg-white light:shadow-md p-8 rounded-xl border dark:border-[#30363D] light:border-gray-200 transition-all duration-300 group"
               variants={itemVariants}
               whileHover={{ y: -5 }}
             >
@@ -134,10 +143,11 @@ const ServicesSection = () => {
               />
               
               <motion.div 
-                className="w-20 h-20 bg-gradient-to-br from-[#00A0B0] to-[#4D4DFF] rounded-2xl flex items-center justify-center mb-6 p-5"
+                className="w-20 h-20 bg-gradient-to-br from-[#00A0B0] to-[#4D4DFF] rounded-2xl flex items-center justify-center mb-6 p-5 md:group-hover:scale-110 md:group-hover:shadow-[0_0_25px_rgba(0,160,176,0.5)] transition-all duration-300"
                 variants={iconBgVariants}
                 initial="initial"
-                whileHover="hover"
+                animate={isMobile ? "mobile" : "initial"}
+                whileHover={!isMobile ? "hover" : undefined}
                 transition={{ duration: 0.3 }}
               >
                 <ServiceIcon icon={service.icon} />
