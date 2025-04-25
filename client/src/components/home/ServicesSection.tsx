@@ -132,6 +132,7 @@ const ServicesSection = () => {
                 proximity={80}
                 inactiveZone={0.01}
                 borderWidth={1.25}
+                movementDuration={3}
               />
               
               <motion.div 
