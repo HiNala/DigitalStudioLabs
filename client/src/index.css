@@ -219,8 +219,7 @@
     font-weight: 500;
     color: white;
     border: 2px solid transparent;
-    border-image: linear-gradient(90deg, #00A0B0, #4D4DFF);
-    border-image-slice: 1;
+    border-radius: 8px;
     box-shadow: 0 0 0 rgba(0, 160, 176, 0.3);
     transition: all 0.3s ease-in-out;
     cursor: pointer;
@@ -238,6 +237,8 @@
     height: auto;
     filter: drop-shadow(0 0 0 #ffffff);
     z-index: -5;
+    opacity: 0;
+    visibility: hidden;
     transition: all 1s cubic-bezier(0.05, 0.83, 0.43, 0.96);
   }
 
@@ -249,6 +250,8 @@
     height: auto;
     filter: drop-shadow(0 0 0 #ffffff);
     z-index: -5;
+    opacity: 0;
+    visibility: hidden;
     transition: all 1s cubic-bezier(0, 0.4, 0, 1.01);
   }
 
@@ -260,6 +263,8 @@
     height: auto;
     filter: drop-shadow(0 0 0 #ffffff);
     z-index: -5;
+    opacity: 0;
+    visibility: hidden;
     transition: all 1s cubic-bezier(0, 0.4, 0, 1.01);
   }
 
@@ -271,6 +276,8 @@
     height: auto;
     filter: drop-shadow(0 0 0 #ffffff);
     z-index: -5;
+    opacity: 0;
+    visibility: hidden;
     transition: all 0.8s cubic-bezier(0, 0.4, 0, 1.01);
   }
 
@@ -282,6 +289,8 @@
     height: auto;
     filter: drop-shadow(0 0 0 #ffffff);
     z-index: -5;
+    opacity: 0;
+    visibility: hidden;
     transition: all 0.6s cubic-bezier(0, 0.4, 0, 1.01);
   }
 
@@ -293,6 +302,8 @@
     height: auto;
     filter: drop-shadow(0 0 0 #ffffff);
     z-index: -5;
+    opacity: 0;
+    visibility: hidden;
     transition: all 0.8s ease;
   }
 
@@ -310,6 +321,8 @@
     height: auto;
     filter: drop-shadow(0 0 10px #00A0B0);
     z-index: 2;
+    opacity: 1;
+    visibility: visible;
   }
 
   .star-button:hover .star-2 {
@@ -320,6 +333,8 @@
     height: auto;
     filter: drop-shadow(0 0 10px #00A0B0);
     z-index: 2;
+    opacity: 1;
+    visibility: visible;
   }
 
   .star-button:hover .star-3 {
@@ -330,6 +345,8 @@
     height: auto;
     filter: drop-shadow(0 0 10px #4D4DFF);
     z-index: 2;
+    opacity: 1;
+    visibility: visible;
   }
 
   .star-button:hover .star-4 {
@@ -340,6 +357,8 @@
     height: auto;
     filter: drop-shadow(0 0 10px #4D4DFF);
     z-index: 2;
+    opacity: 1;
+    visibility: visible;
   }
 
   .star-button:hover .star-5 {
@@ -350,6 +369,8 @@
     height: auto;
     filter: drop-shadow(0 0 10px #00A0B0);
     z-index: 2;
+    opacity: 1;
+    visibility: visible;
   }
 
   .star-button:hover .star-6 {
@@ -360,6 +381,8 @@
     height: auto;
     filter: drop-shadow(0 0 10px #4D4DFF);
     z-index: 2;
+    opacity: 1;
+    visibility: visible;
   }
 
   .star-button .fil0 {

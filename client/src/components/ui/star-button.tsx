@@ -93,7 +93,7 @@ const StarButton = ({
       <Link 
         href={href}
         className={cn(
-          "star-button relative font-medium rounded-lg inline-block",
+          "star-button relative font-medium inline-block",
           sizeClasses[size],
           className
         )}
@@ -109,7 +109,7 @@ const StarButton = ({
       type={type}
       onClick={onClick}
       className={cn(
-        "star-button relative font-medium rounded-lg",
+        "star-button relative font-medium",
         sizeClasses[size],
         className
       )}
