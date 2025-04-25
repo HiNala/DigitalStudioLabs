@@ -75,26 +75,16 @@ const GlowingEffect = memo(
 
           if (!isActive) return;
 
-          const currentAngle =
-            parseFloat(element.style.getPropertyValue("--start")) || 0;
-          let targetAngle =
+          // Direct angle calculation without animation for faster response
+          const targetAngle =
             (180 * Math.atan2(mouseY - center[1], mouseX - center[0])) /
               Math.PI +
             90;
-
-          const angleDiff = ((targetAngle - currentAngle + 180) % 360) - 180;
-          const newAngle = currentAngle + angleDiff;
-
-          animate(currentAngle, newAngle, {
-            duration: movementDuration,
-            ease: [0.16, 1, 0.3, 1],
-            onUpdate: (value) => {
-              element.style.setProperty("--start", String(value));
-            },
-          });
+            
+          element.style.setProperty("--start", String(targetAngle));
         });
       },
-      [inactiveZone, proximity, movementDuration]
+      [inactiveZone, proximity]
     );
 
     useEffect(() => {
@@ -102,10 +92,21 @@ const GlowingEffect = memo(
 
       const handleScroll = () => handleMove();
       const handlePointerMove = (e: PointerEvent) => handleMove(e);
-
-      window.addEventListener("scroll", handleScroll, { passive: true });
-      document.body.addEventListener("pointermove", handlePointerMove, {
+      
+      // Use mousemove for more frequent updates on desktop
+      window.addEventListener("mousemove", handlePointerMove, { 
         passive: true,
+        capture: false
+      });
+      
+      // Also keep pointermove for touch devices
+      document.addEventListener("pointermove", handlePointerMove, {
+        passive: true,
+        capture: false
+      });
+      
+      window.addEventListener("scroll", handleScroll, { 
+        passive: true 
       });
 
       return () => {
@@ -113,7 +114,8 @@ const GlowingEffect = memo(
           cancelAnimationFrame(animationFrameRef.current);
         }
         window.removeEventListener("scroll", handleScroll);
-        document.body.removeEventListener("pointermove", handlePointerMove);
+        window.removeEventListener("mousemove", handlePointerMove);
+        document.removeEventListener("pointermove", handlePointerMove);
       };
     }, [handleMove, disabled]);
 
@@ -162,6 +164,7 @@ const GlowingEffect = memo(
             "pointer-events-none absolute inset-0 rounded-[inherit] opacity-100 transition-opacity",
             glow && "opacity-100",
             blur > 0 && "blur-[var(--blur)] ",
+            "will-change-transform transform-gpu",
             className,
             disabled && "!hidden"
           )}
@@ -173,9 +176,10 @@ const GlowingEffect = memo(
               'after:content-[""] after:rounded-[inherit] after:absolute after:inset-[calc(-1*var(--glowingeffect-border-width))]',
               "after:[border:var(--glowingeffect-border-width)_solid_transparent]",
               "after:[background:var(--gradient)] after:[background-attachment:fixed]",
-              "after:opacity-[var(--active)] after:transition-opacity after:duration-300",
+              "after:opacity-[var(--active)] after:transition-opacity after:duration-100",
               "after:[mask-clip:padding-box,border-box]",
               "after:[mask-composite:intersect]",
+              "after:will-change-transform after:transform-gpu",
               "after:[mask-image:linear-gradient(#0000,#0000),conic-gradient(from_calc((var(--start)-var(--spread))*1deg),#00000000_0deg,#fff,#00000000_calc(var(--spread)*2deg))]"
             )}
           />

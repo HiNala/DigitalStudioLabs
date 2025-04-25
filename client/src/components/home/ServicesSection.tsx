@@ -126,13 +126,14 @@ const ServicesSection = () => {
             >
               {/* Add the GlowingEffect component with customized settings */}
               <GlowingEffect
-                spread={25}
+                spread={20}
                 glow={true}
                 disabled={false}
-                proximity={80}
-                inactiveZone={0.01}
-                borderWidth={1.25}
-                movementDuration={3}
+                proximity={100}
+                inactiveZone={0}
+                borderWidth={1}
+                movementDuration={0.5}
+                className="will-change-transform"
               />
               
               <motion.div 
