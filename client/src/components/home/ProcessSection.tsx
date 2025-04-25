@@ -78,41 +78,30 @@ const ProcessSection = () => {
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
         >
-          {/* Vertical line - visible on both mobile and desktop */}
-          <div className="absolute left-1/2 top-0 bottom-0 w-1 sm:w-0.5 bg-gradient-to-b from-[#00A0B0] via-[#4D4DFF] to-[#00A0B0] -translate-x-1/2 shadow-[0_0_15px_rgba(0,160,176,0.3)]"></div>
+          {/* Vertical line */}
+          <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#00A0B0] via-[#4D4DFF] to-[#00A0B0] -translate-x-1/2"></div>
           
           {processSteps.map((step, index) => (
             <motion.div 
               key={step.number}
-              className="relative mb-24 sm:mb-20 last:mb-0 md:flex items-center"
+              className="relative mb-20 last:mb-0 md:flex items-center"
               variants={itemVariants}
             >
               {/* Step number circle */}
-              <div className="absolute left-1/2 -translate-x-1/2 w-14 h-14 sm:w-12 sm:h-12 rounded-full gradient-bg flex items-center justify-center font-poppins font-bold text-xl z-10 shadow-lg">
+              <div className="absolute left-1/2 -translate-x-1/2 w-12 h-12 rounded-full gradient-bg flex items-center justify-center font-poppins font-bold text-xl z-10 shadow-lg">
                 {step.number}
               </div>
               
-              {/* Content container - optimized for mobile */}
-              <div className={`
-                mt-16 sm:mt-14 md:mt-0 
-                mx-4 sm:mx-auto sm:max-w-sm md:max-w-none
-                md:w-5/12 
-                ${index % 2 === 0 
+              {/* Content container */}
+              <div className={`mt-12 md:mt-0 md:w-5/12 ${
+                index % 2 === 0 
                   ? 'md:mr-auto md:text-right md:pr-16' 
-                  : 'md:ml-auto md:pl-16'}
-                text-center md:text-left
-                ${index % 2 === 0 ? 'md:text-right' : ''}
-                bg-opacity-5 dark:bg-opacity-10
-                backdrop-filter backdrop-blur-sm
-                rounded-xl p-6
-                border border-opacity-20 dark:border-opacity-10
-                dark:border-gray-600 light:border-gray-300
-                md:border-0 md:bg-transparent md:backdrop-filter-none md:p-0
-              `}>
-                <h3 className="text-xl sm:text-2xl font-poppins font-semibold mb-2 sm:mb-3 gradient-text-subtle">
+                  : 'md:ml-auto md:pl-16'
+              }`}>
+                <h3 className="text-2xl font-poppins font-semibold mb-3 gradient-text-subtle">
                   {step.title}
                 </h3>
-                <p className="dark:text-[#8B949E] light:text-gray-600 text-base sm:text-lg">
+                <p className="dark:text-[#8B949E] light:text-gray-600 text-lg">
                   {step.description}
                 </p>
               </div>
