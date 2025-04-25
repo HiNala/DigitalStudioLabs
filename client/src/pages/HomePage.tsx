@@ -13,6 +13,7 @@ import { SpotlightLayout } from '@/components/layout/SpotlightLayout';
 import TechBanner from '@/components/home/TechBanner';
 import TestimonialsSection from '@/components/home/TestimonialsSection';
 import StatisticsSection from '@/components/home/StatisticsSection';
+import WhoWeAreSection from '@/components/home/WhoWeAreSection';
 
 const HomePage = () => {
   useEffect(() => {
@@ -32,6 +33,9 @@ const HomePage = () => {
         <main>
           {/* Hero section */}
           <SplineHero />
+          
+          {/* Who We Are section */}
+          <WhoWeAreSection />
           
           {/* Services section */}
           <ServicesSection />
