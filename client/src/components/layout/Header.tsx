@@ -75,7 +75,9 @@ const Header = () => {
           
           {/* CTA Button + Theme Toggle (Desktop) */}
           <div className="hidden md:flex items-center space-x-5 pr-4">
-            <LightPullThemeSwitcher />
+            <div className="mt-4">
+              <LightPullThemeSwitcher />
+            </div>
             <Link 
                 href="/contact" 
                 className="gradient-bg gradient-bg-hover px-5 py-2 rounded-md font-medium transition-all duration-300 glow-hover"
@@ -86,7 +88,9 @@ const Header = () => {
           
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center space-x-4 pr-4">
-            <LightPullThemeSwitcher />
+            <div className="mt-4">
+              <LightPullThemeSwitcher />
+            </div>
             <button 
               onClick={toggleMenu}
               className="dark:text-[#E6EDF3] light:text-gray-900 focus:outline-none"
