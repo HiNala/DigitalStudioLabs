@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import { Link } from 'wouter';
 import { useTheme } from '@/providers/ThemeProvider';
 import { motion } from 'framer-motion';
+import StarButton from '@/components/ui/star-button';
 
 const processSteps = [
   {
@@ -126,9 +127,9 @@ const ProcessSection = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.8 }}
         >
-          <Link href="/contact" className="gradient-bg gradient-bg-hover px-8 py-4 rounded-md font-medium transition-all duration-300 glow-hover inline-block">
+          <StarButton href="/contact" size="md">
             Start Your Project
-          </Link>
+          </StarButton>
         </motion.div>
       </div>
       

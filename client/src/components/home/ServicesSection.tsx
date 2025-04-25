@@ -151,17 +151,9 @@ const ServicesSection = () => {
                 {service.description}
               </p>
               
-              <Link href="/contact" className="group inline-flex items-center text-[#00A0B0] hover:text-[#4D4DFF] transition-colors">
-                Explore Details 
-                <motion.span 
-                  className="ml-2 inline-block"
-                  initial={{ x: 0 }}
-                  whileHover={{ x: 5 }}
-                  transition={{ type: "spring", stiffness: 400 }}
-                >
-                  →
-                </motion.span>
-              </Link>
+              <StarButton href={`/services#${service.id}`} size="sm" className="!bg-transparent !text-[#00A0B0] !border !border-[#00A0B0] !py-2 !px-4">
+                Explore Details
+              </StarButton>
             </motion.div>
           ))}
         </motion.div>

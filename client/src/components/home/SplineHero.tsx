@@ -50,37 +50,13 @@ export function SplineHero() {
             <StarButton href="/contact" size="lg">
               Schedule Free Consultation
             </StarButton>
-            <Link 
-              href="/services"
-              className="relative inline-flex justify-center items-center px-8 py-4 rounded-[20px] bg-transparent text-[#00A0B0] hover:text-white border-2 border-[#00A0B0] hover:bg-gradient-to-r hover:from-[#00A0B0] hover:to-[#4D4DFF] transition-all duration-300 group text-lg font-medium"
+            <StarButton 
+              href="/services" 
+              size="lg" 
+              className="!bg-transparent !text-[#00A0B0] !border-2 !border-[#00A0B0]"
             >
-              <span className="z-10">Explore Our Services</span>
-              
-              {/* Stars go here but are custom to this button */}
-              <div className="absolute top-[20%] left-[20%] w-[25px] opacity-0 group-hover:opacity-100 group-hover:-top-[40%] group-hover:-left-[15%] transition-all duration-1000 ease-in-out group-hover:filter group-hover:drop-shadow-[0_0_10px_rgba(255,255,255,0.8)] group-hover:rotate-[-15deg] group-hover:z-20">
-                <svg xmlns="http://www.w3.org/2000/svg" xmlSpace="preserve" viewBox="0 0 784.11 815.53">
-                  <path fill="#ffffff" d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" />
-                </svg>
-              </div>
-              
-              <div className="absolute top-[45%] left-[45%] w-[15px] opacity-0 group-hover:opacity-100 group-hover:-top-[20%] group-hover:left-[15%] transition-all duration-1000 ease-in-out group-hover:filter group-hover:drop-shadow-[0_0_10px_rgba(255,255,255,0.8)] group-hover:rotate-[5deg] group-hover:z-20">
-                <svg xmlns="http://www.w3.org/2000/svg" xmlSpace="preserve" viewBox="0 0 784.11 815.53">
-                  <path fill="#ffffff" d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" />
-                </svg>
-              </div>
-              
-              <div className="absolute top-[50%] left-[65%] w-[8px] opacity-0 group-hover:opacity-100 group-hover:top-[110%] group-hover:left-[80%] transition-all duration-700 ease-in-out group-hover:filter group-hover:drop-shadow-[0_0_10px_rgba(255,255,255,0.8)] group-hover:rotate-[25deg] group-hover:z-20">
-                <svg xmlns="http://www.w3.org/2000/svg" xmlSpace="preserve" viewBox="0 0 784.11 815.53">
-                  <path fill="#ffffff" d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" />
-                </svg>
-              </div>
-              
-              <div className="absolute top-[60%] left-[35%] w-[12px] opacity-0 group-hover:opacity-100 group-hover:top-[120%] group-hover:left-[20%] transition-all duration-900 ease-in-out group-hover:filter group-hover:drop-shadow-[0_0_10px_rgba(255,255,255,0.8)] group-hover:rotate-[-15deg] group-hover:z-20">
-                <svg xmlns="http://www.w3.org/2000/svg" xmlSpace="preserve" viewBox="0 0 784.11 815.53">
-                  <path fill="#ffffff" d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" />
-                </svg>
-              </div>
-            </Link>
+              Explore Our Services
+            </StarButton>
           </motion.div>
         </div>
 
