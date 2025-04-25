@@ -87,18 +87,10 @@ const ServicesSection = () => {
     }
   };
 
-  // Animation for the icon background
+  // Animation for the icon background - now always lit
   const iconBgVariants = {
-    initial: { scale: 0.8, opacity: 0.5 },
-    hover: { 
+    lit: { 
       scale: 1, 
-      opacity: 1,
-      boxShadow: theme === 'dark' 
-        ? "0 0 25px rgba(0, 160, 176, 0.5)"
-        : "0 0 25px rgba(0, 160, 176, 0.3)"
-    },
-    mobile: {
-      scale: 1,
       opacity: 1,
       boxShadow: theme === 'dark' 
         ? "0 0 25px rgba(0, 160, 176, 0.5)"
@@ -143,11 +135,9 @@ const ServicesSection = () => {
               />
               
               <motion.div 
-                className="w-20 h-20 bg-gradient-to-br from-[#00A0B0] to-[#4D4DFF] rounded-2xl flex items-center justify-center mb-6 p-5 md:group-hover:scale-110 md:group-hover:shadow-[0_0_25px_rgba(0,160,176,0.5)] transition-all duration-300"
+                className="w-20 h-20 bg-gradient-to-br from-[#00A0B0] to-[#4D4DFF] rounded-2xl flex items-center justify-center mb-6 p-5 group-hover:scale-110 transition-all duration-300"
                 variants={iconBgVariants}
-                initial="initial"
-                animate={isMobile ? "mobile" : "initial"}
-                whileHover={!isMobile ? "hover" : undefined}
+                animate="lit"
                 transition={{ duration: 0.3 }}
               >
                 <ServiceIcon icon={service.icon} />
