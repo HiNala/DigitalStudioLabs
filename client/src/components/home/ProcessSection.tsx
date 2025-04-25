@@ -78,59 +78,45 @@ const ProcessSection = () => {
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
         >
-          {/* Vertical line - visible only on desktop */}
-          <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#00A0B0] via-[#4D4DFF] to-[#00A0B0] -translate-x-1/2 hidden md:block"></div>
+          {/* Vertical line */}
+          <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#00A0B0] via-[#4D4DFF] to-[#00A0B0] -translate-x-1/2"></div>
           
-          {/* Mobile cards view */}
-          <div className="md:hidden space-y-8">
-            {processSteps.map((step) => (
-              <motion.div 
-                key={step.number}
-                className="dark:bg-[#161B22]/70 light:bg-white/80 p-6 rounded-xl border dark:border-[#30363D] light:border-gray-200 relative backdrop-blur-sm"
-                variants={itemVariants}
-              >
-                <div className="w-10 h-10 gradient-bg rounded-full flex items-center justify-center font-poppins font-bold text-lg mb-4">
-                  {step.number}
-                </div>
+          {processSteps.map((step, index) => (
+            <motion.div 
+              key={step.number}
+              className="relative mb-20 last:mb-0 flex flex-col md:flex-row md:items-center"
+              variants={itemVariants}
+            >
+              {/* Step number circle */}
+              <div className="absolute left-1/2 -translate-x-1/2 w-12 h-12 rounded-full gradient-bg flex items-center justify-center font-poppins font-bold text-xl z-10 shadow-lg">
+                {step.number}
+              </div>
+              
+              {/* Mobile layout - centered below the number */}
+              <div className="md:hidden mt-16 px-4 text-center">
                 <h3 className="text-xl font-poppins font-semibold mb-3 gradient-text-subtle">
                   {step.title}
                 </h3>
                 <p className="dark:text-[#8B949E] light:text-gray-600 text-base">
                   {step.description}
                 </p>
-              </motion.div>
-            ))}
-          </div>
-          
-          {/* Desktop timeline view */}
-          <div className="hidden md:block">
-            {processSteps.map((step, index) => (
-              <motion.div 
-                key={step.number}
-                className="relative mb-20 last:mb-0 flex items-center"
-                variants={itemVariants}
-              >
-                {/* Step number circle */}
-                <div className="absolute left-1/2 -translate-x-1/2 w-12 h-12 rounded-full gradient-bg flex items-center justify-center font-poppins font-bold text-xl z-10 shadow-lg">
-                  {step.number}
-                </div>
-                
-                {/* Content container */}
-                <div className={`w-5/12 ${
-                  index % 2 === 0 
-                    ? 'mr-auto text-right pr-16' 
-                    : 'ml-auto pl-16'
-                }`}>
-                  <h3 className="text-2xl font-poppins font-semibold mb-3 gradient-text-subtle">
-                    {step.title}
-                  </h3>
-                  <p className="dark:text-[#8B949E] light:text-gray-600 text-lg">
-                    {step.description}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+              </div>
+              
+              {/* Desktop layout - alternating left/right */}
+              <div className={`hidden md:block w-5/12 ${
+                index % 2 === 0 
+                  ? 'mr-auto text-right pr-16' 
+                  : 'ml-auto pl-16'
+              }`}>
+                <h3 className="text-2xl font-poppins font-semibold mb-3 gradient-text-subtle">
+                  {step.title}
+                </h3>
+                <p className="dark:text-[#8B949E] light:text-gray-600 text-lg">
+                  {step.description}
+                </p>
+              </div>
+            </motion.div>
+          ))}
         </motion.div>
         
         <motion.div 
