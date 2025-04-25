@@ -80,7 +80,7 @@ export function InfiniteScrollBanner({
     : {};
 
   return (
-    <div className={cn("w-full py-12", className)} {...props}>
+    <div className={cn("w-full py-6", className)} {...props}>
       {(title || description) && (
         <div className="container mx-auto mb-10 text-center">
           {title && <h2 className="text-3xl md:text-4xl font-poppins font-bold mb-4">{title}</h2>}
@@ -92,11 +92,10 @@ export function InfiniteScrollBanner({
         className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 rounded-xl overflow-hidden"
       >
         <div 
-          className="absolute inset-0 dark:bg-gradient-to-r dark:from-[#0d1117]/80 dark:via-[#161B22]/60 dark:to-[#0d1117]/80 light:bg-gradient-to-r light:from-white/80 light:via-gray-100/60 light:to-white/80 backdrop-blur-md rounded-xl z-0 border dark:border-[#30363D]/50 light:border-gray-200/50 transition-colors duration-300"
-          style={{ backdropFilter: 'blur(10px)' }}
+          className="absolute inset-0 bg-transparent rounded-xl z-0 border-0 transition-colors duration-300"
         ></div>
         
-        <div className="relative z-10 py-10">
+        <div className="relative z-10 py-6">
           <div className="relative overflow-hidden">
             <motion.div
               className="flex w-max"
@@ -137,7 +136,7 @@ function TechBanner() {
   const { theme } = useTheme();
 
   return (
-    <div className="bg-radial">
+    <div className="bg-transparent">
       <InfiniteScrollBanner 
         pauseOnHover={true}
         speed={100} 
