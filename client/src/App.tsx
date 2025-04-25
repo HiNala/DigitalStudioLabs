@@ -16,6 +16,7 @@ import ProcessPage from "@/pages/ProcessPage";
 import AboutPage from "@/pages/AboutPage";
 import PricingPage from "@/pages/PricingPage";
 import ContactPage from "@/pages/ContactPage";
+import GradientButtonDemo from "@/pages/GradientButtonDemo";
 
 function Router() {
   return (
@@ -28,6 +29,7 @@ function Router() {
       <Route path="/about" component={AboutPage} />
       <Route path="/pricing" component={PricingPage} />
       <Route path="/contact" component={ContactPage} />
+      <Route path="/ui/gradient-button" component={GradientButtonDemo} />
       <Route component={NotFound} />
     </Switch>
   );

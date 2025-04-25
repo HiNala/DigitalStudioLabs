@@ -2,6 +2,53 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .gradient-button {
+    background: linear-gradient(90deg, #00A0B0 0%, #4D4DFF 100%);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .gradient-button:hover {
+    box-shadow: 0 0 20px rgba(77, 77, 255, 0.5);
+    transform: translateY(-2px);
+  }
+  
+  .gradient-button:active {
+    transform: translateY(0);
+  }
+  
+  .gradient-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #4D4DFF 0%, #00A0B0 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .gradient-button:hover::before {
+    opacity: 1;
+  }
+  
+  .gradient-button-variant {
+    background: linear-gradient(90deg, #4D4DFF 0%, #00A0B0 100%);
+  }
+  
+  .gradient-button-variant::before {
+    background: linear-gradient(90deg, #00A0B0 0%, #4D4DFF 100%);
+  }
+  
+  .gradient-button > * {
+    position: relative;
+    z-index: 1;
+  }
+}
+
 /* Performance optimizations for cursor effects */
 .will-change-transform {
   will-change: transform;
