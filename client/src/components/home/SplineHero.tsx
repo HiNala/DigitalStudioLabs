@@ -80,6 +80,38 @@ export function SplineHero() {
                   <path fill="#ffffff" d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" />
                 </svg>
               </div>
+              
+              {/* New Upper Right Stars */}
+              <div className="absolute top-[30%] right-[10%] w-[20px] opacity-0 group-hover:opacity-100 group-hover:top-[-60%] group-hover:right-[-25%] transition-all duration-1200 ease-in-out group-hover:filter group-hover:drop-shadow-[0_0_10px_rgba(255,255,255,0.8)] group-hover:rotate-[10deg] group-hover:z-20">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlSpace="preserve" viewBox="0 0 784.11 815.53">
+                  <path fill="#ffffff" d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" />
+                </svg>
+              </div>
+              
+              <div className="absolute top-[15%] right-[25%] w-[10px] opacity-0 group-hover:opacity-100 group-hover:top-[-35%] group-hover:right-[-40%] transition-all duration-1000 ease-in-out group-hover:filter group-hover:drop-shadow-[0_0_10px_rgba(255,255,255,0.8)] group-hover:rotate-[-8deg] group-hover:z-20">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlSpace="preserve" viewBox="0 0 784.11 815.53">
+                  <path fill="#ffffff" d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" />
+                </svg>
+              </div>
+              
+              <div className="absolute top-[40%] right-[5%] w-[7px] opacity-0 group-hover:opacity-100 group-hover:top-[-15%] group-hover:right-[-50%] transition-all duration-1300 ease-in-out group-hover:filter group-hover:drop-shadow-[0_0_10px_rgba(255,255,255,0.8)] group-hover:rotate-[20deg] group-hover:z-20">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlSpace="preserve" viewBox="0 0 784.11 815.53">
+                  <path fill="#ffffff" d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" />
+                </svg>
+              </div>
+              
+              {/* Additional bottom stars */}
+              <div className="absolute bottom-[20%] left-[55%] w-[9px] opacity-0 group-hover:opacity-100 group-hover:bottom-[-65%] group-hover:left-[45%] transition-all duration-1100 ease-in-out group-hover:filter group-hover:drop-shadow-[0_0_10px_rgba(255,255,255,0.8)] group-hover:rotate-[12deg] group-hover:z-20">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlSpace="preserve" viewBox="0 0 784.11 815.53">
+                  <path fill="#ffffff" d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" />
+                </svg>
+              </div>
+              
+              <div className="absolute bottom-[10%] right-[30%] w-[14px] opacity-0 group-hover:opacity-100 group-hover:bottom-[-45%] group-hover:right-[60%] transition-all duration-950 ease-in-out group-hover:filter group-hover:drop-shadow-[0_0_10px_rgba(255,255,255,0.8)] group-hover:rotate-[-18deg] group-hover:z-20">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlSpace="preserve" viewBox="0 0 784.11 815.53">
+                  <path fill="#ffffff" d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" />
+                </svg>
+              </div>
             </Link>
           </motion.div>
         </div>
