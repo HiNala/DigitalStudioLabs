@@ -36,7 +36,7 @@ const team = [
   },
   {
     name: "Racquel Frisbie",
-    title: "AI & Innovation Director",
+    title: "HR & Press",
     bio: "Leading our AI initiatives with cutting-edge expertise in machine learning, data science, and developing intelligent solutions that transform businesses.",
     image: racquelPhoto
   }
