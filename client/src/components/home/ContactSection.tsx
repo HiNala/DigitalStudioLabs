@@ -233,14 +233,16 @@ const ContactSection = () => {
                 </label>
               </div>
               
-              <button 
-                type="submit" 
-                className="w-full gradient-bg gradient-bg-hover py-3 rounded-md font-medium transition-all duration-300 glow-hover flex items-center justify-center"
-                disabled={isSubmitting}
-              >
-                {isSubmitting ? 'Sending...' : 'Send Message'} 
-                {!isSubmitting && <Send className="ml-2 h-4 w-4" />}
-              </button>
+              <div className="w-full flex justify-center">
+                <StarButton 
+                  type="submit"
+                  onClick={() => {}}
+                  size="md"
+                  className="w-full"
+                >
+                  {isSubmitting ? 'Sending...' : 'Send Message'}
+                </StarButton>
+              </div>
             </form>
           </motion.div>
           
@@ -307,14 +309,14 @@ const ContactSection = () => {
                   </p>
                 </div>
               </div>
-              <a 
-                href="https://calendly.com" 
-                target="_blank" 
-                rel="noreferrer"
-                className="block text-center gradient-bg gradient-bg-hover py-3 rounded-md font-medium transition-all duration-300 glow-hover"
-              >
-                View Available Times
-              </a>
+              <div className="flex justify-center">
+                <StarButton 
+                  href="https://calendly.com"
+                  size="md"
+                >
+                  View Available Times
+                </StarButton>
+              </div>
             </motion.div>
           </div>
         </div>

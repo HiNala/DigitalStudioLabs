@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'wouter';
 import { PORTFOLIO_PROJECTS, PORTFOLIO_CATEGORIES } from '@/lib/constants';
+import StarButton from '../ui/star-button';
 
 const PortfolioSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -52,10 +53,10 @@ const PortfolioSection = () => {
             <button 
               key={index}
               onClick={() => setActiveCategory(category)}
-              className={`px-4 py-2 rounded-md bg-[#161B22] border ${
+              className={`px-4 py-2 rounded-md ${
                 activeCategory === category 
-                  ? 'border-[#00A0B0]' 
-                  : 'border-[#30363D] hover:border-[#00A0B0]'
+                  ? 'bg-[#00A0B0] text-white' 
+                  : 'bg-[#161B22] border border-[#30363D] hover:border-[#00A0B0]'
               } transition-colors`}
             >
               {category}
@@ -102,9 +103,9 @@ const PortfolioSection = () => {
         </div>
         
         <div className="text-center mt-12 animate-fade-in">
-          <Link href="/portfolio" className="bg-[#161B22] hover:bg-[#30363D] px-8 py-4 rounded-md font-medium transition-all duration-300 inline-block">
+          <StarButton href="/portfolio" size="md">
             View All Projects
-          </Link>
+          </StarButton>
         </div>
       </div>
     </section>
