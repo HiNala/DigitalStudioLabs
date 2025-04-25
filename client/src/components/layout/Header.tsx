@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'wouter';
 import { NAV_LINKS } from '@/lib/constants';
-import { ThemeToggle } from '@/components/ui/theme-toggle';
+import { LightPullThemeSwitcher } from '@/components/ui/light-pull-theme-switcher';
 import { AnimatePresence, motion } from "framer-motion";
 
 const Header = () => {
@@ -75,7 +75,7 @@ const Header = () => {
           
           {/* CTA Button + Theme Toggle (Desktop) */}
           <div className="hidden md:flex items-center space-x-5 pr-4">
-            <ThemeToggle />
+            <LightPullThemeSwitcher />
             <Link 
                 href="/contact" 
                 className="gradient-bg gradient-bg-hover px-5 py-2 rounded-md font-medium transition-all duration-300 glow-hover"
@@ -86,7 +86,7 @@ const Header = () => {
           
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center space-x-4 pr-4">
-            <ThemeToggle />
+            <LightPullThemeSwitcher />
             <button 
               onClick={toggleMenu}
               className="dark:text-[#E6EDF3] light:text-gray-900 focus:outline-none"
