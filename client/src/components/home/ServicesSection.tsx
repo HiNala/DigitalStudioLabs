@@ -13,6 +13,7 @@ import {
 import { GlowingEffect } from '@/components/ui/glowing-effect';
 import { useTheme } from '@/providers/ThemeProvider';
 import { useIsMobile } from '@/hooks/use-mobile';
+import StarButton from '@/components/ui/star-button';
 
 // Map service icons to corresponding React Icons
 const ServiceIcon = ({ icon }: { icon: string }) => {
@@ -172,9 +173,9 @@ const ServicesSection = () => {
           viewport={{ once: true }}
           transition={{ delay: 0.5 }}
         >
-          <Link href="/services" className="gradient-bg gradient-bg-hover px-8 py-4 rounded-md font-medium transition-all duration-300 glow-hover inline-block">
+          <StarButton href="/services" size="md">
             See All Services
-          </Link>
+          </StarButton>
         </motion.div>
       </div>
     </section>
