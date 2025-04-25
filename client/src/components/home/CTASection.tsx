@@ -3,6 +3,7 @@ import { Link } from 'wouter';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { useTheme } from '@/providers/ThemeProvider';
+import StarButton from '../ui/star-button';
 
 const CTASection = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -74,12 +75,12 @@ const CTASection = () => {
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: 0.3 }}
                 >
-                  <Link href="/contact" className="gradient-bg gradient-bg-hover px-8 py-4 rounded-md font-medium text-lg transition-all duration-300 glow-hover inline-flex items-center">
-                    Schedule Consultation <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                  <Link href="/pricing" className="dark:bg-[#0D1117] light:bg-gray-100 hover:bg-[#30363D] dark:hover:bg-[#30363D] light:hover:bg-gray-200 dark:text-white light:text-gray-900 px-8 py-4 rounded-md font-medium text-lg transition-colors border dark:border-[#30363D] light:border-gray-200 hover:border-[#4D4DFF]">
+                  <StarButton href="/contact" size="md">
+                    Schedule Consultation
+                  </StarButton>
+                  <StarButton href="/pricing" size="md" className="!bg-transparent !text-[#00A0B0] !border-2 !border-[#00A0B0]">
                     View Pricing
-                  </Link>
+                  </StarButton>
                 </motion.div>
               </div>
               

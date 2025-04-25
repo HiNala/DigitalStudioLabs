@@ -12,8 +12,10 @@ interface StarButtonProps {
 }
 
 // Styled components
-const StyledWrapper = styled.div`
+const StyledWrapper = styled.span`
   display: inline-block;
+  line-height: normal;
+  border: none;
   
   button, a {
     position: relative;
@@ -31,6 +33,25 @@ const StyledWrapper = styled.div`
     display: inline-block;
     text-decoration: none;
     outline: none !important;
+  }
+  
+  /* Style support for inverted buttons - applied through className props */
+  &.\\!bg-transparent button, &.\\!bg-transparent a {
+    background-image: none;
+    background-color: transparent;
+  }
+  
+  &.\\!text-\\[\\#00A0B0\\] button, &.\\!text-\\[\\#00A0B0\\] a {
+    color: #00A0B0;
+  }
+  
+  &.\\!border button, &.\\!border a,
+  &.\\!border-2 button, &.\\!border-2 a {
+    border: 2px solid currentColor;
+  }
+  
+  &.\\!border-\\[\\#00A0B0\\] button, &.\\!border-\\[\\#00A0B0\\] a {
+    border-color: #00A0B0;
   }
   
   a:focus, a:active, button:focus, button:active {
@@ -119,9 +140,16 @@ const StyledWrapper = styled.div`
   }
 
   button:hover, a:hover {
-    background: transparent;
+    background-image: none;
+    background-color: transparent;
     color: #00A0B0;
     box-shadow: 0 0 25px rgba(0, 160, 176, 0.5);
+  }
+  
+  /* Special hover effect for buttons that are already transparent */
+  &.\\!bg-transparent button:hover, &.\\!bg-transparent a:hover {
+    background-color: rgba(0, 160, 176, 0.1);
+    color: white;
   }
 
   button:hover .star-1, a:hover .star-1,

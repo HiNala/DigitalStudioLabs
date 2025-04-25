@@ -5,6 +5,7 @@ import { useToast } from '@/hooks/use-toast';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Calendar, Send } from 'lucide-react';
 import { useTheme } from '@/providers/ThemeProvider';
+import StarButton from '../ui/star-button';
 
 const ContactSection = () => {
   const sectionRef = useRef<HTMLElement>(null);

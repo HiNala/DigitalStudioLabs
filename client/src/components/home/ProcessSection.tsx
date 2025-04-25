@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import { Link } from 'wouter';
 import { useTheme } from '@/providers/ThemeProvider';
 import { motion } from 'framer-motion';
-import StarButton from '@/components/ui/star-button';
+import StarButton from '../ui/star-button';
 
 const processSteps = [
   {
