@@ -213,4 +213,10 @@
   }
   
   /* Using styled-components for StarButton now */
+  
+  /* Remove outlines from buttons */
+  .border-\[\#00A0B0\] {
+    outline: none !important;
+    box-shadow: none !important;
+  }
 }

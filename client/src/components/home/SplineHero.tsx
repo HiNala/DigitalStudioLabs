@@ -50,13 +50,17 @@ export function SplineHero() {
             <StarButton href="/contact" size="lg">
               Schedule Free Consultation
             </StarButton>
-            <StarButton 
-              href="/services" 
-              size="lg" 
-              className="!bg-transparent !text-[#00A0B0] border border-[#00A0B0]"
-            >
-              Explore Our Services
-            </StarButton>
+            <div className="relative inline-block" style={{ outline: 'none' }}>
+              <StarButton 
+                href="/services" 
+                size="lg" 
+                className="!bg-transparent !text-[#00A0B0] !border !border-[#00A0B0] !outline-none !shadow-none"
+                style={{ boxShadow: 'none', outline: 'none' }}
+              >
+                Explore Our Services
+              </StarButton>
+              <div className="absolute inset-0 pointer-events-none" style={{ border: '0 solid transparent', outline: 'none' }}></div>
+            </div>
           </motion.div>
         </div>
 

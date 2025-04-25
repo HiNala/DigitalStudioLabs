@@ -30,11 +30,16 @@ const StyledWrapper = styled.div`
     cursor: pointer;
     display: inline-block;
     text-decoration: none;
-    outline: none;
+    outline: none !important;
   }
   
-  a:focus {
-    outline: none;
+  a:focus, a:active, button:focus, button:active {
+    outline: none !important;
+    box-shadow: none !important;
+  }
+  
+  &::before, &::after {
+    content: none !important;
   }
 
   .star-1, .star-2, .star-3, .star-4, .star-5, .star-6, .star-7, .star-8 {
