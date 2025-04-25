@@ -94,12 +94,12 @@ const IndustrySection = () => {
                 style={{ backgroundImage: `url('${industry.background}')` }}
               ></div>
               <div className="relative z-10">
-                <h3 className="text-xl font-poppins font-semibold mb-4">{industry.title}</h3>
+                <h3 className="text-xl font-poppins font-semibold mb-4">Retail & E-commerce</h3>
                 <p className="dark:text-[#8B949E] light:text-gray-600 mb-6">
-                  {industry.description}
+                  Transform your retail business with cutting-edge digital solutions that enhance customer experience and drive sales growth.
                 </p>
                 <div className="flex flex-wrap gap-2">
-                  {industry.tags.map((tag, tagIndex) => (
+                  {['E-commerce', 'POS Systems', 'Inventory Management', 'Customer Analytics'].map((tag, tagIndex) => (
                     <motion.span 
                       key={tagIndex} 
                       className="text-xs dark:bg-[#30363D]/50 light:bg-gray-100 px-3 py-1 rounded-full transition-colors duration-300"
