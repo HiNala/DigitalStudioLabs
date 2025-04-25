@@ -6,10 +6,10 @@ const WhoWeAreSection = () => {
   const { theme } = useTheme();
   
   return (
-    <section className="py-24 relative">
+    <section className="pt-24 pb-12 relative">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div 
-          className="max-w-4xl mx-auto text-center mb-16"
+          className="max-w-4xl mx-auto text-center mb-8"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6 }}
@@ -33,8 +33,8 @@ const WhoWeAreSection = () => {
               At Digital Studio Labs, we breathe life into digital experiences through 
               a blend of intuition and innovation. Our team navigates the digital landscape 
               with an intimate understanding of emerging technologies, transforming complex 
-              challenges into elegant solutions that feel effortless to users. We don't just 
-              build digital products—we craft experiences where technology recedes into the 
+              challenges into elegant solutions that feel effortless to our clients and yours. We don't just 
+              build digital products. We craft experiences where technology recedes into the 
               background, leaving only the magic of seamless interaction.
             </p>
             
