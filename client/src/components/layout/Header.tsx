@@ -3,6 +3,7 @@ import { Link, useLocation } from 'wouter';
 import { NAV_LINKS } from '@/lib/constants';
 import { LightPullThemeSwitcher } from '@/components/ui/light-pull-theme-switcher';
 import { AnimatePresence, motion } from "framer-motion";
+import StarButton from '@/components/ui/star-button';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -78,12 +79,9 @@ const Header = () => {
             <div className="mt-4 mr-5">
               <LightPullThemeSwitcher />
             </div>
-            <Link 
-                href="/contact" 
-                className="gradient-bg gradient-bg-hover px-5 py-2 rounded-md font-medium transition-all duration-300 glow-hover"
-              >
-                <span className="gradient-text-glow">Get in Touch</span>
-              </Link>
+            <StarButton href="/contact" size="sm">
+              Get in Touch
+            </StarButton>
           </div>
           
           {/* Mobile Menu Button */}
@@ -126,13 +124,13 @@ const Header = () => {
                       {link.name}
                     </Link>
                   ))}
-                  <Link 
+                  <StarButton 
                       href="/contact" 
                       onClick={handleLinkClick}
-                      className="gradient-bg gradient-bg-hover w-full text-center py-3 px-4 rounded-md font-medium transition-all duration-300 glow-hover mt-2 block"
+                      className="w-full text-center mt-2 block"
                     >
-                      <span className="gradient-text-glow">Get in Touch</span>
-                    </Link>
+                      Get in Touch
+                    </StarButton>
                 </nav>
               </div>
             </motion.div>
