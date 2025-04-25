@@ -9,30 +9,36 @@ import StarButton from '@/components/ui/star-button';
 import { GlowingEffect } from '@/components/ui/glowing-effect';
 import { FloatingOrbs } from '@/components/ui/floating-orbs';
 
+// Import team member photos from attached assets
+import alexPhoto from '@assets/Alex-permut.jpg';
+import brianPhoto from '@assets/brian-permut.jpeg';
+import racquelPhoto from '@assets/Racquel Frisbie.jpeg';
+import luisPhoto from '@assets/Luis-Amaturo.jpeg';
+
 const team = [
   {
     name: "Alex Permut",
     title: "Founder & CEO",
     bio: "Visionary leader with 15+ years of experience transforming businesses through innovative digital solutions and strategic technology implementations.",
-    image: "/images/team/Alex-permut.jpg"
+    image: alexPhoto
   },
   {
     name: "Brian Permut",
     title: "CTO & Technical Director", 
     bio: "Engineering mastermind behind our most complex solutions, Brian crafts scalable architectures and drives technical excellence across all projects.",
-    image: "/images/team/brian-permut.jpeg"
+    image: brianPhoto
   },
   {
     name: "Luis Amaturo",
     title: "Lead Designer",
     bio: "Award-winning designer uniting aesthetic brilliance with UX strategy to create immersive digital experiences that captivate and convert.",
-    image: "/images/team/Luis-Amaturo.jpeg"
+    image: luisPhoto
   },
   {
     name: "Racquel Frisbie",
     title: "AI & Innovation Director",
     bio: "Leading our AI initiatives with cutting-edge expertise in machine learning, data science, and developing intelligent solutions that transform businesses.",
-    image: "/images/team/Racquel Frisbie.jpeg"
+    image: racquelPhoto
   }
 ];
 
