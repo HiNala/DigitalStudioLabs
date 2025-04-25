@@ -18,14 +18,14 @@ const StyledWrapper = styled.div`
   button, a {
     position: relative;
     padding: 12px 35px;
-    background: linear-gradient(90deg, #00A0B0, #4D4DFF);
     font-size: 17px;
     font-weight: 500;
     color: white;
+    background-image: linear-gradient(90deg, #00A0B0, #4D4DFF);
+    background-origin: border-box;
     border: 3px solid transparent;
-    border-image: linear-gradient(90deg, #00A0B0, #4D4DFF) 1;
-    border-radius: 8px;
-    box-shadow: 0 0 0 rgba(0, 160, 176, 0.3);
+    border-radius: 20px;
+    box-shadow: 0px 0px 0px 1px transparent, 0 0 0 rgba(0, 160, 176, 0.3);
     transition: all 0.3s ease-in-out;
     cursor: pointer;
     display: inline-block;
@@ -111,57 +111,57 @@ const StyledWrapper = styled.div`
   }
 
   button:hover .star-1, a:hover .star-1 {
-    top: -80%;
-    left: -30%;
+    top: -40%;
+    left: -15%;
     width: 25px;
     height: auto;
     filter: drop-shadow(0 0 10px #00A0B0);
-    transform: translate3d(-10px, -10px, 50px) rotate(-15deg);
+    transform: translate3d(-5px, -5px, 30px) rotate(-15deg);
   }
 
   button:hover .star-2, a:hover .star-2 {
-    top: -25%;
-    left: 10%;
+    top: -20%;
+    left: 15%;
     width: 15px;
     height: auto;
     filter: drop-shadow(0 0 10px #00A0B0);
-    transform: translate3d(0, -20px, 40px) rotate(5deg);
+    transform: translate3d(0, -10px, 25px) rotate(5deg);
   }
 
   button:hover .star-3, a:hover .star-3 {
-    top: 55%;
-    left: 25%;
+    top: 45%;
+    left: 20%;
     width: 5px;
     height: auto;
     filter: drop-shadow(0 0 10px #4D4DFF);
-    transform: translate3d(-10px, 10px, 30px) rotate(10deg);
+    transform: translate3d(-5px, 5px, 20px) rotate(10deg);
   }
 
   button:hover .star-4, a:hover .star-4 {
-    top: 30%;
-    left: 80%;
+    top: 25%;
+    left: 70%;
     width: 8px;
     height: auto;
     filter: drop-shadow(0 0 10px #4D4DFF);
-    transform: translate3d(10px, 0, 35px) rotate(-5deg);
+    transform: translate3d(5px, 0, 25px) rotate(-5deg);
   }
 
   button:hover .star-5, a:hover .star-5 {
-    top: 25%;
-    left: 115%;
+    top: 20%;
+    left: 90%;
     width: 15px;
     height: auto;
     filter: drop-shadow(0 0 10px #00A0B0);
-    transform: translate3d(20px, -5px, 45px) rotate(10deg);
+    transform: translate3d(10px, -5px, 28px) rotate(10deg);
   }
 
   button:hover .star-6, a:hover .star-6 {
     top: 5%;
-    left: 60%;
+    left: 50%;
     width: 5px;
     height: auto;
     filter: drop-shadow(0 0 10px #4D4DFF);
-    transform: translate3d(5px, -15px, 25px) rotate(20deg);
+    transform: translate3d(3px, -8px, 15px) rotate(20deg);
   }
 
   .fil0 {
