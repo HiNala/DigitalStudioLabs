@@ -172,7 +172,7 @@ export const TESTIMONIALS = [
     quote: "Working with Digital Studio Labs on our MVP was a game-changer. They delivered a polished product in half the time we expected, helping us secure our next round of funding.",
     name: "David Wilson",
     title: "Founder, DataViz Analytics",
-    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"
+    image: "/images/team/alex-permut.jpg"
   }
 ];
 
