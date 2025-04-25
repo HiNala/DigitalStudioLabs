@@ -30,9 +30,14 @@ const StyledWrapper = styled.div`
     cursor: pointer;
     display: inline-block;
     text-decoration: none;
+    outline: none;
+  }
+  
+  a:focus {
+    outline: none;
   }
 
-  .star-1, .star-2, .star-3, .star-4, .star-5, .star-6 {
+  .star-1, .star-2, .star-3, .star-4, .star-5, .star-6, .star-7, .star-8 {
     position: absolute;
     opacity: 0;
     visibility: hidden;
@@ -91,6 +96,22 @@ const StyledWrapper = styled.div`
     height: auto;
     transition: all 0.8s ease;
   }
+  
+  .star-7 {
+    top: 60%;
+    left: 35%;
+    width: 12px;
+    height: auto;
+    transition: all 0.9s cubic-bezier(0.05, 0.83, 0.43, 0.96);
+  }
+  
+  .star-8 {
+    top: 50%;
+    left: 65%;
+    width: 8px;
+    height: auto;
+    transition: all 0.7s cubic-bezier(0.05, 0.83, 0.43, 0.96);
+  }
 
   button:hover, a:hover {
     background: transparent;
@@ -103,7 +124,9 @@ const StyledWrapper = styled.div`
   button:hover .star-3, a:hover .star-3,
   button:hover .star-4, a:hover .star-4,
   button:hover .star-5, a:hover .star-5,
-  button:hover .star-6, a:hover .star-6 {
+  button:hover .star-6, a:hover .star-6,
+  button:hover .star-7, a:hover .star-7,
+  button:hover .star-8, a:hover .star-8 {
     opacity: 1;
     visibility: visible;
     z-index: 2;
@@ -163,6 +186,24 @@ const StyledWrapper = styled.div`
     filter: drop-shadow(0 0 10px #4D4DFF);
     transform: translate3d(3px, -8px, 15px) rotate(20deg);
   }
+  
+  button:hover .star-7, a:hover .star-7 {
+    top: 120%;
+    left: 20%;
+    width: 12px;
+    height: auto;
+    filter: drop-shadow(0 0 10px #00A0B0);
+    transform: translate3d(-6px, 8px, 22px) rotate(-15deg);
+  }
+  
+  button:hover .star-8, a:hover .star-8 {
+    top: 100%;
+    left: 80%;
+    width: 8px;
+    height: auto;
+    filter: drop-shadow(0 0 10px #4D4DFF);
+    transform: translate3d(8px, 12px, 18px) rotate(25deg);
+  }
 
   .fil0 {
     fill: #ffffff;
@@ -216,6 +257,8 @@ const StarButton = ({
       <div className="star-4"><StarSVG /></div>
       <div className="star-5"><StarSVG /></div>
       <div className="star-6"><StarSVG /></div>
+      <div className="star-7"><StarSVG /></div>
+      <div className="star-8"><StarSVG /></div>
     </>
   );
 
