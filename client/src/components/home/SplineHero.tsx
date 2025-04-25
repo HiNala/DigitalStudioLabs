@@ -21,7 +21,7 @@ export function SplineHero() {
     <section className="w-full h-[700px] md:h-[600px] relative overflow-hidden">      
       <div className="flex flex-col md:flex-row h-full">
         {/* Left content */}
-        <div className="flex-1 p-8 relative z-10 flex flex-col justify-center">
+        <div className="flex-1 p-8 relative z-10 flex flex-col justify-center items-center text-center">
           <motion.h1 
             className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins dark:text-transparent dark:bg-clip-text dark:bg-gradient-to-r dark:from-white dark:to-neutral-300 light:text-gray-900"
             initial={{ opacity: 0, y: 20 }}
@@ -32,7 +32,7 @@ export function SplineHero() {
           </motion.h1>
           
           <motion.p 
-            className="mt-4 text-xl dark:text-neutral-300 light:text-gray-600 max-w-lg"
+            className="mt-4 text-xl dark:text-neutral-300 light:text-gray-600 max-w-lg mx-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -41,7 +41,7 @@ export function SplineHero() {
           </motion.p>
           
           <motion.div 
-            className="mt-8 flex flex-col sm:flex-row gap-4"
+            className="mt-8 flex flex-col sm:flex-row gap-4 justify-center"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}

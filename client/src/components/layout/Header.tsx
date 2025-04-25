@@ -3,7 +3,6 @@ import { Link, useLocation } from 'wouter';
 import { NAV_LINKS } from '@/lib/constants';
 import { ThemeToggle } from '@/components/ui/theme-toggle';
 import { AnimatePresence, motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -48,17 +47,17 @@ const Header = () => {
           : "py-5 dark:bg-black/20 bg-white/30 backdrop-blur-sm"
       }`}
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full px-0 sm:px-1">
         <div className="flex justify-between items-center">
           {/* Logo */}
-          <div className="flex-shrink-0">
-            <Link href="/" className="flex items-center">
-              <span className="text-2xl font-poppins font-bold text-[#00A0B0]">DSL</span>
+          <div className="flex-shrink-0 pl-6">
+            <Link href="/" className="flex items-center justify-center">
+              <span className="text-4xl font-poppins font-bold gradient-text-animated gradient-text-glow">DSL</span>
             </Link>
           </div>
           
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-8">
+          {/* Desktop Navigation - Centered */}
+          <nav className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 space-x-10">
             {NAV_LINKS.map((link) => (
               <Link 
                 key={link.path}
@@ -74,20 +73,19 @@ const Header = () => {
             ))}
           </nav>
           
-          {/* Theme Toggle + CTA Button (Desktop) */}
-          <div className="hidden md:flex items-center space-x-4">
+          {/* CTA Button + Theme Toggle (Desktop) */}
+          <div className="hidden md:flex items-center space-x-5 pr-4">
             <ThemeToggle />
-            <Button asChild className="bg-primary hover:bg-primary/90">
-              <Link 
+            <Link 
                 href="/contact" 
+                className="gradient-bg gradient-bg-hover px-5 py-2 rounded-md font-medium transition-all duration-300 glow-hover"
               >
-                Get in Touch
+                <span className="gradient-text-glow">Get in Touch</span>
               </Link>
-            </Button>
           </div>
           
           {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center space-x-3">
+          <div className="md:hidden flex items-center space-x-4 pr-4">
             <ThemeToggle />
             <button 
               onClick={toggleMenu}
@@ -124,14 +122,13 @@ const Header = () => {
                       {link.name}
                     </Link>
                   ))}
-                  <Button asChild className="w-full mt-2 bg-primary hover:bg-primary/90">
-                    <Link 
+                  <Link 
                       href="/contact" 
                       onClick={handleLinkClick}
+                      className="gradient-bg gradient-bg-hover w-full text-center py-3 px-4 rounded-md font-medium transition-all duration-300 glow-hover mt-2 block"
                     >
-                      Get in Touch
+                      <span className="gradient-text-glow">Get in Touch</span>
                     </Link>
-                  </Button>
                 </nav>
               </div>
             </motion.div>
