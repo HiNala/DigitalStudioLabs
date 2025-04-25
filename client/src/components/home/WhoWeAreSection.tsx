@@ -7,18 +7,27 @@ const WhoWeAreSection = () => {
   
   return (
     <section className="py-24 relative">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-5">
-        <div className="max-w-4xl mx-auto text-center mb-16 animate-fade-in">
-          <h2 className="text-3xl md:text-4xl font-poppins font-bold mb-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <motion.div 
+          className="max-w-4xl mx-auto text-center mb-16"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6 }}
+        >
+          <motion.h2 
+            className="text-3xl md:text-4xl font-poppins font-bold mb-8"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
             Who <span className="gradient-text">We</span> Are
-          </h2>
+          </motion.h2>
           
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="prose prose-lg max-w-3xl mx-auto dark:prose-invert"
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="max-w-3xl mx-auto"
           >
             <p className="text-xl leading-relaxed dark:text-neutral-300 light:text-gray-700">
               At Digital Studio Labs, we breathe life into digital experiences through 
@@ -36,11 +45,11 @@ const WhoWeAreSection = () => {
               anticipating the next wave of digital evolution before it reaches shore.
             </p>
           </motion.div>
-        </div>
+        </motion.div>
       </div>
       
       {/* Decorative element - subtle gradient line */}
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent"></div>
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#00A0B0]/30 to-transparent"></div>
     </section>
   );
 };
