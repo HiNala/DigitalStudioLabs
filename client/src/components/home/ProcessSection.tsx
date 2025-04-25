@@ -78,22 +78,22 @@ const ProcessSection = () => {
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
         >
-          {/* Vertical line */}
-          <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#00A0B0] via-[#4D4DFF] to-[#00A0B0] -translate-x-1/2"></div>
+          {/* Vertical line - desktop only */}
+          <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#00A0B0] via-[#4D4DFF] to-[#00A0B0] -translate-x-1/2 hidden md:block"></div>
           
           {processSteps.map((step, index) => (
             <motion.div 
               key={step.number}
-              className="relative mb-20 last:mb-0 flex flex-col md:flex-row md:items-center"
+              className="relative mb-12 md:mb-20 last:mb-0 flex flex-col md:flex-row md:items-center"
               variants={itemVariants}
             >
-              {/* Step number circle */}
-              <div className="absolute left-1/2 -translate-x-1/2 w-12 h-12 rounded-full gradient-bg flex items-center justify-center font-poppins font-bold text-xl z-10 shadow-lg">
+              {/* Step number circle - positioned absolutely only on desktop */}
+              <div className="md:absolute md:left-1/2 md:-translate-x-1/2 w-12 h-12 rounded-full gradient-bg flex items-center justify-center font-poppins font-bold text-xl z-10 shadow-lg mx-auto">
                 {step.number}
               </div>
               
               {/* Mobile layout - centered below the number */}
-              <div className="md:hidden mt-16 px-4 text-center">
+              <div className="md:hidden mt-4 px-4 text-center">
                 <h3 className="text-xl font-poppins font-semibold mb-3 gradient-text-subtle">
                   {step.title}
                 </h3>
