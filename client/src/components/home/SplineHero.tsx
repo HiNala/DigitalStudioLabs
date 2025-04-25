@@ -56,80 +56,26 @@ export function SplineHero() {
             >
               <span className="z-10">Explore Our Services</span>
               
-              {/* Stars arranged in a balanced pattern - faster, smoother animations and some stars stay inside */}
-              
-              {/* Inner stars that stay inside the button */}
-              <div className="absolute top-[30%] left-[25%] w-[8px] opacity-0 group-hover:opacity-100 transition-all duration-650 ease-out group-hover:filter group-hover:drop-shadow-[0_0_10px_rgba(255,255,255,0.8)] group-hover:rotate-[-5deg] group-hover:z-20">
+              {/* Stars go here but are custom to this button */}
+              <div className="absolute top-[20%] left-[20%] w-[25px] opacity-0 group-hover:opacity-100 group-hover:-top-[40%] group-hover:-left-[15%] transition-all duration-1000 ease-in-out group-hover:filter group-hover:drop-shadow-[0_0_10px_rgba(255,255,255,0.8)] group-hover:rotate-[-15deg] group-hover:z-20">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlSpace="preserve" viewBox="0 0 784.11 815.53">
                   <path fill="#ffffff" d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" />
                 </svg>
               </div>
               
-              <div className="absolute top-[60%] right-[30%] w-[10px] opacity-0 group-hover:opacity-100 transition-all duration-750 ease-out group-hover:filter group-hover:drop-shadow-[0_0_10px_rgba(255,255,255,0.8)] group-hover:rotate-[8deg] group-hover:z-20">
+              <div className="absolute top-[45%] left-[45%] w-[15px] opacity-0 group-hover:opacity-100 group-hover:-top-[20%] group-hover:left-[15%] transition-all duration-1000 ease-in-out group-hover:filter group-hover:drop-shadow-[0_0_10px_rgba(255,255,255,0.8)] group-hover:rotate-[5deg] group-hover:z-20">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlSpace="preserve" viewBox="0 0 784.11 815.53">
                   <path fill="#ffffff" d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" />
                 </svg>
               </div>
               
-              {/* External stars */}
-              {/* Top Left */}
-              <div className="absolute top-[20%] left-[20%] w-[18px] opacity-0 group-hover:opacity-100 group-hover:top-[-70%] group-hover:left-[-40%] transition-all duration-700 ease-in-out group-hover:filter group-hover:drop-shadow-[0_0_10px_rgba(255,255,255,0.8)] group-hover:rotate-[-12deg] group-hover:z-20">
+              <div className="absolute top-[50%] left-[65%] w-[8px] opacity-0 group-hover:opacity-100 group-hover:top-[110%] group-hover:left-[80%] transition-all duration-700 ease-in-out group-hover:filter group-hover:drop-shadow-[0_0_10px_rgba(255,255,255,0.8)] group-hover:rotate-[25deg] group-hover:z-20">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlSpace="preserve" viewBox="0 0 784.11 815.53">
                   <path fill="#ffffff" d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" />
                 </svg>
               </div>
               
-              {/* Top */}
-              <div className="absolute top-[10%] left-[50%] w-[10px] opacity-0 group-hover:opacity-100 group-hover:top-[-80%] group-hover:left-[30%] transition-all duration-650 ease-in-out group-hover:filter group-hover:drop-shadow-[0_0_10px_rgba(255,255,255,0.8)] group-hover:rotate-[5deg] group-hover:z-20">
-                <svg xmlns="http://www.w3.org/2000/svg" xmlSpace="preserve" viewBox="0 0 784.11 815.53">
-                  <path fill="#ffffff" d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" />
-                </svg>
-              </div>
-              
-              {/* Top Right */}
-              <div className="absolute top-[20%] right-[20%] w-[22px] opacity-0 group-hover:opacity-100 group-hover:top-[-50%] group-hover:right-[-60%] transition-all duration-700 ease-in-out group-hover:filter group-hover:drop-shadow-[0_0_10px_rgba(255,255,255,0.8)] group-hover:rotate-[10deg] group-hover:z-20">
-                <svg xmlns="http://www.w3.org/2000/svg" xmlSpace="preserve" viewBox="0 0 784.11 815.53">
-                  <path fill="#ffffff" d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" />
-                </svg>
-              </div>
-              
-              {/* Far Right */}
-              <div className="absolute top-[50%] right-[5%] w-[8px] opacity-0 group-hover:opacity-100 group-hover:top-[20%] group-hover:right-[-80%] transition-all duration-750 ease-in-out group-hover:filter group-hover:drop-shadow-[0_0_10px_rgba(255,255,255,0.8)] group-hover:rotate-[20deg] group-hover:z-20">
-                <svg xmlns="http://www.w3.org/2000/svg" xmlSpace="preserve" viewBox="0 0 784.11 815.53">
-                  <path fill="#ffffff" d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" />
-                </svg>
-              </div>
-              
-              {/* Bottom Right */}
-              <div className="absolute bottom-[20%] right-[20%] w-[14px] opacity-0 group-hover:opacity-100 group-hover:bottom-[-60%] group-hover:right-[-20%] transition-all duration-700 ease-in-out group-hover:filter group-hover:drop-shadow-[0_0_10px_rgba(255,255,255,0.8)] group-hover:rotate-[15deg] group-hover:z-20">
-                <svg xmlns="http://www.w3.org/2000/svg" xmlSpace="preserve" viewBox="0 0 784.11 815.53">
-                  <path fill="#ffffff" d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" />
-                </svg>
-              </div>
-              
-              {/* Bottom */}
-              <div className="absolute bottom-[10%] left-[50%] w-[16px] opacity-0 group-hover:opacity-100 group-hover:bottom-[-70%] group-hover:left-[40%] transition-all duration-650 ease-in-out group-hover:filter group-hover:drop-shadow-[0_0_10px_rgba(255,255,255,0.8)] group-hover:rotate-[-5deg] group-hover:z-20">
-                <svg xmlns="http://www.w3.org/2000/svg" xmlSpace="preserve" viewBox="0 0 784.11 815.53">
-                  <path fill="#ffffff" d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" />
-                </svg>
-              </div>
-              
-              {/* Bottom Left */}
-              <div className="absolute bottom-[20%] left-[20%] w-[12px] opacity-0 group-hover:opacity-100 group-hover:bottom-[-50%] group-hover:left-[-30%] transition-all duration-700 ease-in-out group-hover:filter group-hover:drop-shadow-[0_0_10px_rgba(255,255,255,0.8)] group-hover:rotate-[-18deg] group-hover:z-20">
-                <svg xmlns="http://www.w3.org/2000/svg" xmlSpace="preserve" viewBox="0 0 784.11 815.53">
-                  <path fill="#ffffff" d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" />
-                </svg>
-              </div>
-              
-              {/* Far Left */}
-              <div className="absolute top-[50%] left-[5%] w-[9px] opacity-0 group-hover:opacity-100 group-hover:top-[20%] group-hover:left-[-70%] transition-all duration-650 ease-in-out group-hover:filter group-hover:drop-shadow-[0_0_10px_rgba(255,255,255,0.8)] group-hover:rotate-[-12deg] group-hover:z-20">
-                <svg xmlns="http://www.w3.org/2000/svg" xmlSpace="preserve" viewBox="0 0 784.11 815.53">
-                  <path fill="#ffffff" d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" />
-                </svg>
-              </div>
-              
-              {/* Upper Right Far */}
-              <div className="absolute top-[30%] right-[15%] w-[7px] opacity-0 group-hover:opacity-100 group-hover:top-[-30%] group-hover:right-[-120%] transition-all duration-750 ease-in-out group-hover:filter group-hover:drop-shadow-[0_0_10px_rgba(255,255,255,0.8)] group-hover:rotate-[8deg] group-hover:z-20">
+              <div className="absolute top-[60%] left-[35%] w-[12px] opacity-0 group-hover:opacity-100 group-hover:top-[120%] group-hover:left-[20%] transition-all duration-900 ease-in-out group-hover:filter group-hover:drop-shadow-[0_0_10px_rgba(255,255,255,0.8)] group-hover:rotate-[-15deg] group-hover:z-20">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlSpace="preserve" viewBox="0 0 784.11 815.53">
                   <path fill="#ffffff" d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" />
                 </svg>
