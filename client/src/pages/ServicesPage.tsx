@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Link } from 'wouter';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
-import { SERVICES, TESTIMONIALS } from '@/lib/constants';
+import { SERVICES } from '@/lib/constants';
 import TechBanner from '@/components/home/TechBanner';
 import { CheckCircle, XCircle, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -196,58 +196,7 @@ const ProcessStep = ({ number, title, description }: ProcessStepProps) => {
   );
 };
 
-// Testimonial Component
-interface TestimonialProps {
-  quote: string;
-  name: string;
-  title: string;
-  image: string;
-}
 
-const TestimonialCard = ({ quote, name, title, image }: TestimonialProps) => {
-  return (
-    <motion.div 
-      className="relative dark:bg-[#161B22] light:bg-white dark:border-[#30363D] light:border-gray-200 rounded-xl p-6 border h-full"
-      whileHover={{ y: -5 }}
-      transition={{ duration: 0.2 }}
-    >
-      <GlowingEffect
-        spread={20}
-        glow={true}
-        disabled={false}
-        proximity={80}
-        inactiveZone={0}
-        borderWidth={1}
-        movementDuration={0.5}
-        className="will-change-transform"
-      />
-      
-      <div className="mb-6">
-        <svg width="30" height="24" viewBox="0 0 30 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12.8182 0H7.63636L0 12V24H12V12H4.36364L12.8182 0ZM30 0H24.8182L17.1818 12V24H29.1818V12H21.5455L30 0Z" fill="url(#paint0_linear)" />
-          <defs>
-            <linearGradient id="paint0_linear" x1="0" y1="0" x2="30" y2="24" gradientUnits="userSpaceOnUse">
-              <stop stopColor="#00A0B0" />
-              <stop offset="1" stopColor="#4D4DFF" />
-            </linearGradient>
-          </defs>
-        </svg>
-      </div>
-      
-      <p className="dark:text-[#E6EDF3] light:text-gray-700 italic mb-6 text-lg leading-relaxed">{quote}</p>
-      
-      <div className="flex items-center gap-4">
-        <div className="w-12 h-12 rounded-full overflow-hidden shadow-md">
-          <img src={image} alt={name} className="w-full h-full object-cover" />
-        </div>
-        <div>
-          <p className="font-medium">{name}</p>
-          <p className="text-sm dark:text-[#8B949E] light:text-gray-500">{title}</p>
-        </div>
-      </div>
-    </motion.div>
-  );
-};
 
 const ServicesPage = () => {
   useEffect(() => {
@@ -343,9 +292,6 @@ const ServicesPage = () => {
     }
   ];
 
-  // Use testimonials from constants file
-  const [selectedTestimonials] = useState(TESTIMONIALS.slice(0, 3));
-
   return (
     <>
       <Header />
@@ -374,10 +320,10 @@ const ServicesPage = () => {
         <TechBanner />
 
         {/* Services List */}
-        <section className="py-20">
+        <section className="py-16">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-3xl mx-auto text-center mb-16 animate-fade-in">
-              <h2 className="text-3xl md:text-4xl font-poppins font-bold mb-6">
+            <div className="max-w-3xl mx-auto text-center mb-12 animate-fade-in">
+              <h2 className="text-3xl md:text-4xl font-poppins font-bold mb-4">
                 Our <span className="gradient-text">Services</span>
               </h2>
               <p className="text-xl dark:text-[#8B949E] light:text-gray-600">
@@ -435,11 +381,11 @@ const ServicesPage = () => {
         </section>
 
         {/* Feature Comparison */}
-        <section className="py-20 relative">
+        <section className="py-14 relative">
           <SpotlightLayout spotlightSize={800} spotlightColor="#4D4DFF">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="max-w-3xl mx-auto text-center mb-16 animate-fade-in">
-                <h2 className="text-3xl md:text-4xl font-poppins font-bold mb-6">
+              <div className="max-w-3xl mx-auto text-center mb-10 animate-fade-in">
+                <h2 className="text-3xl md:text-4xl font-poppins font-bold mb-4">
                   <span className="gradient-text">Service Tiers</span>
                 </h2>
                 <p className="text-xl dark:text-[#8B949E] light:text-gray-600">
@@ -483,10 +429,10 @@ const ServicesPage = () => {
         </section>
 
         {/* Process Steps */}
-        <section className="py-20">
+        <section className="py-14">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-3xl mx-auto text-center mb-16 animate-fade-in">
-              <h2 className="text-3xl md:text-4xl font-poppins font-bold mb-6">
+            <div className="max-w-3xl mx-auto text-center mb-10 animate-fade-in">
+              <h2 className="text-3xl md:text-4xl font-poppins font-bold mb-4">
                 Our <span className="gradient-text">Process</span>
               </h2>
               <p className="text-xl dark:text-[#8B949E] light:text-gray-600">
@@ -510,48 +456,8 @@ const ServicesPage = () => {
           </div>
         </section>
 
-        {/* Testimonials */}
-        <section className="py-20 relative">
-          <SpotlightLayout spotlightSize={800} spotlightColor="#4D4DFF">
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="max-w-3xl mx-auto text-center mb-16 animate-fade-in">
-                <h2 className="text-3xl md:text-4xl font-poppins font-bold mb-6">
-                  Client <span className="gradient-text">Success Stories</span>
-                </h2>
-                <p className="text-xl dark:text-[#8B949E] light:text-gray-600">
-                  Hear from our clients about their experiences and the results we've delivered
-                </p>
-              </div>
-              
-              <motion.div 
-                className="grid grid-cols-1 md:grid-cols-3 gap-8"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ staggerChildren: 0.15, delayChildren: 0.2 }}
-              >
-                {selectedTestimonials.map((testimonial, index) => (
-                  <motion.div
-                    key={testimonial.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                  >
-                    <TestimonialCard 
-                      quote={testimonial.quote}
-                      name={testimonial.name}
-                      title={testimonial.title}
-                      image={testimonial.image}
-                    />
-                  </motion.div>
-                ))}
-              </motion.div>
-            </div>
-          </SpotlightLayout>
-        </section>
-
         {/* CTA */}
-        <section className="py-20">
+        <section className="py-16">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div 
               className="dark:bg-[#161B22] light:bg-gray-900 rounded-xl p-8 md:p-12 lg:p-16 relative overflow-hidden border dark:border-[#30363D] light:border-gray-800"
