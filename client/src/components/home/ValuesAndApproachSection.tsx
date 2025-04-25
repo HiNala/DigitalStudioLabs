@@ -93,7 +93,7 @@ const ValuesAndApproachSection = () => {
   };
 
   return (
-    <section ref={sectionRef} className="py-20 bg-radial">
+    <section ref={sectionRef} className="py-20 bg-transparent">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div 
           className="max-w-3xl mx-auto text-center mb-16"

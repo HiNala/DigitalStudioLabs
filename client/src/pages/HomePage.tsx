@@ -46,9 +46,6 @@ const HomePage = () => {
           {/* Process section */}
           <ProcessSection />
           
-          {/* Testimonials section */}
-          <TestimonialsSection />
-          
           {/* Values & Approach section */}
           <ValuesAndApproachSection />
           
