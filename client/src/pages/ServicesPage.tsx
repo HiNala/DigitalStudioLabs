@@ -207,10 +207,21 @@ interface TestimonialProps {
 const TestimonialCard = ({ quote, name, title, image }: TestimonialProps) => {
   return (
     <motion.div 
-      className="bg-[#161B22] rounded-xl p-6 border border-[#30363D] h-full"
+      className="relative dark:bg-[#161B22] light:bg-white dark:border-[#30363D] light:border-gray-200 rounded-xl p-6 border h-full"
       whileHover={{ y: -5 }}
       transition={{ duration: 0.2 }}
     >
+      <GlowingEffect
+        spread={20}
+        glow={true}
+        disabled={false}
+        proximity={80}
+        inactiveZone={0}
+        borderWidth={1}
+        movementDuration={0.5}
+        className="will-change-transform"
+      />
+      
       <div className="mb-6">
         <svg width="30" height="24" viewBox="0 0 30 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M12.8182 0H7.63636L0 12V24H12V12H4.36364L12.8182 0ZM30 0H24.8182L17.1818 12V24H29.1818V12H21.5455L30 0Z" fill="url(#paint0_linear)" />
@@ -222,14 +233,16 @@ const TestimonialCard = ({ quote, name, title, image }: TestimonialProps) => {
           </defs>
         </svg>
       </div>
-      <p className="text-[#E6EDF3] italic mb-6">{quote}</p>
+      
+      <p className="dark:text-[#E6EDF3] light:text-gray-700 italic mb-6 text-lg leading-relaxed">{quote}</p>
+      
       <div className="flex items-center gap-4">
-        <div className="w-12 h-12 rounded-full overflow-hidden">
+        <div className="w-12 h-12 rounded-full overflow-hidden shadow-md">
           <img src={image} alt={name} className="w-full h-full object-cover" />
         </div>
         <div>
           <p className="font-medium">{name}</p>
-          <p className="text-sm text-[#8B949E]">{title}</p>
+          <p className="text-sm dark:text-[#8B949E] light:text-gray-500">{title}</p>
         </div>
       </div>
     </motion.div>
@@ -360,7 +373,7 @@ const ServicesPage = () => {
         {/* Tech Banner */}
         <TechBanner />
 
-        {/* Services Grid */}
+        {/* Services List */}
         <section className="py-20">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-3xl mx-auto text-center mb-16 animate-fade-in">
@@ -372,20 +385,52 @@ const ServicesPage = () => {
               </p>
             </div>
             
-            <motion.div 
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ staggerChildren: 0.1, delayChildren: 0.3 }}
-            >
-              {SERVICES.map((service) => (
-                <ServiceCard 
+            <div className="max-w-6xl mx-auto">
+              {SERVICES.map((service, index) => (
+                <motion.div 
                   key={service.id}
-                  {...service}
-                  features={serviceFeatures[service.icon as keyof typeof serviceFeatures]}
-                />
+                  className="py-12 first:pt-0 border-b dark:border-[#30363D] light:border-gray-200 last:border-b-0"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                >
+                  <div className="flex flex-col md:flex-row gap-8">
+                    <div className="md:w-1/3">
+                      <div className="flex items-center gap-4 mb-6">
+                        <motion.div 
+                          className="flex-shrink-0 flex items-center justify-center w-14 h-14 rounded-lg bg-gradient-to-br from-[#00A0B0] to-[#4D4DFF] shadow-lg transition-all duration-300"
+                          whileHover={{ scale: 1.05 }}
+                          transition={{ type: "spring", stiffness: 300 }}
+                        >
+                          <ServiceIcon icon={service.icon} />
+                        </motion.div>
+                        <h3 className="text-2xl font-poppins font-semibold">{service.title}</h3>
+                      </div>
+                      <p className="dark:text-[#8B949E] light:text-gray-600 mb-6 md:mb-0">{service.description}</p>
+                    </div>
+                    <div className="md:w-2/3">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        {serviceFeatures[service.icon as keyof typeof serviceFeatures].map((feature, idx) => (
+                          <div key={idx} className="flex items-start">
+                            <CheckCircle className="flex-shrink-0 w-5 h-5 text-[#00A0B0] mr-3 mt-1" />
+                            <span className="dark:text-[#E6EDF3] light:text-gray-700">{feature}</span>
+                          </div>
+                        ))}
+                      </div>
+                      <div className="mt-8">
+                        <Link 
+                          href="/contact" 
+                          className="inline-flex items-center text-[#00A0B0] hover:text-[#4D4DFF] font-medium transition-colors"
+                        >
+                          Learn more about {service.title.toLowerCase()} <ArrowRight className="ml-2 h-4 w-4" />
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
               ))}
-            </motion.div>
+            </div>
           </div>
         </section>
 
@@ -440,64 +485,130 @@ const ServicesPage = () => {
         {/* Process Steps */}
         <section className="py-20">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-3xl mx-auto text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-poppins font-bold mb-6">Our Process</h2>
-              <p className="text-xl text-[#8B949E]">
-                A structured approach to delivering successful technology solutions
+            <div className="max-w-3xl mx-auto text-center mb-16 animate-fade-in">
+              <h2 className="text-3xl md:text-4xl font-poppins font-bold mb-6">
+                Our <span className="gradient-text">Process</span>
+              </h2>
+              <p className="text-xl dark:text-[#8B949E] light:text-gray-600">
+                A structured approach to delivering successful technology solutions that exceed expectations
               </p>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-              {processSteps.map((step) => (
-                <ProcessStep key={step.number} {...step} />
-              ))}
+            <div className="relative">
+              {/* Vertical line connecting the steps */}
+              <div className="absolute left-7 top-7 bottom-7 w-0.5 bg-gradient-to-b from-[#00A0B0] to-[#4D4DFF] hidden md:block"></div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12">
+                {processSteps.map((step, index) => (
+                  <ProcessStep 
+                    key={step.number} 
+                    {...step} 
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </section>
 
         {/* Testimonials */}
-        <section className="py-20 bg-radial">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-3xl mx-auto text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-poppins font-bold mb-6">Client Success Stories</h2>
-              <p className="text-xl text-[#8B949E]">
-                Hear from our clients about their experiences working with us
-              </p>
+        <section className="py-20 relative">
+          <SpotlightLayout spotlightSize={800} spotlightColor="#4D4DFF">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="max-w-3xl mx-auto text-center mb-16 animate-fade-in">
+                <h2 className="text-3xl md:text-4xl font-poppins font-bold mb-6">
+                  Client <span className="gradient-text">Success Stories</span>
+                </h2>
+                <p className="text-xl dark:text-[#8B949E] light:text-gray-600">
+                  Hear from our clients about their experiences and the results we've delivered
+                </p>
+              </div>
+              
+              <motion.div 
+                className="grid grid-cols-1 md:grid-cols-3 gap-8"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ staggerChildren: 0.15, delayChildren: 0.2 }}
+              >
+                {selectedTestimonials.map((testimonial, index) => (
+                  <motion.div
+                    key={testimonial.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                  >
+                    <TestimonialCard 
+                      quote={testimonial.quote}
+                      name={testimonial.name}
+                      title={testimonial.title}
+                      image={testimonial.image}
+                    />
+                  </motion.div>
+                ))}
+              </motion.div>
             </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {selectedTestimonials.map((testimonial, index) => (
-                <TestimonialCard 
-                  key={testimonial.id}
-                  quote={testimonial.quote}
-                  name={testimonial.name}
-                  title={testimonial.title}
-                  image={testimonial.image}
-                />
-              ))}
-            </div>
-          </div>
+          </SpotlightLayout>
         </section>
 
         {/* CTA */}
         <section className="py-20">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="bg-[#161B22] rounded-xl p-8 md:p-12 lg:p-16 relative overflow-hidden">
+            <motion.div 
+              className="dark:bg-[#161B22] light:bg-gray-900 rounded-xl p-8 md:p-12 lg:p-16 relative overflow-hidden border dark:border-[#30363D] light:border-gray-800"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+            >
+              <GlowingEffect
+                spread={30}
+                glow={true}
+                disabled={false}
+                proximity={120}
+                inactiveZone={0}
+                borderWidth={1}
+                movementDuration={0.5}
+                className="will-change-transform"
+              />
+            
               <div className="relative z-10 max-w-3xl mx-auto text-center">
-                <h2 className="text-3xl md:text-4xl font-poppins font-bold mb-6">Ready to Transform Your Business?</h2>
-                <p className="text-[#8B949E] text-lg mb-10">
-                  Contact us today to discuss how our innovative solutions can help you achieve your goals.
-                </p>
-                <Link href="/contact" className="gradient-bg gradient-bg-hover px-8 py-4 rounded-md font-medium text-lg transition-all duration-300 glow-hover inline-flex items-center">
-                  Get Started <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
+                <motion.h2 
+                  className="text-3xl md:text-4xl font-poppins font-bold mb-6"
+                  initial={{ opacity: 0, y: -10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                >
+                  Ready to <span className="gradient-text">Transform</span> Your Business?
+                </motion.h2>
+                <motion.p 
+                  className="dark:text-[#8B949E] light:text-gray-300 text-lg mb-10"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.3 }}
+                >
+                  Contact us today to discuss how our innovative solutions can help you achieve your goals
+                  and take your business to the next level.
+                </motion.p>
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.4 }}
+                >
+                  <Link href="/contact" className="gradient-bg gradient-bg-hover px-8 py-4 rounded-md font-medium text-lg transition-all duration-300 glow-hover inline-flex items-center">
+                    Get Started <ArrowRight className="ml-2 h-5 w-5" />
+                  </Link>
+                </motion.div>
               </div>
               
               {/* Background Decoration */}
               <div className="absolute inset-0 opacity-5">
                 <div className="absolute -top-20 -right-20 w-96 h-96 rounded-full bg-[#4D4DFF]"></div>
+                <div className="absolute -bottom-32 -left-32 w-96 h-96 rounded-full bg-[#00A0B0]"></div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </section>
       </main>
