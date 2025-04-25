@@ -1,17 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useTheme } from '@/providers/ThemeProvider';
-import { LampDemo } from '@/components/ui/lamp-demo';
 
 const WhoWeAreSection = () => {
   const { theme } = useTheme();
   
   return (
-    <section className="pt-4 pb-12 relative">
-      <div className="h-[130px] relative overflow-hidden">
-        <LampDemo />
-      </div>
-      
+    <section className="pt-24 pb-12 relative">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div 
           className="max-w-4xl mx-auto text-center mb-8"
