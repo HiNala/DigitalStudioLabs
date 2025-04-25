@@ -56,38 +56,34 @@ const Header = () => {
             </Link>
           </div>
           
-          {/* Desktop Navigation - Centered with space for theme switcher */}
-          <div className="flex items-center justify-between w-full">
-            <nav className="hidden md:flex space-x-10 ml-24">
-              {NAV_LINKS.map((link) => (
-                <Link 
-                  key={link.path}
-                  href={link.path} 
-                  className={`hover:text-[#00A0B0] font-medium transition-colors ${
-                    isActive(link.path) 
-                      ? 'dark:text-[#E6EDF3] light:text-gray-900 active-nav' 
-                      : 'dark:text-[#8B949E] light:text-gray-700'
-                  }`}
-                >
-                  {link.name}
-                </Link>
-              ))}
-            </nav>
-            
-            {/* Theme Switcher - Centered */}
-            <div className="hidden md:flex mt-4 absolute left-1/2 transform -translate-x-1/2">
+          {/* Desktop Navigation - Centered */}
+          <nav className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 space-x-10">
+            {NAV_LINKS.map((link) => (
+              <Link 
+                key={link.path}
+                href={link.path} 
+                className={`hover:text-[#00A0B0] font-medium transition-colors ${
+                  isActive(link.path) 
+                    ? 'dark:text-[#E6EDF3] light:text-gray-900 active-nav' 
+                    : 'dark:text-[#8B949E] light:text-gray-700'
+                }`}
+              >
+                {link.name}
+              </Link>
+            ))}
+          </nav>
+          
+          {/* CTA Button + Theme Toggle (Desktop) */}
+          <div className="hidden md:flex items-center space-x-5 pr-4">
+            <div className="mt-4 mr-5">
               <LightPullThemeSwitcher />
             </div>
-            
-            {/* CTA Button (Desktop) */}
-            <div className="hidden md:flex items-center pr-4">
-              <Link 
-                  href="/contact" 
-                  className="gradient-bg gradient-bg-hover px-5 py-2 rounded-md font-medium transition-all duration-300 glow-hover"
-                >
-                  <span className="gradient-text-glow">Get in Touch</span>
-                </Link>
-            </div>
+            <Link 
+                href="/contact" 
+                className="gradient-bg gradient-bg-hover px-5 py-2 rounded-md font-medium transition-all duration-300 glow-hover"
+              >
+                <span className="gradient-text-glow">Get in Touch</span>
+              </Link>
           </div>
           
           {/* Mobile Menu Button */}
