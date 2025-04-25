@@ -1,11 +1,15 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'wouter';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
-import { SERVICES } from '@/lib/constants';
+import { SERVICES, TESTIMONIALS } from '@/lib/constants';
 import TechBanner from '@/components/home/TechBanner';
 import { CheckCircle, XCircle, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { FaLaptopCode, FaPalette, FaRobot, FaChartLine, FaDatabase, FaLightbulb } from 'react-icons/fa';
+import { GlowingEffect } from '@/components/ui/glowing-effect';
+import { useTheme } from '@/providers/ThemeProvider';
+import { SpotlightLayout } from '@/components/layout/SpotlightLayout';
 
 // Service Card Component
 interface ServiceCardProps {
