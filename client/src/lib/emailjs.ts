@@ -9,7 +9,12 @@ export const EMAIL_JS_CONFIG = {
 
 // Initialize EmailJS
 export const initEmailJS = () => {
-  emailjs.init(EMAIL_JS_CONFIG.PUBLIC_KEY);
+  try {
+    emailjs.init(EMAIL_JS_CONFIG.PUBLIC_KEY);
+    console.log('EmailJS initialized successfully');
+  } catch (error) {
+    console.error('Error initializing EmailJS:', error);
+  }
 };
 
 // Send email using EmailJS
@@ -21,22 +26,25 @@ export const sendEmail = async (formData: {
   message: string;
 }) => {
   try {
-    // Map our form data to match the expected template parameters
+    // Map our form data to the expected template parameters
+    // Note: These MUST match exactly what's in your EmailJS template
     const templateParams = {
       from_name: formData.name,
       from_email: formData.email,
-      phone: formData.phone,
-      service: formData.service,
-      message: formData.message
+      phone: formData.phone || 'N/A',
+      service: formData.service || 'Not specified',
+      message: formData.message,
+      to_name: 'Digital Studio Labs', // Add recipient name for the template
+      reply_to: formData.email // Ensure reply-to is set
     };
 
     console.log('Sending email with params:', templateParams);
     
+    // Using only service ID, template ID, and parameters (public key is already initialized)
     return await emailjs.send(
       EMAIL_JS_CONFIG.SERVICE_ID,
       EMAIL_JS_CONFIG.TEMPLATE_ID,
-      templateParams,
-      EMAIL_JS_CONFIG.PUBLIC_KEY
+      templateParams
     );
   } catch (error) {
     console.error('Error sending email:', error);

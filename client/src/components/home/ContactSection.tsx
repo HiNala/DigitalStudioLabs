@@ -68,18 +68,20 @@ const ContactSection = () => {
       const templateParams = {
         from_name: formData.name,
         from_email: formData.email,
-        phone: formData.phone,
-        service: formData.service,
-        message: formData.message
+        phone: formData.phone || 'N/A',
+        service: formData.service || 'Not specified',
+        message: formData.message,
+        to_name: 'Digital Studio Labs',
+        reply_to: formData.email
       };
       
       console.log('Sending with params:', templateParams);
       
+      // Using only service ID, template ID, and parameters (public key is already initialized)
       const response = await emailjs.send(
         EMAIL_JS_CONFIG.SERVICE_ID,
         EMAIL_JS_CONFIG.TEMPLATE_ID,
-        templateParams,
-        EMAIL_JS_CONFIG.PUBLIC_KEY
+        templateParams
       );
       
       console.log('Email sent successfully from home page:', response);

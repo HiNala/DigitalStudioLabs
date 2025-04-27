@@ -27,17 +27,19 @@ const Footer = () => {
         from_name: 'Newsletter Subscription',
         from_email: email,
         phone: 'N/A',
-        service: 'Newsletter',
-        message: `Please add this email to the newsletter subscription list: ${email}`
+        service: 'Newsletter Subscription',
+        message: `Please add this email to the newsletter subscription list: ${email}`,
+        to_name: 'Digital Studio Labs',
+        reply_to: email
       };
       
       console.log('Sending with params:', templateParams);
       
+      // Using only service ID, template ID, and parameters (public key is already initialized)
       const response = await emailjs.send(
         EMAIL_JS_CONFIG.SERVICE_ID,
         EMAIL_JS_CONFIG.TEMPLATE_ID,
-        templateParams,
-        EMAIL_JS_CONFIG.PUBLIC_KEY
+        templateParams
       );
       
       console.log('Newsletter subscription successful:', response);
