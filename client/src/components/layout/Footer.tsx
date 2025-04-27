@@ -4,8 +4,8 @@ import {
   COMPANY_EMAIL,
   NAV_LINKS 
 } from '@/lib/constants';
-import { useState } from 'react';
-import { sendEmail } from '@/lib/emailjs';
+import { useState, useRef } from 'react';
+import { sendNewsletterSubscription } from '@/lib/emailjs';
 import { useToast } from '@/hooks/use-toast';
 import emailjs from '@emailjs/browser';
 import { EMAIL_JS_CONFIG } from '@/lib/emailjs';
@@ -14,6 +14,7 @@ const Footer = () => {
   const [email, setEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
+  const newsletterFormRef = useRef<HTMLFormElement>(null);
   
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -22,25 +23,8 @@ const Footer = () => {
     try {
       console.log('Subscribing to newsletter:', email);
       
-      // Direct EmailJS call for newsletter subscription
-      const templateParams = {
-        from_name: 'Newsletter Subscription',
-        from_email: email,
-        phone: 'N/A',
-        service: 'Newsletter Subscription',
-        message: `Please add this email to the newsletter subscription list: ${email}`,
-        to_name: 'Digital Studio Labs',
-        reply_to: email
-      };
-      
-      console.log('Sending with params:', templateParams);
-      
-      // Using only service ID, template ID, and parameters (public key is already initialized)
-      const response = await emailjs.send(
-        EMAIL_JS_CONFIG.SERVICE_ID,
-        EMAIL_JS_CONFIG.TEMPLATE_ID,
-        templateParams
-      );
+      // Use the dedicated newsletter subscription function
+      const response = await sendNewsletterSubscription(email);
       
       console.log('Newsletter subscription successful:', response);
       
@@ -119,11 +103,12 @@ const Footer = () => {
             <p className="dark:text-[#8B949E] light:text-gray-600 mb-4">
               Get the latest news and updates from our team.
             </p>
-            <form onSubmit={handleSubmit} className="mb-4">
+            <form ref={newsletterFormRef} onSubmit={handleSubmit} className="mb-4">
               <div className="space-y-2">
                 <div className="relative">
                   <input 
                     type="email" 
+                    name="reply_to" 
                     placeholder="Your email address" 
                     className="w-full px-4 py-3 dark:bg-[#161B22] light:bg-white dark:border-[#30363D] light:border-gray-300 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#00A0B0] focus:border-transparent transition-all"
                     required
@@ -131,6 +116,13 @@ const Footer = () => {
                     onChange={(e) => setEmail(e.target.value)}
                     disabled={isSubmitting}
                   />
+                  {/* Hidden fields for EmailJS */}
+                  <input type="hidden" name="from_name" value="Newsletter Subscription" />
+                  <input type="hidden" name="from_email" value={email} />
+                  <input type="hidden" name="message" value={`Please add this email to the newsletter: ${email}`} />
+                  <input type="hidden" name="to_name" value="Digital Studio Labs" />
+                  <input type="hidden" name="subject" value="Newsletter Subscription" />
+                  
                   <div className="absolute inset-y-0 right-0 flex items-center pr-2">
                     <i className='bx bx-envelope dark:text-[#8B949E] light:text-gray-500'></i>
                   </div>

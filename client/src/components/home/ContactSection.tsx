@@ -6,16 +6,17 @@ import { Mail, Phone, MapPin, Calendar, Send } from 'lucide-react';
 import { useTheme } from '@/providers/ThemeProvider';
 import StarButton from '../ui/star-button';
 import emailjs from '@emailjs/browser';
-import { EMAIL_JS_CONFIG } from '@/lib/emailjs';
+import { EMAIL_JS_CONFIG, sendFormDirectly } from '@/lib/emailjs';
 
 const ContactSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
   const { toast } = useToast();
   const { theme } = useTheme();
   
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
+    from_name: '',
+    reply_to: '',
     phone: '',
     service: '',
     message: '',
@@ -62,29 +63,20 @@ const ContactSection = () => {
     setIsSubmitting(true);
     
     try {
-      console.log('Submitting form from home page:', formData);
+      console.log('Submitting form from home page...');
       
-      // Create template params object
-      const templateParams = {
-        from_name: formData.name,
-        from_email: formData.email,
-        phone: formData.phone || 'N/A',
-        service: formData.service || 'Not specified',
-        message: formData.message,
-        to_name: 'Digital Studio Labs',
-        reply_to: formData.email
-      };
+      if (!formRef.current) {
+        throw new Error('Form reference is not available');
+      }
       
-      console.log('Sending with params:', templateParams);
-      
-      // Using only service ID, template ID, and parameters (public key is already initialized)
-      const response = await emailjs.send(
+      // Use EmailJS sendForm directly as documented
+      const response = await emailjs.sendForm(
         EMAIL_JS_CONFIG.SERVICE_ID,
         EMAIL_JS_CONFIG.TEMPLATE_ID,
-        templateParams
+        formRef.current
       );
       
-      console.log('Email sent successfully from home page:', response);
+      console.log('Form submission successful from home page:', response);
       
       toast({
         title: "Message Sent!",
@@ -93,15 +85,19 @@ const ContactSection = () => {
       
       // Reset form after successful submission
       setFormData({
-        name: '',
-        email: '',
+        from_name: '',
+        reply_to: '',
         phone: '',
         service: '',
         message: '',
         consent: false
       });
+      
+      if (formRef.current) {
+        formRef.current.reset();
+      }
     } catch (error) {
-      console.error('Error sending email from home page:', error);
+      console.error('Error sending form from home page:', error);
       toast({
         title: "Error",
         description: "There was a problem sending your message. Please try again.",
@@ -144,18 +140,18 @@ const ContactSection = () => {
             transition={{ duration: 0.6 }}
           >
             <h3 className="text-2xl font-poppins font-semibold mb-6">Send Us a Message</h3>
-            <form onSubmit={handleSubmit}>
+            <form ref={formRef} id="home-contact-form" onSubmit={handleSubmit}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <div>
-                  <label htmlFor="name" className="block mb-2 font-medium">Name</label>
+                  <label htmlFor="home_from_name" className="block mb-2 font-medium">Name</label>
                   <div className="relative">
                     <input 
                       type="text" 
-                      id="name" 
-                      name="name" 
+                      id="home_from_name" 
+                      name="from_name" 
                       className="w-full pl-10 px-4 py-3 dark:bg-[#0D1117] light:bg-gray-50 border dark:border-[#30363D] light:border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#00A0B0] focus:border-transparent transition-all" 
                       required
-                      value={formData.name}
+                      value={formData.from_name}
                       onChange={handleChange}
                     />
                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center">
@@ -164,15 +160,15 @@ const ContactSection = () => {
                   </div>
                 </div>
                 <div>
-                  <label htmlFor="email" className="block mb-2 font-medium">Email</label>
+                  <label htmlFor="home_reply_to" className="block mb-2 font-medium">Email</label>
                   <div className="relative">
                     <input 
                       type="email" 
-                      id="email" 
-                      name="email" 
+                      id="home_reply_to" 
+                      name="reply_to" 
                       className="w-full pl-10 px-4 py-3 dark:bg-[#0D1117] light:bg-gray-50 border dark:border-[#30363D] light:border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#00A0B0] focus:border-transparent transition-all" 
                       required
-                      value={formData.email}
+                      value={formData.reply_to}
                       onChange={handleChange}
                     />
                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center">
@@ -183,11 +179,11 @@ const ContactSection = () => {
               </div>
               
               <div className="mb-6">
-                <label htmlFor="phone" className="block mb-2 font-medium">Phone</label>
+                <label htmlFor="home_phone" className="block mb-2 font-medium">Phone</label>
                 <div className="relative">
                   <input 
                     type="tel" 
-                    id="phone" 
+                    id="home_phone" 
                     name="phone" 
                     className="w-full pl-10 px-4 py-3 dark:bg-[#0D1117] light:bg-gray-50 border dark:border-[#30363D] light:border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#00A0B0] focus:border-transparent transition-all"
                     value={formData.phone}
@@ -200,22 +196,22 @@ const ContactSection = () => {
               </div>
               
               <div className="mb-6">
-                <label htmlFor="service" className="block mb-2 font-medium">Service Interested In</label>
+                <label htmlFor="home_service" className="block mb-2 font-medium">Service Interested In</label>
                 <div className="relative">
                   <select 
-                    id="service" 
+                    id="home_service" 
                     name="service" 
                     className="w-full pl-10 px-4 py-3 dark:bg-[#0D1117] light:bg-gray-50 border dark:border-[#30363D] light:border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#00A0B0] focus:border-transparent transition-all appearance-none"
                     value={formData.service}
                     onChange={handleChange}
                   >
                     <option value="">Select a service</option>
-                    <option value="website">Website Design</option>
-                    <option value="webapp">Web Application</option>
-                    <option value="ai">AI Integration</option>
-                    <option value="ecommerce">E-commerce</option>
-                    <option value="seo">SEO & Lead Generation</option>
-                    <option value="other">Other</option>
+                    <option value="Website Design">Website Design</option>
+                    <option value="Web Application">Web Application</option>
+                    <option value="AI Integration">AI Integration</option>
+                    <option value="E-commerce">E-commerce</option>
+                    <option value="SEO & Lead Generation">SEO & Lead Generation</option>
+                    <option value="Other">Other</option>
                   </select>
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center">
                     <i className='bx bx-list-ul dark:text-[#8B949E] light:text-gray-500'></i>
@@ -227,10 +223,10 @@ const ContactSection = () => {
               </div>
               
               <div className="mb-6">
-                <label htmlFor="message" className="block mb-2 font-medium">Your Message</label>
+                <label htmlFor="home_message" className="block mb-2 font-medium">Your Message</label>
                 <div className="relative">
                   <textarea 
-                    id="message" 
+                    id="home_message" 
                     name="message" 
                     rows={5} 
                     className="w-full pl-10 px-4 py-3 dark:bg-[#0D1117] light:bg-gray-50 border dark:border-[#30363D] light:border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#00A0B0] focus:border-transparent transition-all"
@@ -243,6 +239,15 @@ const ContactSection = () => {
                   </div>
                 </div>
               </div>
+              
+              {/* Hidden fields that EmailJS might expect */}
+              <input type="hidden" name="to_name" value="Digital Studio Labs" />
+              <input type="hidden" name="from_email" value={formData.reply_to} />
+              <input 
+                type="hidden" 
+                name="subject" 
+                value={`New inquiry about ${formData.service || 'your services'}`} 
+              />
               
               <div className="mb-6">
                 <label className="flex items-start">

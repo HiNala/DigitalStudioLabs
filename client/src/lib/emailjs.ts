@@ -17,7 +17,29 @@ export const initEmailJS = () => {
   }
 };
 
-// Send email using EmailJS
+// Direct implementation of sendForm for reliable form submissions
+export const sendFormDirectly = async (form: HTMLFormElement) => {
+  try {
+    console.log('Sending form via EmailJS sendForm...');
+    
+    // Use the native EmailJS sendForm method
+    const response = await emailjs.sendForm(
+      EMAIL_JS_CONFIG.SERVICE_ID,
+      EMAIL_JS_CONFIG.TEMPLATE_ID,
+      form
+    );
+    
+    console.log('SUCCESS!', response.status, response.text);
+    return response;
+  } catch (error: any) {
+    console.error('EMAILJS FORM ERROR:', error);
+    if (error.text) console.error('Error text:', error.text);
+    if (error.status) console.error('Error status:', error.status);
+    throw error;
+  }
+};
+
+// Send email using EmailJS with detailed error reporting
 export const sendEmail = async (formData: {
   name: string;
   email: string;
@@ -26,28 +48,73 @@ export const sendEmail = async (formData: {
   message: string;
 }) => {
   try {
-    // Map our form data to the expected template parameters
-    // Note: These MUST match exactly what's in your EmailJS template
+    // Create a simple object with all the parameters
+    // These must match EXACTLY what your EmailJS template expects
     const templateParams = {
+      // Common EmailJS template parameters
+      to_name: 'Digital Studio Labs',
       from_name: formData.name,
       from_email: formData.email,
+      reply_to: formData.email,
+      message: formData.message,
+      
+      // Additional parameters
       phone: formData.phone || 'N/A',
       service: formData.service || 'Not specified',
-      message: formData.message,
-      to_name: 'Digital Studio Labs', // Add recipient name for the template
-      reply_to: formData.email // Ensure reply-to is set
+      
+      // Include all possible variations of parameter names that might be in the template
+      name: formData.name,
+      email: formData.email,
+      subject: `New inquiry about ${formData.service || 'your services'}`
     };
 
-    console.log('Sending email with params:', templateParams);
+    console.log('Attempting to send email with params:', templateParams);
     
-    // Using only service ID, template ID, and parameters (public key is already initialized)
-    return await emailjs.send(
+    // Use promise with explicit error handling
+    const response = await emailjs.send(
+      EMAIL_JS_CONFIG.SERVICE_ID, 
+      EMAIL_JS_CONFIG.TEMPLATE_ID,
+      templateParams
+    );
+    
+    console.log('SUCCESS!', response.status, response.text);
+    return response;
+  } catch (error: any) {
+    console.error('EMAILJS ERROR:', error);
+    // Log detailed error information
+    if (error.text) console.error('Error text:', error.text);
+    if (error.status) console.error('Error status:', error.status);
+    throw error;
+  }
+};
+
+// Simpler function for newsletter subscription
+export const sendNewsletterSubscription = async (email: string) => {
+  try {
+    const templateParams = {
+      to_name: 'Digital Studio Labs',
+      from_name: 'Newsletter Subscription',
+      from_email: email,
+      reply_to: email,
+      email: email,
+      message: `Please add this email to the newsletter: ${email}`,
+      subject: 'Newsletter Subscription Request'
+    };
+    
+    console.log('Sending newsletter subscription:', templateParams);
+    
+    const response = await emailjs.send(
       EMAIL_JS_CONFIG.SERVICE_ID,
       EMAIL_JS_CONFIG.TEMPLATE_ID,
       templateParams
     );
-  } catch (error) {
-    console.error('Error sending email:', error);
+    
+    console.log('SUCCESS!', response.status, response.text);
+    return response;
+  } catch (error: any) {
+    console.error('NEWSLETTER ERROR:', error);
+    if (error.text) console.error('Error text:', error.text);
+    if (error.status) console.error('Error status:', error.status);
     throw error;
   }
 }; 

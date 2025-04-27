@@ -1,7 +1,7 @@
 // Site content constants
 export const COMPANY_NAME = "Digital Studio Labs";
-export const COMPANY_PHONE = "(208) 350-1221";
-export const COMPANY_EMAIL = "info@digitalstudiolabs.com";
+export const COMPANY_PHONE = "(805) 268-0454";
+export const COMPANY_EMAIL = "nalamaui30@gmail.com";
 export const COMPANY_LOCATION = "Boise, Idaho";
 
 // Services

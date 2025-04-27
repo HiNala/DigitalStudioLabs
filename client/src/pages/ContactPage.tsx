@@ -1,18 +1,19 @@
-import { useEffect, useState, FormEvent } from 'react';
+import { useEffect, useState, FormEvent, useRef } from 'react';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { COMPANY_EMAIL, COMPANY_PHONE, COMPANY_LOCATION } from '@/lib/constants';
 import { useToast } from '@/hooks/use-toast';
-import { initEmailJS } from '@/lib/emailjs';
+import { initEmailJS, sendFormDirectly } from '@/lib/emailjs';
 import emailjs from '@emailjs/browser';
 import { EMAIL_JS_CONFIG } from '@/lib/emailjs';
 
 const ContactPage = () => {
   const { toast } = useToast();
+  const formRef = useRef<HTMLFormElement>(null);
   
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
+    from_name: '',
+    reply_to: '',
     phone: '',
     service: '',
     message: '',
@@ -44,29 +45,20 @@ const ContactPage = () => {
     setIsSubmitting(true);
     
     try {
-      console.log('Submitting form:', formData);
+      console.log('Submitting contact form...');
       
-      // Create template params object
-      const templateParams = {
-        from_name: formData.name,
-        from_email: formData.email,
-        phone: formData.phone || 'N/A',
-        service: formData.service || 'Not specified',
-        message: formData.message,
-        to_name: 'Digital Studio Labs',
-        reply_to: formData.email
-      };
+      if (!formRef.current) {
+        throw new Error('Form reference is not available');
+      }
       
-      console.log('Sending with params:', templateParams);
-      
-      // Using only service ID, template ID, and parameters (public key is already initialized)
-      const response = await emailjs.send(
+      // Use the direct form submission method from EmailJS docs
+      const response = await emailjs.sendForm(
         EMAIL_JS_CONFIG.SERVICE_ID,
         EMAIL_JS_CONFIG.TEMPLATE_ID,
-        templateParams
+        formRef.current
       );
       
-      console.log('Email sent successfully:', response);
+      console.log('Form submission successful:', response);
       
       toast({
         title: "Message Sent!",
@@ -75,15 +67,19 @@ const ContactPage = () => {
       
       // Reset form after successful submission
       setFormData({
-        name: '',
-        email: '',
+        from_name: '',
+        reply_to: '',
         phone: '',
         service: '',
         message: '',
         consent: false
       });
+      
+      if (formRef.current) {
+        formRef.current.reset();
+      }
     } catch (error) {
-      console.error('Error sending email:', error);
+      console.error('Error sending contact form:', error);
       toast({
         title: "Error",
         description: "There was a problem sending your message. Please try again.",
@@ -122,29 +118,29 @@ const ContactPage = () => {
               {/* Contact Form */}
               <div className="lg:col-span-3 dark:bg-[#161B22] light:bg-white/90 backdrop-blur-sm rounded-xl p-8 dark:border-[#30363D] light:border-gray-200 border shadow-sm">
                 <h2 className="text-2xl font-poppins font-semibold mb-6 dark:text-white light:text-gray-800">Send Us a Message</h2>
-                <form onSubmit={handleSubmit}>
+                <form ref={formRef} id="contact-form" onSubmit={handleSubmit}>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                     <div>
-                      <label htmlFor="name" className="block mb-2 font-medium dark:text-white light:text-gray-700">Name</label>
+                      <label htmlFor="from_name" className="block mb-2 font-medium dark:text-white light:text-gray-700">Name</label>
                       <input 
                         type="text" 
-                        id="name" 
-                        name="name" 
+                        id="from_name" 
+                        name="from_name" 
                         className="w-full px-4 py-3 dark:bg-[#0D1117] light:bg-gray-50 border dark:border-[#30363D] light:border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#00A0B0] dark:text-white light:text-gray-900 transition-colors" 
                         required
-                        value={formData.name}
+                        value={formData.from_name}
                         onChange={handleChange}
                       />
                     </div>
                     <div>
-                      <label htmlFor="email" className="block mb-2 font-medium dark:text-white light:text-gray-700">Email</label>
+                      <label htmlFor="reply_to" className="block mb-2 font-medium dark:text-white light:text-gray-700">Email</label>
                       <input 
                         type="email" 
-                        id="email" 
-                        name="email" 
+                        id="reply_to" 
+                        name="reply_to" 
                         className="w-full px-4 py-3 dark:bg-[#0D1117] light:bg-gray-50 border dark:border-[#30363D] light:border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#00A0B0] dark:text-white light:text-gray-900 transition-colors" 
                         required
-                        value={formData.email}
+                        value={formData.reply_to}
                         onChange={handleChange}
                       />
                     </div>
@@ -172,12 +168,12 @@ const ContactPage = () => {
                       onChange={handleChange}
                     >
                       <option value="">Select a service</option>
-                      <option value="website">Website Design</option>
-                      <option value="webapp">Web Application</option>
-                      <option value="ai">AI Integration</option>
-                      <option value="ecommerce">E-commerce</option>
-                      <option value="seo">SEO & Lead Generation</option>
-                      <option value="other">Other</option>
+                      <option value="Website Design">Website Design</option>
+                      <option value="Web Application">Web Application</option>
+                      <option value="AI Integration">AI Integration</option>
+                      <option value="E-commerce">E-commerce</option>
+                      <option value="SEO & Lead Generation">SEO & Lead Generation</option>
+                      <option value="Other">Other</option>
                     </select>
                   </div>
                   
@@ -193,6 +189,15 @@ const ContactPage = () => {
                       onChange={handleChange}
                     ></textarea>
                   </div>
+                  
+                  {/* Hidden fields that EmailJS might expect */}
+                  <input type="hidden" name="to_name" value="Digital Studio Labs" />
+                  <input type="hidden" name="from_email" value={formData.reply_to} />
+                  <input 
+                    type="hidden" 
+                    name="subject" 
+                    value={`New inquiry about ${formData.service || 'your services'}`} 
+                  />
                   
                   <div className="mb-6">
                     <label className="flex items-start">
