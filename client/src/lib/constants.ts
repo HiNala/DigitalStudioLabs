@@ -256,5 +256,6 @@ export const NAV_LINKS = [
   { name: "Home", path: "/" },
   { name: "Services", path: "/services" },
   { name: "Process", path: "/process" },
-  { name: "About", path: "/about" }
+  { name: "About", path: "/about" },
+  { name: "Blog", path: "/blog" }
 ];

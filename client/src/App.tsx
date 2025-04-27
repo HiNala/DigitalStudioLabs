@@ -16,12 +16,13 @@ import ProcessPage from "@/pages/ProcessPage";
 import AboutPage from "@/pages/AboutPage";
 import PricingPage from "@/pages/PricingPage";
 import ContactPage from "@/pages/ContactPage";
+import BlogPage from "@/pages/BlogPage";
+import BlogPostPage from "@/pages/BlogPostPage";
 
 // Coming Soon Pages
 import PrivacyComingSoonPage from "@/pages/PrivacyComingSoonPage";
 import TermsComingSoonPage from "@/pages/TermsComingSoonPage";
 import SitemapComingSoonPage from "@/pages/SitemapComingSoonPage";
-import BlogComingSoonPage from "@/pages/BlogComingSoonPage";
 
 function Router() {
   return (
@@ -34,12 +35,13 @@ function Router() {
       <Route path="/about" component={AboutPage} />
       <Route path="/pricing" component={PricingPage} />
       <Route path="/contact" component={ContactPage} />
+      <Route path="/blog" component={BlogPage} />
+      <Route path="/blog/:slug" component={BlogPostPage} />
       
       {/* Coming Soon Pages */}
       <Route path="/privacy" component={PrivacyComingSoonPage} />
       <Route path="/terms" component={TermsComingSoonPage} />
       <Route path="/sitemap" component={SitemapComingSoonPage} />
-      <Route path="/blog" component={BlogComingSoonPage} />
       
       <Route component={NotFound} />
     </Switch>
