@@ -24,9 +24,9 @@ const Header = () => {
     
     // Prevent body scroll when menu is open
     if (isMenuOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.classList.add('menu-open');
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.classList.remove('menu-open');
     }
     
     // Click outside to close menu
@@ -41,7 +41,7 @@ const Header = () => {
     return () => {
       window.removeEventListener('scroll', handleScroll);
       document.removeEventListener('mousedown', handleClickOutside);
-      document.body.style.overflow = 'unset';
+      document.body.classList.remove('menu-open');
     };
   }, [isMenuOpen]);
 
@@ -62,7 +62,7 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 inset-x-0 z-[100] transition-all duration-300 ${
         isScrolled 
           ? "py-3 dark:bg-black/80 bg-white/70 backdrop-blur-lg" 
           : "py-5 dark:bg-black/20 bg-white/30 backdrop-blur-sm"
@@ -111,14 +111,15 @@ const Header = () => {
             </div>
             <button 
               onClick={toggleMenu}
-              className="dark:text-[#E6EDF3] light:text-gray-900 focus:outline-none z-50 relative"
+              className="dark:text-[#E6EDF3] light:text-gray-900 focus:outline-none z-[110] relative hamburger-button"
               aria-label="Toggle mobile menu"
+              aria-expanded={isMenuOpen}
             >
               <span className="sr-only">Menu</span>
-              <div className="w-7 h-7 flex items-center justify-center">
+              <div className="w-10 h-10 flex items-center justify-center">
                 <motion.div
                   animate={isMenuOpen ? "open" : "closed"}
-                  className="relative"
+                  className="relative w-6 h-6"
                 >
                   <motion.span
                     variants={{
@@ -126,13 +127,15 @@ const Header = () => {
                       open: { rotate: 45, y: 6 },
                     }}
                     className="block absolute h-0.5 w-6 bg-current transform transition-transform duration-300"
+                    style={{ top: '6px' }}
                   />
                   <motion.span
                     variants={{
                       closed: { opacity: 1 },
                       open: { opacity: 0 },
                     }}
-                    className="block absolute h-0.5 w-6 bg-current my-0.5 transform transition-opacity duration-300"
+                    className="block absolute h-0.5 w-6 bg-current transform transition-opacity duration-300"
+                    style={{ top: '12px' }}
                   />
                   <motion.span
                     variants={{
@@ -140,108 +143,109 @@ const Header = () => {
                       open: { rotate: -45, y: -6 },
                     }}
                     className="block absolute h-0.5 w-6 bg-current transform transition-transform duration-300"
+                    style={{ top: '18px' }}
                   />
                 </motion.div>
               </div>
             </button>
           </div>
         </div>
-        
-        {/* Mobile Menu Overlay */}
-        <AnimatePresence>
-          {isMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              className="fixed inset-0 md:hidden z-40 bg-black/60 backdrop-blur-sm"
-              onClick={() => setIsMenuOpen(false)}
-            />
-          )}
-        </AnimatePresence>
-        
-        {/* Mobile Navigation Menu */}
-        <AnimatePresence>
-          {isMenuOpen && (
-            <motion.div
-              ref={menuRef}
-              initial={{ x: '100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '100%' }}
-              transition={{ type: 'spring', damping: 25, stiffness: 250 }}
-              className="fixed top-0 right-0 bottom-0 w-[80%] max-w-sm md:hidden z-40 dark:bg-[#0D1117] light:bg-white shadow-2xl overflow-y-auto"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="h-20 flex items-center justify-end px-6">
-                {/* Mobile menu header with logo */}
-                <div className="flex-1 flex justify-start">
-                  <span className="text-3xl font-poppins font-bold gradient-text-animated gradient-text-glow">DSL</span>
-                </div>
-              </div>
-              
-              <div className="p-6">
-                <nav className="flex flex-col space-y-6">
-                  {NAV_LINKS.map((link, index) => (
-                    <motion.div
-                      key={link.path}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: index * 0.1 }}
-                    >
-                      <Link
-                        href={link.path}
-                        onClick={handleLinkClick}
-                        className={`flex items-center py-2 px-4 rounded-md transition-all duration-200 ${
-                          isActive(link.path)
-                            ? 'dark:bg-[#161B22] light:bg-gray-100 dark:text-[#00A0B0] light:text-[#00A0B0] font-medium'
-                            : 'dark:text-[#8B949E] light:text-gray-700 hover:dark:bg-[#161B22] hover:light:bg-gray-100'
-                        }`}
-                      >
-                        <span className="mr-3 text-lg">
-                          {link.name === 'Home' && <i className='bx bx-home'></i>}
-                          {link.name === 'Services' && <i className='bx bx-layer'></i>}
-                          {link.name === 'About' && <i className='bx bx-info-circle'></i>}
-                          {link.name === 'Process' && <i className='bx bx-git-branch'></i>}
-                          {link.name === 'Blog' && <i className='bx bx-news'></i>}
-                          {link.name === 'Contact' && <i className='bx bx-envelope'></i>}
-                        </span>
-                        {link.name}
-                      </Link>
-                    </motion.div>
-                  ))}
-                </nav>
-                
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: NAV_LINKS.length * 0.1 }}
-                  className="mt-8 pt-6 border-t dark:border-[#30363D] light:border-gray-200"
-                >
-                  <StarButton 
-                    href="/contact" 
-                    onClick={handleLinkClick}
-                    className="w-full text-center block"
-                  >
-                    Get in Touch
-                  </StarButton>
-                </motion.div>
-                
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: NAV_LINKS.length * 0.1 + 0.1 }}
-                  className="mt-8 text-center"
-                >
-                  <p className="dark:text-[#8B949E] light:text-gray-500 text-sm">
-                    © {new Date().getFullYear()} Digital Studio Labs
-                  </p>
-                </motion.div>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
       </div>
+      
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 md:hidden z-[105] bg-black/60 backdrop-blur-sm mobile-menu-overlay"
+            onClick={() => setIsMenuOpen(false)}
+          />
+        )}
+      </AnimatePresence>
+      
+      {/* Mobile Navigation Menu */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            ref={menuRef}
+            initial={{ x: '100%' }}
+            animate={{ x: 0 }}
+            exit={{ x: '100%' }}
+            transition={{ type: 'spring', damping: 25, stiffness: 250 }}
+            className={`fixed top-0 right-0 bottom-0 w-[80%] max-w-sm md:hidden z-[106] dark:bg-[#0D1117] light:bg-white shadow-2xl overflow-y-auto mobile-menu-drawer mobile-menu-active ${isMenuOpen ? 'open' : ''}`}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="h-20 flex items-center justify-end px-6">
+              {/* Mobile menu header with logo */}
+              <div className="flex-1 flex justify-start">
+                <span className="text-3xl font-poppins font-bold gradient-text-animated gradient-text-glow">DSL</span>
+              </div>
+            </div>
+            
+            <div className="p-6">
+              <nav className="flex flex-col space-y-6">
+                {NAV_LINKS.map((link, index) => (
+                  <motion.div
+                    key={link.path}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                  >
+                    <Link
+                      href={link.path}
+                      onClick={handleLinkClick}
+                      className={`flex items-center py-2 px-4 rounded-md transition-all duration-200 ${
+                        isActive(link.path)
+                          ? 'dark:bg-[#161B22] light:bg-gray-100 dark:text-[#00A0B0] light:text-[#00A0B0] font-medium'
+                          : 'dark:text-[#8B949E] light:text-gray-700 hover:dark:bg-[#161B22] hover:light:bg-gray-100'
+                      }`}
+                    >
+                      <span className="mr-3 text-lg">
+                        {link.name === 'Home' && <i className='bx bx-home'></i>}
+                        {link.name === 'Services' && <i className='bx bx-layer'></i>}
+                        {link.name === 'About' && <i className='bx bx-info-circle'></i>}
+                        {link.name === 'Process' && <i className='bx bx-git-branch'></i>}
+                        {link.name === 'Blog' && <i className='bx bx-news'></i>}
+                        {link.name === 'Contact' && <i className='bx bx-envelope'></i>}
+                      </span>
+                      {link.name}
+                    </Link>
+                  </motion.div>
+                ))}
+              </nav>
+              
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: NAV_LINKS.length * 0.1 }}
+                className="mt-8 pt-6 border-t dark:border-[#30363D] light:border-gray-200"
+              >
+                <StarButton 
+                  href="/contact" 
+                  onClick={handleLinkClick}
+                  className="w-full text-center block"
+                >
+                  Get in Touch
+                </StarButton>
+              </motion.div>
+              
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: NAV_LINKS.length * 0.1 + 0.1 }}
+                className="mt-8 text-center"
+              >
+                <p className="dark:text-[#8B949E] light:text-gray-500 text-sm">
+                  © {new Date().getFullYear()} Digital Studio Labs
+                </p>
+              </motion.div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 };
