@@ -6,7 +6,7 @@ import { Mail, Phone, MapPin, Calendar, Send } from 'lucide-react';
 import { useTheme } from '@/providers/ThemeProvider';
 import StarButton from '../ui/star-button';
 import emailjs from '@emailjs/browser';
-import { EMAIL_JS_CONFIG, sendFormDirectly } from '@/lib/emailjs';
+import { EMAIL_JS_CONFIG, sendFormDirectly, sendEmail } from '@/lib/emailjs';
 
 const ContactSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -69,12 +69,17 @@ const ContactSection = () => {
         throw new Error('Form reference is not available');
       }
       
-      // Use EmailJS sendForm directly as documented
-      const response = await emailjs.sendForm(
-        EMAIL_JS_CONFIG.SERVICE_ID,
-        EMAIL_JS_CONFIG.TEMPLATE_ID,
-        formRef.current
-      );
+      // Convert form data to object structure expected by sendEmail
+      const emailData = {
+        name: formData.from_name,
+        email: formData.reply_to,
+        phone: formData.phone,
+        service: formData.service,
+        message: formData.message
+      };
+      
+      // Use the helper function that works with footer subscription
+      const response = await sendEmail(emailData);
       
       console.log('Form submission successful from home page:', response);
       
@@ -345,6 +350,9 @@ const ContactSection = () => {
                 <StarButton 
                   href="https://calendly.com/nalamaui30/30min"
                   size="md"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  external={true}
                 >
                   View Available Times
                 </StarButton>

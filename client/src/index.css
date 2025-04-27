@@ -11,6 +11,68 @@
   -webkit-font-smoothing: subpixel-antialiased;
 }
 
+/* Mobile optimizations */
+@media (max-width: 767px) {
+  html, body {
+    /* Improve touch scrolling on mobile */
+    -webkit-overflow-scrolling: touch;
+    /* Prevent pull-to-refresh issues */
+    overscroll-behavior-y: none;
+    /* Prevent text size adjustment */
+    -webkit-text-size-adjust: 100%;
+  }
+  
+  /* Larger touch targets for better mobile UX */
+  button, a, [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Improve tap highlight on mobile */
+  a, button {
+    -webkit-tap-highlight-color: rgba(0, 160, 176, 0.2);
+  }
+  
+  /* Smoother transitions */
+  * {
+    transition-duration: 0.2s;
+  }
+  
+  /* Improve spacing for mobile form elements */
+  input, select, textarea {
+    font-size: 16px !important; /* Prevent iOS zoom on focus */
+    margin-bottom: 16px;
+  }
+  
+  /* Better form labels on mobile */
+  label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  
+  /* More visible focus states for accessibility */
+  a:focus, button:focus, input:focus, select:focus, textarea:focus {
+    outline: 2px solid rgba(0, 160, 176, 0.5);
+    outline-offset: 2px;
+  }
+  
+  /* Better card spacing on mobile */
+  .card-scale {
+    margin-bottom: 16px;
+  }
+  
+  /* Reduce motion for users who prefer it */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
 :root {
   /* Dark mode colors (default) */
   --background: 240 10% 3.9%;

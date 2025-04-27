@@ -39,21 +39,21 @@ const StyledWrapper = styled.span`
   }
   
   /* Style support for inverted buttons - applied through className props */
-  &.\\!bg-transparent button, &.\\!bg-transparent a {
+  &.\!bg-transparent button, &.\!bg-transparent a {
     background-image: none;
     background-color: transparent;
   }
   
-  &.\\!text-\\[\\#00A0B0\\] button, &.\\!text-\\[\\#00A0B0\\] a {
+  &.\!text-\[\#00A0B0\] button, &.\!text-\[\#00A0B0\] a {
     color: #00A0B0;
   }
   
-  &.\\!border button, &.\\!border a,
-  &.\\!border-2 button, &.\\!border-2 a {
+  &.\!border button, &.\!border a,
+  &.\!border-2 button, &.\!border-2 a {
     border: 2px solid currentColor;
   }
   
-  &.\\!border-\\[\\#00A0B0\\] button, &.\\!border-\\[\\#00A0B0\\] a {
+  &.\!border-\[\#00A0B0\] button, &.\!border-\[\#00A0B0\] a {
     border-color: #00A0B0;
   }
   
@@ -150,7 +150,7 @@ const StyledWrapper = styled.span`
   }
   
   /* Special hover effect for buttons that are already transparent */
-  &.\\!bg-transparent button:hover, &.\\!bg-transparent a:hover {
+  &.\!bg-transparent button:hover, &.\!bg-transparent a:hover {
     background-color: rgba(0, 160, 176, 0.1);
     color: white;
   }
@@ -262,6 +262,12 @@ const StyledWrapper = styled.span`
   }
 `;
 
+// Function to check if URL is external
+const isExternalURL = (url: string): boolean => {
+  if (!url) return false;
+  return url.startsWith('http') || url.startsWith('https') || url.startsWith('//') || url.includes('://');
+};
+
 const StarButton = ({
   children,
   href,
@@ -269,6 +275,8 @@ const StarButton = ({
   className = '',
   type = 'button',
   size = 'md',
+  target,
+  rel,
   external = false
 }: StarButtonProps) => {
   // SVG for star shape
@@ -299,15 +307,19 @@ const StarButton = ({
     </>
   );
 
+  // Check if it's an external URL
+  const isExternal = external || (href ? isExternalURL(href) : false);
+
   // For external links
-  if (href && external) {
+  if (href && isExternal) {
     return (
       <StyledWrapper className={className}>
         <a 
           href={href} 
           className={`size-${size}`} 
-          target="_blank" 
-          rel="noopener noreferrer"
+          target={target || "_blank"} 
+          rel={rel || "noopener noreferrer"}
+          onClick={onClick}
         >
           {buttonContent}
         </a>

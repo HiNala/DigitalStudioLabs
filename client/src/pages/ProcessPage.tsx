@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { Link } from 'wouter';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import StarButton from '@/components/ui/star-button';
 
 const steps = [
   {
@@ -96,6 +97,17 @@ const ProcessPage = () => {
               <p className="text-xl dark:text-[#8B949E] light:text-gray-600 mb-6">
                 We follow a structured yet flexible methodology that keeps you informed and in control every step of the way.
               </p>
+              <div className="flex flex-col sm:flex-row justify-center gap-4 mt-8">
+                <StarButton
+                  href="https://calendly.com/nalamaui30/30min"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  external={true}
+                  size="md"
+                >
+                  Schedule a Consultation
+                </StarButton>
+              </div>
             </div>
           </div>
           

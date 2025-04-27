@@ -3,7 +3,7 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { COMPANY_EMAIL, COMPANY_PHONE, COMPANY_LOCATION } from '@/lib/constants';
 import { useToast } from '@/hooks/use-toast';
-import { initEmailJS, sendFormDirectly } from '@/lib/emailjs';
+import { initEmailJS, sendFormDirectly, sendEmail } from '@/lib/emailjs';
 import emailjs from '@emailjs/browser';
 import { EMAIL_JS_CONFIG } from '@/lib/emailjs';
 
@@ -51,12 +51,17 @@ const ContactPage = () => {
         throw new Error('Form reference is not available');
       }
       
-      // Use the direct form submission method from EmailJS docs
-      const response = await emailjs.sendForm(
-        EMAIL_JS_CONFIG.SERVICE_ID,
-        EMAIL_JS_CONFIG.TEMPLATE_ID,
-        formRef.current
-      );
+      // Convert form data to object structure expected by sendEmail
+      const emailData = {
+        name: formData.from_name,
+        email: formData.reply_to,
+        phone: formData.phone,
+        service: formData.service,
+        message: formData.message
+      };
+      
+      // Use the helper function that works with the newsletter subscription
+      const response = await sendEmail(emailData);
       
       console.log('Form submission successful:', response);
       
@@ -93,27 +98,18 @@ const ContactPage = () => {
   return (
     <>
       <Header />
-      <main className="pt-20">
-        {/* Hero */}
-        <section className="bg-radial relative overflow-hidden py-16 md:py-24">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="max-w-3xl mx-auto text-center">
-              <h1 className="text-4xl md:text-5xl font-poppins font-bold mb-6">
-                Get In <span className="gradient-text-animated gradient-text-glow">Touch</span>
+      <main className="pt-28 md:pt-32">
+        {/* Contact Form and Info */}
+        <section className="py-10 md:py-16">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-3xl mx-auto text-center mb-12">
+              <h1 className="text-3xl md:text-4xl font-poppins font-bold mb-4">
+                <span className="gradient-text-animated gradient-text-glow">Contact</span> Us
               </h1>
-              <p className="text-xl dark:text-[#8B949E] light:text-gray-600 mb-6">
-                Ready to transform your digital presence? We're here to help.
+              <p className="dark:text-[#8B949E] light:text-gray-600 text-lg">
+                Have questions or ready to start your project? Reach out to our team.
               </p>
             </div>
-          </div>
-          
-          {/* Background Decoration */}
-          <div className="ambient-glow absolute -top-20 -right-20 w-96 h-96 rounded-full opacity-10 bg-[#4D4DFF]"></div>
-        </section>
-
-        {/* Contact Form and Info */}
-        <section className="py-20">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
               {/* Contact Form */}
               <div className="lg:col-span-3 dark:bg-[#161B22] light:bg-white/90 backdrop-blur-sm rounded-xl p-8 dark:border-[#30363D] light:border-gray-200 border shadow-sm">

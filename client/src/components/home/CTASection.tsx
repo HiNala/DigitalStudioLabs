@@ -54,7 +54,7 @@ const CTASection = () => {
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: 0.1 }}
                 >
-                  Ready to Transform Your <span className="gradient-text">Digital Presence</span>?
+                  Ready to Elevate Your <span className="gradient-text">Digital Strategy</span>?
                 </motion.h2>
                 
                 <motion.p 
@@ -64,8 +64,7 @@ const CTASection = () => {
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: 0.2 }}
                 >
-                  Partner with us to build custom digital solutions that drive real business results. 
-                  Our team of experts is ready to bring your vision to life.
+                  Partner with our expert team to create custom digital solutions that drive measurable business growth. We combine innovative design, cutting-edge technology, and strategic thinking to deliver exceptional results.
                 </motion.p>
                 
                 <motion.div 
@@ -75,11 +74,17 @@ const CTASection = () => {
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: 0.3 }}
                 >
-                  <StarButton href="/contact" size="md">
+                  <StarButton 
+                    href="https://calendly.com/nalamaui30/30min" 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    external={true}
+                    size="md"
+                  >
                     Schedule Consultation
                   </StarButton>
-                  <StarButton href="/pricing" size="md" className="!bg-transparent !text-[#00A0B0] !border-2 !border-[#00A0B0]">
-                    View Pricing
+                  <StarButton href="/process" size="md" className="!bg-transparent !text-[#00A0B0] !border-2 !border-[#00A0B0]">
+                    View Process
                   </StarButton>
                 </motion.div>
               </div>
