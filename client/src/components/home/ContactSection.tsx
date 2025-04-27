@@ -1,11 +1,12 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, FormEvent } from 'react';
 import { COMPANY_EMAIL, COMPANY_PHONE, COMPANY_LOCATION } from '@/lib/constants';
-import { apiRequest } from '@/lib/queryClient';
 import { useToast } from '@/hooks/use-toast';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Calendar, Send } from 'lucide-react';
 import { useTheme } from '@/providers/ThemeProvider';
 import StarButton from '../ui/star-button';
+import emailjs from '@emailjs/browser';
+import { EMAIL_JS_CONFIG } from '@/lib/emailjs';
 
 const ContactSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -38,6 +39,9 @@ const ContactSection = () => {
     const animatedElements = sectionRef.current?.querySelectorAll('.animate-fade-in');
     animatedElements?.forEach((el) => observer.observe(el));
 
+    // Initialize EmailJS
+    emailjs.init(EMAIL_JS_CONFIG.PUBLIC_KEY);
+
     return () => {
       animatedElements?.forEach((el) => observer.unobserve(el));
     };
@@ -53,12 +57,32 @@ const ContactSection = () => {
     setFormData(prev => ({ ...prev, [name]: checked }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     
     try {
-      await apiRequest('POST', '/api/contact', formData);
+      console.log('Submitting form from home page:', formData);
+      
+      // Create template params object
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        phone: formData.phone,
+        service: formData.service,
+        message: formData.message
+      };
+      
+      console.log('Sending with params:', templateParams);
+      
+      const response = await emailjs.send(
+        EMAIL_JS_CONFIG.SERVICE_ID,
+        EMAIL_JS_CONFIG.TEMPLATE_ID,
+        templateParams,
+        EMAIL_JS_CONFIG.PUBLIC_KEY
+      );
+      
+      console.log('Email sent successfully from home page:', response);
       
       toast({
         title: "Message Sent!",
@@ -75,6 +99,7 @@ const ContactSection = () => {
         consent: false
       });
     } catch (error) {
+      console.error('Error sending email from home page:', error);
       toast({
         title: "Error",
         description: "There was a problem sending your message. Please try again.",
@@ -311,7 +336,7 @@ const ContactSection = () => {
               </div>
               <div className="flex justify-center">
                 <StarButton 
-                  href="https://calendly.com"
+                  href="https://calendly.com/nalamaui30/30min"
                   size="md"
                 >
                   View Available Times

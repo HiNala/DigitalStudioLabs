@@ -100,70 +100,6 @@ const ServiceCard = ({ title, description, icon, features }: ServiceCardProps) =
   );
 };
 
-// Feature Comparison Table Component
-interface FeatureComparisonProps {
-  features: {
-    name: string;
-    basic: boolean;
-    professional: boolean;
-    enterprise: boolean;
-  }[];
-}
-
-const FeatureComparison = ({ features }: FeatureComparisonProps) => {
-  const { theme } = useTheme();
-  
-  return (
-    <div className="overflow-x-auto">
-      <table className="w-full border-collapse">
-        <thead>
-          <tr className="dark:bg-[#161B22] light:bg-gray-50">
-            <th className="p-4 text-left border-b dark:border-[#30363D] light:border-gray-200 w-[300px] font-bold">Feature</th>
-            <th className="p-4 text-center border-b dark:border-[#30363D] light:border-gray-200 font-bold">Basic</th>
-            <th className="p-4 text-center border-b dark:border-[#30363D] light:border-gray-200 font-bold">Professional</th>
-            <th className="p-4 text-center border-b dark:border-[#30363D] light:border-gray-200 font-bold">Enterprise</th>
-          </tr>
-        </thead>
-        <tbody>
-          {features.map((feature, index) => (
-            <motion.tr 
-              key={index} 
-              className="border-b dark:border-[#30363D] light:border-gray-200 dark:bg-[#161B22]/50 light:bg-white hover:bg-opacity-80 transition-colors"
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.3, delay: index * 0.05 }}
-            >
-              <td className="p-4 font-medium">{feature.name}</td>
-              <td className="p-4 text-center">
-                {feature.basic ? (
-                  <CheckCircle className="h-5 w-5 text-[#00A0B0] mx-auto" />
-                ) : (
-                  <XCircle className="h-5 w-5 dark:text-[#8B949E] light:text-gray-300 mx-auto" />
-                )}
-              </td>
-              <td className="p-4 text-center">
-                {feature.professional ? (
-                  <CheckCircle className="h-5 w-5 text-[#00A0B0] mx-auto" />
-                ) : (
-                  <XCircle className="h-5 w-5 dark:text-[#8B949E] light:text-gray-300 mx-auto" />
-                )}
-              </td>
-              <td className="p-4 text-center">
-                {feature.enterprise ? (
-                  <CheckCircle className="h-5 w-5 text-[#00A0B0] mx-auto" />
-                ) : (
-                  <XCircle className="h-5 w-5 dark:text-[#8B949E] light:text-gray-300 mx-auto" />
-                )}
-              </td>
-            </motion.tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
-};
-
 // Process Step Component
 interface ProcessStepProps {
   number: number;
@@ -195,8 +131,6 @@ const ProcessStep = ({ number, title, description }: ProcessStepProps) => {
     </motion.div>
   );
 };
-
-
 
 const ServicesPage = () => {
   useEffect(() => {
@@ -243,20 +177,6 @@ const ServicesPage = () => {
       "Interactive prototypes and mockups"
     ]
   };
-
-  // Feature comparison data
-  const featureComparison = [
-    { name: "Initial Consultation", basic: true, professional: true, enterprise: true },
-    { name: "Requirements Analysis", basic: true, professional: true, enterprise: true },
-    { name: "Solution Design", basic: true, professional: true, enterprise: true },
-    { name: "Implementation Support", basic: false, professional: true, enterprise: true },
-    { name: "24/7 Support", basic: false, professional: false, enterprise: true },
-    { name: "Dedicated Account Manager", basic: false, professional: true, enterprise: true },
-    { name: "Custom Integrations", basic: false, professional: true, enterprise: true },
-    { name: "Performance Monitoring", basic: false, professional: true, enterprise: true },
-    { name: "Quarterly Business Reviews", basic: false, professional: false, enterprise: true },
-    { name: "Priority Bug Fixes", basic: false, professional: true, enterprise: true },
-  ];
 
   // Process steps data
   const processSteps = [
@@ -378,54 +298,6 @@ const ServicesPage = () => {
               ))}
             </div>
           </div>
-        </section>
-
-        {/* Feature Comparison */}
-        <section className="py-14 relative">
-          <SpotlightLayout spotlightSize={800} spotlightColor="#4D4DFF">
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="max-w-3xl mx-auto text-center mb-10 animate-fade-in">
-                <h2 className="text-3xl md:text-4xl font-poppins font-bold mb-4">
-                  <span className="gradient-text">Service Tiers</span>
-                </h2>
-                <p className="text-xl dark:text-[#8B949E] light:text-gray-600">
-                  Compare our service packages to find the right fit for your organization's needs and budget
-                </p>
-              </div>
-              
-              <motion.div 
-                className="dark:bg-[#0D1117]/60 light:bg-white dark:border-[#30363D] light:border-gray-200 rounded-xl border p-6 overflow-hidden relative"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
-              >
-                <GlowingEffect
-                  spread={20}
-                  glow={true}
-                  disabled={false}
-                  proximity={100}
-                  inactiveZone={0}
-                  borderWidth={1}
-                  movementDuration={0.5}
-                  className="will-change-transform"
-                />
-                <FeatureComparison features={featureComparison} />
-              </motion.div>
-              
-              <motion.div 
-                className="text-center mt-12"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.3 }}
-              >
-                <Link href="/pricing" className="gradient-bg gradient-bg-hover px-8 py-4 rounded-md font-medium text-lg transition-all duration-300 glow-hover inline-flex items-center">
-                  View Detailed Pricing <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-              </motion.div>
-            </div>
-          </SpotlightLayout>
         </section>
 
         {/* Process Steps */}

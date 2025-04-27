@@ -47,9 +47,14 @@ export function SplineHero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <StarButton href="/contact" size="lg">
+            <a 
+              href="https://calendly.com/nalamaui30/30min" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="gradient-bg gradient-bg-hover px-8 py-4 rounded-md font-medium text-lg transition-all duration-300 glow-hover inline-flex items-center justify-center"
+            >
               Schedule Free Consultation
-            </StarButton>
+            </a>
             <StarButton 
               href="/services" 
               size="lg" 

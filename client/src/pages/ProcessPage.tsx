@@ -87,13 +87,13 @@ const ProcessPage = () => {
       <Header />
       <main className="pt-20">
         {/* Hero */}
-        <section className="bg-radial relative overflow-hidden py-16 md:py-24">
+        <section className="bg-radial relative overflow-hidden py-16 md:py-20">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="max-w-3xl mx-auto text-center">
               <h1 className="text-4xl md:text-5xl font-poppins font-bold mb-6">
                 Our <span className="gradient-text-animated gradient-text-glow">Process</span>
               </h1>
-              <p className="text-xl text-[#8B949E] mb-6">
+              <p className="text-xl dark:text-[#8B949E] light:text-gray-600 mb-6">
                 We follow a structured yet flexible methodology that keeps you informed and in control every step of the way.
               </p>
             </div>
@@ -104,14 +104,14 @@ const ProcessPage = () => {
         </section>
 
         {/* Process Steps */}
-        <section className="py-20">
+        <section className="py-16">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto">
               {steps.map((step, index) => (
                 <div 
                   key={step.number}
                   className={`flex flex-col md:flex-row gap-8 py-16 ${
-                    index !== steps.length - 1 ? 'border-b border-[#30363D]' : ''
+                    index !== steps.length - 1 ? 'border-b dark:border-[#30363D] light:border-gray-200' : ''
                   }`}
                 >
                   <div className="md:w-1/3">
@@ -119,16 +119,16 @@ const ProcessPage = () => {
                       {step.number}
                     </div>
                     <h2 className="text-3xl font-poppins font-bold mb-4">{step.title}</h2>
-                    <p className="text-[#8B949E]">{step.description}</p>
+                    <p className="dark:text-[#8B949E] light:text-gray-600">{step.description}</p>
                   </div>
                   
-                  <div className="md:w-2/3 bg-[#161B22] rounded-xl p-8 border border-[#30363D]">
-                    <h3 className="text-xl font-poppins font-semibold mb-6">What Happens in This Phase</h3>
+                  <div className="md:w-2/3 dark:bg-[#161B22] light:bg-white rounded-xl p-8 dark:border-[#30363D] light:border-gray-200 border shadow-sm">
+                    <h3 className="text-xl font-poppins font-semibold mb-6 dark:text-white light:text-gray-800">What Happens in This Phase</h3>
                     <ul className="space-y-4">
                       {step.details.map((detail, detailIndex) => (
                         <li key={detailIndex} className="flex items-start">
                           <i className='bx bx-check-circle text-[#00A0B0] mr-2 text-xl'></i>
-                          <span>{detail}</span>
+                          <span className="dark:text-white light:text-gray-700">{detail}</span>
                         </li>
                       ))}
                     </ul>
@@ -138,7 +138,7 @@ const ProcessPage = () => {
             </div>
             
             <div className="max-w-4xl mx-auto mt-8 text-center">
-              <p className="text-[#8B949E] mb-8">
+              <p className="dark:text-[#8B949E] light:text-gray-600 mb-8">
                 Our proven process ensures consistent results and client satisfaction. We adapt our approach to meet your specific needs while maintaining our commitment to quality and transparency.
               </p>
               <Link href="/contact" className="gradient-bg gradient-bg-hover px-8 py-4 rounded-md font-medium transition-all duration-300 glow-hover inline-block">
@@ -152,36 +152,36 @@ const ProcessPage = () => {
         <section className="py-20 bg-radial">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-3xl mx-auto text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-poppins font-bold mb-6">Why Partner with Us</h2>
+              <h2 className="text-3xl md:text-4xl font-poppins font-bold mb-6 dark:text-white light:text-gray-800">Why Partner with Us</h2>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-              <div className="bg-[#161B22] rounded-xl p-8 border border-[#30363D] card-scale">
+              <div className="dark:bg-[#161B22] light:bg-white rounded-xl p-8 dark:border-[#30363D] light:border-gray-200 border shadow-sm card-scale">
                 <div className="w-14 h-14 gradient-bg rounded-lg flex items-center justify-center mb-6">
                   <i className='bx bx-bulb text-2xl'></i>
                 </div>
-                <h3 className="text-xl font-poppins font-semibold mb-4">Tailored Expertise</h3>
-                <p className="text-[#8B949E]">
+                <h3 className="text-xl font-poppins font-semibold mb-4 dark:text-white light:text-gray-800">Tailored Expertise</h3>
+                <p className="dark:text-[#8B949E] light:text-gray-600">
                   We immerse ourselves in your industry—whether it's food production, healthcare, or technology—to deliver precisely the features you need.
                 </p>
               </div>
               
-              <div className="bg-[#161B22] rounded-xl p-8 border border-[#30363D] card-scale">
+              <div className="dark:bg-[#161B22] light:bg-white rounded-xl p-8 dark:border-[#30363D] light:border-gray-200 border shadow-sm card-scale">
                 <div className="w-14 h-14 gradient-bg rounded-lg flex items-center justify-center mb-6">
                   <i className='bx bx-conversation text-2xl'></i>
                 </div>
-                <h3 className="text-xl font-poppins font-semibold mb-4">Transparent Collaboration</h3>
-                <p className="text-[#8B949E]">
+                <h3 className="text-xl font-poppins font-semibold mb-4 dark:text-white light:text-gray-800">Transparent Collaboration</h3>
+                <p className="dark:text-[#8B949E] light:text-gray-600">
                   Agile sprints, regular demos, and clear milestones mean you always know where your project stands.
                 </p>
               </div>
               
-              <div className="bg-[#161B22] rounded-xl p-8 border border-[#30363D] card-scale">
+              <div className="dark:bg-[#161B22] light:bg-white rounded-xl p-8 dark:border-[#30363D] light:border-gray-200 border shadow-sm card-scale">
                 <div className="w-14 h-14 gradient-bg rounded-lg flex items-center justify-center mb-6">
                   <i className='bx bx-support text-2xl'></i>
                 </div>
-                <h3 className="text-xl font-poppins font-semibold mb-4">Local & Responsive</h3>
-                <p className="text-[#8B949E]">
+                <h3 className="text-xl font-poppins font-semibold mb-4 dark:text-white light:text-gray-800">Local & Responsive</h3>
+                <p className="dark:text-[#8B949E] light:text-gray-600">
                   Based in Rohnert Park with clients in Boise and beyond, we offer personal attention with the capabilities of a global firm.
                 </p>
               </div>
@@ -193,13 +193,13 @@ const ProcessPage = () => {
         <section className="py-20">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-3xl mx-auto text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-poppins font-bold mb-6">Frequently Asked Questions</h2>
-              <p className="text-[#8B949E] text-lg">
+              <h2 className="text-3xl md:text-4xl font-poppins font-bold mb-6 dark:text-white light:text-gray-800">Frequently Asked Questions</h2>
+              <p className="dark:text-[#8B949E] light:text-gray-600 text-lg">
                 Common questions about our process and approach.
               </p>
             </div>
             
-            <div className="max-w-3xl mx-auto divide-y divide-[#30363D]">
+            <div className="max-w-3xl mx-auto divide-y dark:divide-[#30363D] light:divide-gray-200">
               {[
                 {
                   question: "How long does a typical project take?",
@@ -219,8 +219,8 @@ const ProcessPage = () => {
                 }
               ].map((faq, index) => (
                 <div key={index} className="py-8">
-                  <h3 className="text-xl font-poppins font-semibold mb-4">{faq.question}</h3>
-                  <p className="text-[#8B949E]">{faq.answer}</p>
+                  <h3 className="text-xl font-poppins font-semibold mb-4 dark:text-white light:text-gray-800">{faq.question}</h3>
+                  <p className="dark:text-[#8B949E] light:text-gray-600">{faq.answer}</p>
                 </div>
               ))}
             </div>

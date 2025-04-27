@@ -68,7 +68,7 @@ const AboutPage = () => {
         
         {/* Hero */}
         <SpotlightLayout
-          className="relative overflow-hidden py-20 md:py-28"
+          className="relative overflow-hidden py-20 md:py-28 bg-transparent"
           spotlightColor="rgba(77, 77, 255, 0.15)"
           spotlightSize={500}
           withMultipleSpotlights={true}
@@ -83,7 +83,7 @@ const AboutPage = () => {
               <h1 className="text-4xl md:text-6xl font-poppins font-bold mb-8">
                 About <span className="gradient-text-animated gradient-text-glow">Digital Studio Labs</span>
               </h1>
-              <p className="text-xl md:text-2xl text-[#8B949E] mb-8">
+              <p className="text-xl md:text-2xl dark:text-[#8B949E] light:text-gray-600 mb-8">
                 We craft digital experiences that<br/>transform businesses and inspire users
               </p>
               <div className="flex flex-wrap justify-center gap-4">
@@ -105,7 +105,7 @@ const AboutPage = () => {
               <div className="rounded-2xl relative">
                 <div className="absolute inset-0 rounded-2xl opacity-50" style={{ background: 'radial-gradient(circle at 50% 50%, rgba(77, 77, 255, 0.15), transparent 60%)' }}></div>
                 <motion.div 
-                  className="bg-[#161B22]/80 backdrop-blur-sm rounded-2xl p-8 md:p-12 border border-[#30363D] mb-16 relative"
+                  className="dark:bg-[#161B22]/80 light:bg-white/60 backdrop-blur-lg rounded-2xl p-8 md:p-12 dark:border-[#30363D] light:border-gray-200/70 border mb-16 relative shadow-lg"
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -116,14 +116,14 @@ const AboutPage = () => {
                   </div>
                   <h2 className="text-3xl md:text-4xl font-poppins font-bold mb-8 inline-block gradient-text">Our Story</h2>
                   <div className="text-lg space-y-6">
-                    <p className="text-[#8B949E]">
-                      <span className="text-white">Digital Studio Labs</span> was born from a simple yet powerful idea: <span className="text-white">exceptional software should transform businesses</span>, not just serve them. Founded in Boise, Idaho by the Permut brothers, we've assembled a team of digital craftspeople who blend artistry, technology, and business strategy to create digital experiences that inspire and perform.
+                    <p className="dark:text-[#8B949E] light:text-gray-600">
+                      <span className="dark:text-white light:text-gray-900">Digital Studio Labs</span> was born from a simple yet powerful idea: <span className="dark:text-white light:text-gray-900">exceptional software should transform businesses</span>, not just serve them. Founded in Boise, Idaho by the Permut brothers, we've assembled a team of digital craftspeople who blend artistry, technology, and business strategy to create digital experiences that inspire and perform.
                     </p>
-                    <p className="text-[#8B949E]">
-                      Our journey began with a focus on custom web applications that went beyond expectations. Today, we've evolved into a full-service digital studio that bridges the gap between <span className="text-white">cutting-edge technology and practical business solutions</span>. From immersive web experiences to intelligent AI implementations, we create digital assets that become powerful tools for growth.
+                    <p className="dark:text-[#8B949E] light:text-gray-600">
+                      Our journey began with a focus on custom web applications that went beyond expectations. Today, we've evolved into a full-service digital studio that bridges the gap between <span className="dark:text-white light:text-gray-900">cutting-edge technology and practical business solutions</span>. From immersive web experiences to intelligent AI implementations, we create digital assets that become powerful tools for growth.
                     </p>
-                    <p className="text-[#8B949E]">
-                      What sets us apart isn't just technical expertise, but our <span className="text-white">deep commitment to understanding each client's unique goals</span>. We embrace complexity, transforming challenging requirements into elegant, intuitive solutions that drive measurable results across industries from healthcare to fintech, retail to professional services.
+                    <p className="dark:text-[#8B949E] light:text-gray-600">
+                      What sets us apart isn't just technical expertise, but our <span className="dark:text-white light:text-gray-900">deep commitment to understanding each client's unique goals</span>. We embrace complexity, transforming challenging requirements into elegant, intuitive solutions that drive measurable results across industries from healthcare to fintech, retail to professional services.
                     </p>
                   </div>
                 </motion.div>
@@ -142,11 +142,11 @@ const AboutPage = () => {
                   <div className="text-center mb-16">
                     <h2 className="text-3xl md:text-4xl font-poppins font-bold mb-8 gradient-text inline-block">Our Mission</h2>
                     <div className="text-lg space-y-6 max-w-3xl mx-auto">
-                      <p className="text-[#8B949E]">
-                        To elevate businesses through <span className="text-white">transformative digital experiences</span> that combine technical excellence with strategic insight—creating solutions that don't just meet expectations but redefine them.
+                      <p className="dark:text-[#8B949E] light:text-gray-600">
+                        To elevate businesses through <span className="dark:text-white light:text-gray-900">transformative digital experiences</span> that combine technical excellence with strategic insight—creating solutions that don't just meet expectations but redefine them.
                       </p>
-                      <p className="text-[#8B949E]">
-                        We measure our success not by the complexity of our work, but by the <span className="text-white">tangible growth</span> and <span className="text-white">measurable outcomes</span> we generate for our partners.
+                      <p className="dark:text-[#8B949E] light:text-gray-600">
+                        We measure our success not by the complexity of our work, but by the <span className="dark:text-white light:text-gray-900">tangible growth</span> and <span className="dark:text-white light:text-gray-900">measurable outcomes</span> we generate for our partners.
                       </p>
                     </div>
                   </div>
@@ -160,8 +160,8 @@ const AboutPage = () => {
                         viewport={{ once: true }}
                         transition={{ duration: 0.5, delay: 0.1 }}
                       >
-                        <h3 className="text-2xl font-semibold text-white mb-4">Strategic Innovation</h3>
-                        <p className="text-[#8B949E] text-lg">
+                        <h3 className="text-2xl font-semibold dark:text-white light:text-gray-900 mb-4">Strategic Innovation</h3>
+                        <p className="dark:text-[#8B949E] light:text-gray-600 text-lg">
                           We don't just build what you ask for—we collaborate to discover what your business truly needs to excel. Our approach transforms challenges into opportunities for growth and differentiation.
                         </p>
                       </motion.div>
@@ -172,8 +172,8 @@ const AboutPage = () => {
                         viewport={{ once: true }}
                         transition={{ duration: 0.5, delay: 0.2 }}
                       >
-                        <h3 className="text-2xl font-semibold text-white mb-4">Technical Excellence</h3>
-                        <p className="text-[#8B949E] text-lg">
+                        <h3 className="text-2xl font-semibold dark:text-white light:text-gray-900 mb-4">Technical Excellence</h3>
+                        <p className="dark:text-[#8B949E] light:text-gray-600 text-lg">
                           Our solutions are crafted with meticulous attention to detail, scalability, and future-proof architecture. We leverage cutting-edge technologies to deliver robust, high-performance systems.
                         </p>
                       </motion.div>
@@ -184,8 +184,8 @@ const AboutPage = () => {
                         viewport={{ once: true }}
                         transition={{ duration: 0.5, delay: 0.3 }}
                       >
-                        <h3 className="text-2xl font-semibold text-white mb-4">Transformative Results</h3>
-                        <p className="text-[#8B949E] text-lg">
+                        <h3 className="text-2xl font-semibold dark:text-white light:text-gray-900 mb-4">Transformative Results</h3>
+                        <p className="dark:text-[#8B949E] light:text-gray-600 text-lg">
                           The digital assets we create become pivotal tools for growth, user engagement, and operational efficiency. We focus on delivering measurable outcomes that align with your business objectives.
                         </p>
                       </motion.div>
@@ -196,8 +196,8 @@ const AboutPage = () => {
                         viewport={{ once: true }}
                         transition={{ duration: 0.5, delay: 0.4 }}
                       >
-                        <h3 className="text-2xl font-semibold text-white mb-4">Collaborative Partnership</h3>
-                        <p className="text-[#8B949E] text-lg">
+                        <h3 className="text-2xl font-semibold dark:text-white light:text-gray-900 mb-4">Collaborative Partnership</h3>
+                        <p className="dark:text-[#8B949E] light:text-gray-600 text-lg">
                           We view ourselves as an extension of your team, bringing our expertise and creativity to the table while respecting your vision and business goals throughout the entire process.
                         </p>
                       </motion.div>
@@ -212,7 +212,7 @@ const AboutPage = () => {
         </section>
 
         {/* Team */}
-        <section id="meet-our-team" className="py-24 relative overflow-hidden">
+        <section id="meet-our-team" className="py-24 relative overflow-hidden bg-transparent">
           <SpotlightLayout
             className="relative"
             spotlightColor="rgba(0, 160, 176, 0.15)"
@@ -230,7 +230,7 @@ const AboutPage = () => {
                 <h2 className="text-3xl md:text-4xl font-poppins font-bold mb-6">
                   Meet Our <span className="gradient-text">Leadership Team</span>
                 </h2>
-                <p className="text-[#8B949E] text-lg max-w-2xl mx-auto">
+                <p className="dark:text-[#8B949E] light:text-gray-600 text-lg max-w-2xl mx-auto">
                   Passionate experts combining technical mastery, creative vision, and business acumen to deliver transformative digital solutions.
                 </p>
               </motion.div>
@@ -239,7 +239,7 @@ const AboutPage = () => {
                 {team.map((member, index) => (
                   <motion.div 
                     key={index} 
-                    className="bg-[#161B22]/80 backdrop-blur-sm rounded-2xl overflow-hidden border border-[#30363D] card-scale"
+                    className="dark:bg-[#161B22]/80 light:bg-white/60 backdrop-blur-lg rounded-2xl overflow-hidden dark:border-[#30363D] light:border-gray-200/70 border card-scale shadow-lg"
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -257,21 +257,21 @@ const AboutPage = () => {
                           alt={member.name} 
                           className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-[#0D1117] to-transparent opacity-70"></div>
+                        <div className="absolute inset-0 bg-gradient-to-t dark:from-[#0D1117] light:from-[#081429]/90 to-transparent opacity-70"></div>
                       </div>
                       <div className="absolute bottom-0 left-0 w-full p-6">
-                        <h3 className="text-2xl font-poppins font-semibold text-white">{member.name}</h3>
-                        <p className="gradient-text text-lg">{member.title}</p>
+                        <h3 className="text-2xl font-poppins font-semibold text-white drop-shadow-md">{member.name}</h3>
+                        <p className="gradient-text text-lg drop-shadow-md">{member.title}</p>
                       </div>
                     </div>
                     <div className="p-6 pt-4">
-                      <p className="text-[#8B949E]">{member.bio}</p>
+                      <p className="dark:text-[#8B949E] light:text-gray-600">{member.bio}</p>
                       <div className="flex gap-2 mt-4">
-                        <div className="w-8 h-8 bg-[#30363D]/50 rounded-full flex items-center justify-center hover:bg-[#4D4DFF]/30 transition-colors cursor-pointer">
-                          <i className="bx bxl-linkedin text-white"></i>
+                        <div className="w-8 h-8 dark:bg-[#30363D]/50 light:bg-gray-100 rounded-full flex items-center justify-center hover:bg-[#4D4DFF]/30 transition-colors cursor-pointer">
+                          <i className="bx bxl-linkedin dark:text-white light:text-gray-800"></i>
                         </div>
-                        <div className="w-8 h-8 bg-[#30363D]/50 rounded-full flex items-center justify-center hover:bg-[#4D4DFF]/30 transition-colors cursor-pointer">
-                          <i className="bx bxl-twitter text-white"></i>
+                        <div className="w-8 h-8 dark:bg-[#30363D]/50 light:bg-gray-100 rounded-full flex items-center justify-center hover:bg-[#4D4DFF]/30 transition-colors cursor-pointer">
+                          <i className="bx bxl-twitter dark:text-white light:text-gray-800"></i>
                         </div>
                       </div>
                     </div>
@@ -286,7 +286,7 @@ const AboutPage = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.5 }}
               >
-                <p className="text-[#8B949E] text-lg mb-4">Want to join our growing team?</p>
+                <p className="dark:text-[#8B949E] light:text-gray-600 text-lg mb-4">Want to join our growing team?</p>
                 <StarButton href="/contact" size="md">
                   View Open Positions
                 </StarButton>
@@ -309,7 +309,7 @@ const AboutPage = () => {
               <h2 className="text-3xl md:text-4xl font-poppins font-bold mb-6">
                 Our <span className="gradient-text">Core Values</span>
               </h2>
-              <p className="text-[#8B949E] text-lg max-w-2xl mx-auto">
+              <p className="dark:text-[#8B949E] light:text-gray-600 text-lg max-w-2xl mx-auto">
                 These foundational principles guide every decision we make and shape how we approach every project and relationship.
               </p>
             </motion.div>
@@ -361,7 +361,7 @@ const AboutPage = () => {
               ].map((value, index) => (
                 <motion.div 
                   key={index} 
-                  className="bg-[#161B22]/80 backdrop-blur-sm rounded-2xl p-8 border border-[#30363D] relative overflow-hidden"
+                  className="dark:bg-[#161B22]/80 light:bg-white/60 backdrop-blur-lg rounded-2xl p-8 dark:border-[#30363D] light:border-gray-200/70 border relative overflow-hidden shadow-lg"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -374,8 +374,8 @@ const AboutPage = () => {
                 >
                   <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#4D4DFF]/5 to-[#00A0B0]/5 rounded-full -mr-10 -mt-10"></div>
                   {value.icon}
-                  <h3 className="text-xl font-poppins font-semibold mb-4 text-white">{value.title}</h3>
-                  <p className="text-[#8B949E]">
+                  <h3 className="text-xl font-poppins font-semibold mb-4 dark:text-white light:text-gray-900">{value.title}</h3>
+                  <p className="dark:text-[#8B949E] light:text-gray-600">
                     {value.description}
                   </p>
                 </motion.div>
@@ -386,14 +386,14 @@ const AboutPage = () => {
 
         {/* CTA */}
         <SpotlightLayout
-          className="py-24 relative"
+          className="py-24 relative bg-transparent"
           spotlightColor="rgba(77, 77, 255, 0.15)"
           spotlightSize={600}
           withMultipleSpotlights={true}
         >
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div 
-              className="bg-[#161B22]/80 backdrop-blur-sm rounded-2xl p-8 md:p-12 lg:p-16 relative overflow-hidden border border-[#30363D]"
+              className="dark:bg-[#161B22]/80 light:bg-white/60 backdrop-blur-lg rounded-2xl p-8 md:p-12 lg:p-16 relative overflow-hidden dark:border-[#30363D] light:border-gray-200/70 border shadow-lg"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -403,7 +403,7 @@ const AboutPage = () => {
                 <h2 className="text-3xl md:text-5xl font-poppins font-bold mb-8">
                   Let's Create Your <span className="gradient-text-animated gradient-text-glow">Digital Future</span>
                 </h2>
-                <p className="text-[#8B949E] text-lg md:text-xl mb-12 max-w-2xl mx-auto">
+                <p className="dark:text-[#8B949E] light:text-gray-600 text-lg md:text-xl mb-12 max-w-2xl mx-auto">
                   Ready to transform your digital presence with cutting-edge technology and innovative design? Our team of experts is ready to bring your vision to life.
                 </p>
                 <div className="flex flex-wrap gap-4 justify-center">
@@ -415,8 +415,6 @@ const AboutPage = () => {
                   </StarButton>
                 </div>
               </div>
-              
-
             </motion.div>
           </div>
         </SpotlightLayout>

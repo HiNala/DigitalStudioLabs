@@ -9,6 +9,9 @@ interface StarButtonProps {
   className?: string;
   type?: 'button' | 'submit';
   size?: 'sm' | 'md' | 'lg';
+  target?: string;
+  rel?: string;
+  external?: boolean;
 }
 
 // Styled components
@@ -265,7 +268,8 @@ const StarButton = ({
   onClick,
   className = '',
   type = 'button',
-  size = 'md'
+  size = 'md',
+  external = false
 }: StarButtonProps) => {
   // SVG for star shape
   const StarSVG = () => (
@@ -295,7 +299,23 @@ const StarButton = ({
     </>
   );
 
-  // If href is provided, render as a Link
+  // For external links
+  if (href && external) {
+    return (
+      <StyledWrapper className={className}>
+        <a 
+          href={href} 
+          className={`size-${size}`} 
+          target="_blank" 
+          rel="noopener noreferrer"
+        >
+          {buttonContent}
+        </a>
+      </StyledWrapper>
+    );
+  }
+
+  // For internal links
   if (href) {
     return (
       <StyledWrapper className={className}>
@@ -306,7 +326,7 @@ const StarButton = ({
     );
   }
 
-  // Otherwise, render as a button
+  // For buttons
   return (
     <StyledWrapper className={className}>
       <button type={type} onClick={onClick} className={`size-${size}`}>

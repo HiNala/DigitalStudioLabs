@@ -5,15 +5,59 @@ import {
   NAV_LINKS 
 } from '@/lib/constants';
 import { useState } from 'react';
+import { sendEmail } from '@/lib/emailjs';
+import { useToast } from '@/hooks/use-toast';
+import emailjs from '@emailjs/browser';
+import { EMAIL_JS_CONFIG } from '@/lib/emailjs';
 
 const Footer = () => {
   const [email, setEmail] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast();
   
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setEmail('');
-    // This would normally connect to a newsletter service
-    alert('Thank you for subscribing to our newsletter!');
+    setIsSubmitting(true);
+    
+    try {
+      console.log('Subscribing to newsletter:', email);
+      
+      // Direct EmailJS call for newsletter subscription
+      const templateParams = {
+        from_name: 'Newsletter Subscription',
+        from_email: email,
+        phone: 'N/A',
+        service: 'Newsletter',
+        message: `Please add this email to the newsletter subscription list: ${email}`
+      };
+      
+      console.log('Sending with params:', templateParams);
+      
+      const response = await emailjs.send(
+        EMAIL_JS_CONFIG.SERVICE_ID,
+        EMAIL_JS_CONFIG.TEMPLATE_ID,
+        templateParams,
+        EMAIL_JS_CONFIG.PUBLIC_KEY
+      );
+      
+      console.log('Newsletter subscription successful:', response);
+      
+      toast({
+        title: "Subscription Successful!",
+        description: "Thank you for subscribing to our newsletter.",
+      });
+      
+      setEmail('');
+    } catch (error) {
+      console.error('Error with newsletter subscription:', error);
+      toast({
+        title: "Error",
+        description: "There was a problem with your subscription. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -61,7 +105,6 @@ const Footer = () => {
             <h3 className="text-lg font-poppins font-semibold mb-6">Company</h3>
             <ul className="space-y-3">
               <li><Link href="/about" className="dark:text-[#8B949E] light:text-gray-600 hover:text-[#00A0B0] transition-colors">About Us</Link></li>
-              <li><Link href="/portfolio" className="dark:text-[#8B949E] light:text-gray-600 hover:text-[#00A0B0] transition-colors">Portfolio</Link></li>
               <li><Link href="/process" className="dark:text-[#8B949E] light:text-gray-600 hover:text-[#00A0B0] transition-colors">Process</Link></li>
               <li><Link href="/blog" className="dark:text-[#8B949E] light:text-gray-600 hover:text-[#00A0B0] transition-colors">Blog</Link></li>
               <li><Link href="/contact" className="dark:text-[#8B949E] light:text-gray-600 hover:text-[#00A0B0] transition-colors">Contact</Link></li>
@@ -84,6 +127,7 @@ const Footer = () => {
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
+                    disabled={isSubmitting}
                   />
                   <div className="absolute inset-y-0 right-0 flex items-center pr-2">
                     <i className='bx bx-envelope dark:text-[#8B949E] light:text-gray-500'></i>
@@ -92,8 +136,9 @@ const Footer = () => {
                 <button 
                   type="submit" 
                   className="w-full gradient-bg gradient-bg-hover py-3 rounded-md font-medium transition-all duration-300 glow-hover flex items-center justify-center"
+                  disabled={isSubmitting}
                 >
-                  <span>Subscribe</span>
+                  <span>{isSubmitting ? 'Subscribing...' : 'Subscribe'}</span>
                   <i className='bx bx-right-arrow-alt ml-2'></i>
                 </button>
               </div>

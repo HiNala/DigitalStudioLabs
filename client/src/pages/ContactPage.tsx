@@ -1,9 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, FormEvent } from 'react';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { COMPANY_EMAIL, COMPANY_PHONE, COMPANY_LOCATION } from '@/lib/constants';
-import { apiRequest } from '@/lib/queryClient';
 import { useToast } from '@/hooks/use-toast';
+import { initEmailJS } from '@/lib/emailjs';
+import emailjs from '@emailjs/browser';
+import { EMAIL_JS_CONFIG } from '@/lib/emailjs';
 
 const ContactPage = () => {
   const { toast } = useToast();
@@ -22,6 +24,9 @@ const ContactPage = () => {
   useEffect(() => {
     document.title = 'Contact Us | Digital Studio Labs';
     window.scrollTo(0, 0);
+    
+    // Initialize EmailJS
+    initEmailJS();
   }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -34,12 +39,32 @@ const ContactPage = () => {
     setFormData(prev => ({ ...prev, [name]: checked }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     
     try {
-      await apiRequest('POST', '/api/contact', formData);
+      console.log('Submitting form:', formData);
+      
+      // Create template params object
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        phone: formData.phone,
+        service: formData.service,
+        message: formData.message
+      };
+      
+      console.log('Sending with params:', templateParams);
+      
+      const response = await emailjs.send(
+        EMAIL_JS_CONFIG.SERVICE_ID,
+        EMAIL_JS_CONFIG.TEMPLATE_ID,
+        templateParams,
+        EMAIL_JS_CONFIG.PUBLIC_KEY
+      );
+      
+      console.log('Email sent successfully:', response);
       
       toast({
         title: "Message Sent!",
@@ -56,6 +81,7 @@ const ContactPage = () => {
         consent: false
       });
     } catch (error) {
+      console.error('Error sending email:', error);
       toast({
         title: "Error",
         description: "There was a problem sending your message. Please try again.",
@@ -77,7 +103,7 @@ const ContactPage = () => {
               <h1 className="text-4xl md:text-5xl font-poppins font-bold mb-6">
                 Get In <span className="gradient-text-animated gradient-text-glow">Touch</span>
               </h1>
-              <p className="text-xl text-[#8B949E] mb-6">
+              <p className="text-xl dark:text-[#8B949E] light:text-gray-600 mb-6">
                 Ready to transform your digital presence? We're here to help.
               </p>
             </div>
@@ -92,29 +118,29 @@ const ContactPage = () => {
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
               {/* Contact Form */}
-              <div className="lg:col-span-3 bg-[#161B22] rounded-xl p-8 border border-[#30363D]">
-                <h2 className="text-2xl font-poppins font-semibold mb-6">Send Us a Message</h2>
+              <div className="lg:col-span-3 dark:bg-[#161B22] light:bg-white/90 backdrop-blur-sm rounded-xl p-8 dark:border-[#30363D] light:border-gray-200 border shadow-sm">
+                <h2 className="text-2xl font-poppins font-semibold mb-6 dark:text-white light:text-gray-800">Send Us a Message</h2>
                 <form onSubmit={handleSubmit}>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                     <div>
-                      <label htmlFor="name" className="block mb-2 font-medium">Name</label>
+                      <label htmlFor="name" className="block mb-2 font-medium dark:text-white light:text-gray-700">Name</label>
                       <input 
                         type="text" 
                         id="name" 
                         name="name" 
-                        className="w-full px-4 py-3 bg-[#0D1117] border border-[#30363D] rounded-md focus:outline-none focus:border-[#00A0B0] transition-colors" 
+                        className="w-full px-4 py-3 dark:bg-[#0D1117] light:bg-gray-50 border dark:border-[#30363D] light:border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#00A0B0] dark:text-white light:text-gray-900 transition-colors" 
                         required
                         value={formData.name}
                         onChange={handleChange}
                       />
                     </div>
                     <div>
-                      <label htmlFor="email" className="block mb-2 font-medium">Email</label>
+                      <label htmlFor="email" className="block mb-2 font-medium dark:text-white light:text-gray-700">Email</label>
                       <input 
                         type="email" 
                         id="email" 
                         name="email" 
-                        className="w-full px-4 py-3 bg-[#0D1117] border border-[#30363D] rounded-md focus:outline-none focus:border-[#00A0B0] transition-colors" 
+                        className="w-full px-4 py-3 dark:bg-[#0D1117] light:bg-gray-50 border dark:border-[#30363D] light:border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#00A0B0] dark:text-white light:text-gray-900 transition-colors" 
                         required
                         value={formData.email}
                         onChange={handleChange}
@@ -123,23 +149,23 @@ const ContactPage = () => {
                   </div>
                   
                   <div className="mb-6">
-                    <label htmlFor="phone" className="block mb-2 font-medium">Phone</label>
+                    <label htmlFor="phone" className="block mb-2 font-medium dark:text-white light:text-gray-700">Phone</label>
                     <input 
                       type="tel" 
                       id="phone" 
                       name="phone" 
-                      className="w-full px-4 py-3 bg-[#0D1117] border border-[#30363D] rounded-md focus:outline-none focus:border-[#00A0B0] transition-colors"
+                      className="w-full px-4 py-3 dark:bg-[#0D1117] light:bg-gray-50 border dark:border-[#30363D] light:border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#00A0B0] dark:text-white light:text-gray-900 transition-colors"
                       value={formData.phone}
                       onChange={handleChange}
                     />
                   </div>
                   
                   <div className="mb-6">
-                    <label htmlFor="service" className="block mb-2 font-medium">Service Interested In</label>
+                    <label htmlFor="service" className="block mb-2 font-medium dark:text-white light:text-gray-700">Service Interested In</label>
                     <select 
                       id="service" 
                       name="service" 
-                      className="w-full px-4 py-3 bg-[#0D1117] border border-[#30363D] rounded-md focus:outline-none focus:border-[#00A0B0] transition-colors"
+                      className="w-full px-4 py-3 dark:bg-[#0D1117] light:bg-gray-50 border dark:border-[#30363D] light:border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#00A0B0] dark:text-white light:text-gray-900 transition-colors"
                       value={formData.service}
                       onChange={handleChange}
                     >
@@ -154,12 +180,12 @@ const ContactPage = () => {
                   </div>
                   
                   <div className="mb-6">
-                    <label htmlFor="message" className="block mb-2 font-medium">Your Message</label>
+                    <label htmlFor="message" className="block mb-2 font-medium dark:text-white light:text-gray-700">Your Message</label>
                     <textarea 
                       id="message" 
                       name="message" 
                       rows={5} 
-                      className="w-full px-4 py-3 bg-[#0D1117] border border-[#30363D] rounded-md focus:outline-none focus:border-[#00A0B0] transition-colors"
+                      className="w-full px-4 py-3 dark:bg-[#0D1117] light:bg-gray-50 border dark:border-[#30363D] light:border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#00A0B0] dark:text-white light:text-gray-900 transition-colors"
                       required
                       value={formData.message}
                       onChange={handleChange}
@@ -176,7 +202,7 @@ const ContactPage = () => {
                         checked={formData.consent}
                         onChange={handleCheckboxChange}
                       />
-                      <span className="text-[#8B949E] text-sm">
+                      <span className="dark:text-[#8B949E] light:text-gray-600 text-sm">
                         I agree to the <a href="/privacy" className="text-[#00A0B0] hover:text-[#4D4DFF] transition-colors">Privacy Policy</a> and consent to be contacted regarding my inquiry.
                       </span>
                     </label>
@@ -194,14 +220,14 @@ const ContactPage = () => {
               
               {/* Contact Info */}
               <div className="lg:col-span-2 space-y-8">
-                <div className="bg-[#161B22] rounded-xl p-8 border border-[#30363D]">
-                  <h3 className="text-xl font-poppins font-semibold mb-4">Contact Information</h3>
+                <div className="dark:bg-[#161B22] light:bg-white/90 backdrop-blur-sm rounded-xl p-8 dark:border-[#30363D] light:border-gray-200 border shadow-sm">
+                  <h3 className="text-xl font-poppins font-semibold mb-4 dark:text-white light:text-gray-800">Contact Information</h3>
                   <div className="space-y-4">
                     <div className="flex items-start">
                       <i className='bx bx-envelope text-[#00A0B0] text-xl mr-4 mt-1'></i>
                       <div>
-                        <p className="font-medium">Email</p>
-                        <a href={`mailto:${COMPANY_EMAIL}`} className="text-[#8B949E] hover:text-white transition-colors">
+                        <p className="font-medium dark:text-white light:text-gray-700">Email</p>
+                        <a href={`mailto:${COMPANY_EMAIL}`} className="dark:text-[#8B949E] light:text-gray-600 hover:text-[#00A0B0] transition-colors">
                           {COMPANY_EMAIL}
                         </a>
                       </div>
@@ -209,8 +235,8 @@ const ContactPage = () => {
                     <div className="flex items-start">
                       <i className='bx bx-phone text-[#00A0B0] text-xl mr-4 mt-1'></i>
                       <div>
-                        <p className="font-medium">Phone</p>
-                        <a href={`tel:${COMPANY_PHONE.replace(/[^0-9]/g, '')}`} className="text-[#8B949E] hover:text-white transition-colors">
+                        <p className="font-medium dark:text-white light:text-gray-700">Phone</p>
+                        <a href={`tel:${COMPANY_PHONE.replace(/[^0-9]/g, '')}`} className="dark:text-[#8B949E] light:text-gray-600 hover:text-[#00A0B0] transition-colors">
                           {COMPANY_PHONE}
                         </a>
                       </div>
@@ -218,20 +244,20 @@ const ContactPage = () => {
                     <div className="flex items-start">
                       <i className='bx bx-map text-[#00A0B0] text-xl mr-4 mt-1'></i>
                       <div>
-                        <p className="font-medium">Location</p>
-                        <p className="text-[#8B949E]">{COMPANY_LOCATION}</p>
+                        <p className="font-medium dark:text-white light:text-gray-700">Location</p>
+                        <p className="dark:text-[#8B949E] light:text-gray-600">{COMPANY_LOCATION}</p>
                       </div>
                     </div>
                   </div>
                 </div>
                 
-                <div className="bg-[#161B22] rounded-xl p-8 border border-[#30363D]">
-                  <h3 className="text-xl font-poppins font-semibold mb-4">Schedule a Call</h3>
-                  <p className="text-[#8B949E] mb-6">
+                <div className="dark:bg-[#161B22] light:bg-white/90 backdrop-blur-sm rounded-xl p-8 dark:border-[#30363D] light:border-gray-200 border shadow-sm">
+                  <h3 className="text-xl font-poppins font-semibold mb-4 dark:text-white light:text-gray-800">Schedule a Call</h3>
+                  <p className="dark:text-[#8B949E] light:text-gray-600 mb-6">
                     Choose a convenient time for a 30-minute consultation with our team.
                   </p>
                   <a 
-                    href="https://calendly.com" 
+                    href="https://calendly.com/nalamaui30/30min" 
                     target="_blank" 
                     rel="noreferrer"
                     className="block text-center gradient-bg gradient-bg-hover py-3 rounded-md font-medium transition-all duration-300 glow-hover"
@@ -240,20 +266,20 @@ const ContactPage = () => {
                   </a>
                 </div>
                 
-                <div className="bg-[#161B22] rounded-xl p-8 border border-[#30363D]">
-                  <h3 className="text-xl font-poppins font-semibold mb-4">Office Hours</h3>
+                <div className="dark:bg-[#161B22] light:bg-white/90 backdrop-blur-sm rounded-xl p-8 dark:border-[#30363D] light:border-gray-200 border shadow-sm">
+                  <h3 className="text-xl font-poppins font-semibold mb-4 dark:text-white light:text-gray-800">Office Hours</h3>
                   <div className="space-y-2">
                     <div className="flex justify-between">
-                      <span>Monday - Friday</span>
-                      <span className="text-[#8B949E]">9:00 AM - 5:00 PM</span>
+                      <span className="dark:text-white light:text-gray-700">Monday - Friday</span>
+                      <span className="dark:text-[#8B949E] light:text-gray-600">9:00 AM - 5:00 PM</span>
                     </div>
                     <div className="flex justify-between">
-                      <span>Saturday</span>
-                      <span className="text-[#8B949E]">By Appointment</span>
+                      <span className="dark:text-white light:text-gray-700">Saturday</span>
+                      <span className="dark:text-[#8B949E] light:text-gray-600">By Appointment</span>
                     </div>
                     <div className="flex justify-between">
-                      <span>Sunday</span>
-                      <span className="text-[#8B949E]">Closed</span>
+                      <span className="dark:text-white light:text-gray-700">Sunday</span>
+                      <span className="dark:text-[#8B949E] light:text-gray-600">Closed</span>
                     </div>
                   </div>
                 </div>
@@ -265,16 +291,16 @@ const ContactPage = () => {
         {/* Map or Image */}
         <section className="py-10 bg-radial relative overflow-hidden">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="bg-[#161B22] rounded-xl border border-[#30363D] p-8 relative overflow-hidden">
-              <h2 className="text-2xl font-poppins font-semibold mb-6 text-center">Find Us</h2>
-              <div className="h-80 w-full bg-[#0D1117]/50 rounded-lg flex items-center justify-center relative overflow-hidden">
+            <div className="dark:bg-[#161B22] light:bg-white/90 backdrop-blur-sm rounded-xl dark:border-[#30363D] light:border-gray-200 border p-8 relative overflow-hidden shadow-sm">
+              <h2 className="text-2xl font-poppins font-semibold mb-6 text-center dark:text-white light:text-gray-800">Find Us</h2>
+              <div className="h-80 w-full dark:bg-[#0D1117]/50 light:bg-gray-50 rounded-lg flex items-center justify-center relative overflow-hidden">
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center">
                     <div className="mb-4 text-[#00A0B0]">
                       <i className='bx bx-map-pin text-5xl'></i>
                     </div>
-                    <h3 className="text-xl font-medium mb-2">{COMPANY_LOCATION}</h3>
-                    <p className="text-[#8B949E]">
+                    <h3 className="text-xl font-medium mb-2 dark:text-white light:text-gray-700">{COMPANY_LOCATION}</h3>
+                    <p className="dark:text-[#8B949E] light:text-gray-600">
                       Serving clients globally from our base in {COMPANY_LOCATION}
                     </p>
                   </div>
@@ -292,13 +318,13 @@ const ContactPage = () => {
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-3xl mx-auto">
               <div className="text-center mb-16">
-                <h2 className="text-3xl font-poppins font-bold mb-6">Frequently Asked Questions</h2>
-                <p className="text-[#8B949E]">
+                <h2 className="text-3xl font-poppins font-bold mb-6 dark:text-white light:text-gray-800">Frequently Asked Questions</h2>
+                <p className="dark:text-[#8B949E] light:text-gray-600">
                   Have questions about working with us? Find answers to common questions below.
                 </p>
               </div>
               
-              <div className="divide-y divide-[#30363D]">
+              <div className="divide-y dark:divide-[#30363D] light:divide-gray-200">
                 {[
                   {
                     question: "How quickly do you respond to inquiries?",
@@ -318,8 +344,8 @@ const ContactPage = () => {
                   }
                 ].map((faq, index) => (
                   <div key={index} className="py-8">
-                    <h3 className="text-xl font-poppins font-semibold mb-4">{faq.question}</h3>
-                    <p className="text-[#8B949E]">{faq.answer}</p>
+                    <h3 className="text-xl font-poppins font-semibold mb-4 dark:text-white light:text-gray-800">{faq.question}</h3>
+                    <p className="dark:text-[#8B949E] light:text-gray-600">{faq.answer}</p>
                   </div>
                 ))}
               </div>
