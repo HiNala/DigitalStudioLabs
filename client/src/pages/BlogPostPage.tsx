@@ -58,10 +58,15 @@ const processBlogContent = (content: string, postTitle: string): string => {
     .replace(new RegExp(`<h1[^>]*>${plainTitle}[.!?]*</h1>`, 'gi'), '')
     .replace(new RegExp(`<h2[^>]*>${plainTitle}[.!?]*</h2>`, 'gi'), '')
     .replace(new RegExp(`<h3[^>]*>${plainTitle}[.!?]*</h3>`, 'gi'), '')
-    // Remove consecutive br tags (common in WordPress exports)
-    .replace(/<br\s*\/?>\s*<br\s*\/?>/gi, '<br/>')
-    // Remove empty paragraphs
-    .replace(/<p>\s*(&nbsp;)*\s*<\/p>/gi, '');
+    // Remove all consecutive br tags (common in WordPress exports)
+    .replace(/<br\s*\/?>\s*<br\s*\/?>/gi, '')
+    .replace(/<br\s*\/?>/gi, '')
+    // Remove all empty paragraphs
+    .replace(/<p>\s*(&nbsp;)*\s*<\/p>/gi, '')
+    // Remove height-setting divs that create large gaps
+    .replace(/<div style="height:\s*\d+px[^>]*><\/div>/gi, '')
+    // Remove excessive newlines
+    .replace(/\n\s*\n/g, '\n');
   
   // Step 2: Handle duplicate introduction sections (common problem)
   const introductionMatches = processedContent.match(/<h[1-3][^>]*>Introduction[.!?]*<\/h[1-3]>/gi);

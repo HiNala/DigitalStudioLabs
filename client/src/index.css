@@ -288,19 +288,42 @@
   .blog-content {
     @apply text-base leading-relaxed;
     color: rgba(230, 237, 243, 0.9);
+    line-height: 1.5;
+  }
+  
+  /* Fix spacing issues */
+  .blog-content > *:first-child {
+    margin-top: 0 !important;
+  }
+  
+  .blog-content > div:empty,
+  .blog-content > p:empty {
+    display: none !important;
+  }
+  
+  .blog-content h1 + p,
+  .blog-content h2 + p,
+  .blog-content h3 + p,
+  .blog-content .blog-heading + .blog-paragraph {
+    margin-top: 0 !important;
+  }
+  
+  /* Eliminate large gaps between sections */
+  .blog-content > div > div {
+    margin-top: 0 !important;
   }
   
   /* Blog Sections */
   .blog-section {
-    @apply mb-10;
+    @apply mb-6;
   }
   
   .blog-section-divider {
-    @apply my-12 h-px bg-gradient-to-r from-transparent via-[#30363D] to-transparent;
+    @apply my-6 h-px bg-gradient-to-r from-transparent via-[#30363D] to-transparent;
   }
   
   .blog-section-intro {
-    @apply mb-6;
+    @apply mb-3;
   }
   
   /* Blog Headings */
@@ -310,7 +333,7 @@
   }
   
   .blog-heading-1 {
-    @apply text-3xl md:text-4xl mb-6 mt-12;
+    @apply text-3xl md:text-4xl mb-3 mt-6;
     background: linear-gradient(95deg, rgba(230, 237, 243, 0.95), rgba(230, 237, 243, 0.8));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -318,7 +341,7 @@
   }
   
   .blog-heading-2 {
-    @apply text-2xl md:text-3xl mb-4 mt-10;
+    @apply text-2xl md:text-3xl mb-2 mt-5;
     background: linear-gradient(95deg, rgba(230, 237, 243, 0.95), rgba(230, 237, 243, 0.8));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -326,19 +349,19 @@
   }
   
   .blog-heading-3 {
-    @apply text-xl md:text-2xl mb-3 mt-8;
+    @apply text-xl md:text-2xl mb-2 mt-4;
     color: rgba(230, 237, 243, 0.9);
   }
   
   /* Blog Paragraphs */
   .blog-paragraph {
-    @apply my-4 leading-relaxed;
+    @apply my-2 leading-relaxed;
     color: rgba(230, 237, 243, 0.8);
   }
   
   /* Blog Lists */
   .blog-list {
-    @apply my-6 pl-6 space-y-2;
+    @apply my-3 pl-6 space-y-1;
   }
   
   .blog-list-unordered {
@@ -350,13 +373,13 @@
   }
   
   .blog-list-item {
-    @apply pl-2 pb-1;
+    @apply pl-2 pb-0.5;
     color: rgba(230, 237, 243, 0.75);
   }
   
   /* Blog Code */
   .blog-code-block {
-    @apply my-6 p-4 rounded-lg bg-[#0D1117] border border-[#30363D] overflow-auto;
+    @apply my-4 p-3 rounded-lg bg-[#0D1117] border border-[#30363D] overflow-auto;
     font-family: 'JetBrains Mono', monospace;
   }
   
@@ -366,21 +389,21 @@
   
   /* Blog Blockquotes */
   .blog-blockquote {
-    @apply my-6 pl-4 py-1 border-l-4 border-[#4D4DFF] bg-[#161B22]/60 rounded-r-md;
+    @apply my-4 pl-4 py-1 border-l-4 border-[#4D4DFF] bg-[#161B22]/60 rounded-r-md;
   }
   
   .blog-blockquote-content {
-    @apply italic py-2 text-[#E6EDF3]/80;
+    @apply italic py-1 text-[#E6EDF3]/80;
   }
   
   /* Blog Images */
   .blog-image-container {
-    @apply my-8 rounded-xl overflow-hidden bg-[#161B22]/60 border border-[#30363D];
+    @apply my-4 rounded-xl overflow-hidden bg-[#161B22]/60 border border-[#30363D];
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
   }
   
   .blog-image {
-    @apply w-full h-auto transition-transform duration-500;
+    @apply w-full h-auto transition-transform duration-300;
   }
   
   .blog-image-container:hover .blog-image {
@@ -389,7 +412,7 @@
   
   /* Blog Tables */
   .blog-table-container {
-    @apply my-8 rounded-xl overflow-hidden border border-[#30363D] bg-[#161B22]/60;
+    @apply my-4 rounded-xl overflow-hidden border border-[#30363D] bg-[#161B22]/60;
   }
   
   .blog-table {
