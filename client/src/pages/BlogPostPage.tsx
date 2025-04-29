@@ -10,6 +10,61 @@ import { FloatingOrbs } from '@/components/ui/floating-orbs';
 import { Spinner } from '@/components/ui/spinner';
 import StarButton from '@/components/ui/star-button';
 
+// Helper function to clean up and format blog post content
+const processPostContent = (content: string, postTitle: string) => {
+  const titleWithoutTags = postTitle.replace(/<\/?[^>]+(>|$)/g, "").trim();
+  
+  // Prepare regexes for title variants (with/without punctuation)
+  const titleRegexBase = escapeRegExp(titleWithoutTags);
+  const titleRegexWithExclamation = escapeRegExp(titleWithoutTags + "!");
+  const titleRegexWithDots = escapeRegExp(titleWithoutTags + "..");
+  
+  // Process the content with all our fixes
+  return content
+    // Remove any instance of the post title that appears as a heading
+    .replace(new RegExp(`<h1[^>]*>${titleRegexBase}</h1>`, 'i'), '')
+    .replace(new RegExp(`<h1[^>]*>${titleRegexWithExclamation}</h1>`, 'i'), '')
+    .replace(new RegExp(`<h1[^>]*>${titleRegexWithDots}</h1>`, 'i'), '')
+    .replace(new RegExp(`<h2[^>]*>${titleRegexBase}</h2>`, 'i'), '')
+    .replace(new RegExp(`<h2[^>]*>${titleRegexWithExclamation}</h2>`, 'i'), '')
+    .replace(new RegExp(`<h2[^>]*>${titleRegexWithDots}</h2>`, 'i'), '')
+    .replace(new RegExp(`<h3[^>]*>${titleRegexBase}</h3>`, 'i'), '')
+    .replace(new RegExp(`<h3[^>]*>${titleRegexWithExclamation}</h3>`, 'i'), '')
+    .replace(new RegExp(`<h3[^>]*>${titleRegexWithDots}</h3>`, 'i'), '')
+    
+    // Remove duplicate Introduction headings (common in WordPress exports)
+    .replace(/<h[1-3][^>]*>Introduction<\/h[1-3]>\s*<h[1-3][^>]*>Introduction<\/h[1-3]>/i, '<h2>Introduction</h2>')
+    
+    // Ensure consistent headings (if Introduction appears twice with different levels, keep only one)
+    .replace(/<h[1-3][^>]*>Introduction<\/h[1-3]>[\s\n]*<h[1-3][^>]*>Introduction<\/h[1-3]>/i, '<h2>Introduction</h2>')
+    
+    // Fix spacing for all heading levels
+    .replace(/<\/h1>\s*<p>/g, '</h1><p class="mt-1">')
+    .replace(/<\/h2>\s*<p>/g, '</h2><p class="mt-1">')
+    .replace(/<\/h3>\s*<p>/g, '</h3><p class="mt-1">')
+    
+    // Enhance code blocks
+    .replace(/<pre>/g, '<pre class="rounded-md p-4 bg-[#0D1117] border border-[#30363D]">')
+    
+    // Improve paragraph formatting and spacing
+    .replace(/<p>/g, '<p class="mb-3 leading-7">')
+    
+    // Fix spacing between sections
+    .replace(/<\/p>\s*<h1/g, '</p><h1 class="mt-8"')
+    .replace(/<\/p>\s*<h2/g, '</p><h2 class="mt-6"')
+    .replace(/<\/p>\s*<h3/g, '</p><h3 class="mt-4"')
+    
+    // Add custom styling to lists
+    .replace(/<ul>/g, '<ul class="list-disc pl-6 mb-4 space-y-1">')
+    .replace(/<ol>/g, '<ol class="list-decimal pl-6 mb-4 space-y-1">')
+    .replace(/<li>/g, '<li class="mb-1">');
+};
+
+// Utility function to escape regex special characters
+function escapeRegExp(string: string) {
+  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
 // WordPress post type definition
 interface WordPressPost {
   id: number;
@@ -132,20 +187,9 @@ const BlogPostPage = () => {
                 <div className="bg-transparent backdrop-blur-sm overflow-hidden">
                   {/* Process content to fix headers styling */}
                   <div 
-                    className="prose dark:prose-invert prose-lg max-w-none prose-headings:font-poppins prose-a:text-[#00A0B0] hover:prose-a:text-[#4D4DFF] prose-img:rounded-xl prose-p:text-[#8B949E]/90 prose-p:leading-relaxed prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl prose-headings:font-bold prose-headings:mb-2 prose-headings:mt-4 prose-blockquote:border-l-[#4D4DFF] prose-blockquote:bg-[#161B22]/60 prose-blockquote:p-4 prose-blockquote:rounded-r-md"
+                    className="prose dark:prose-invert prose-lg max-w-none prose-headings:font-poppins prose-a:text-[#00A0B0] hover:prose-a:text-[#4D4DFF] prose-img:rounded-xl prose-p:text-[#8B949E]/90 prose-p:leading-relaxed prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl prose-headings:font-bold prose-headings:mb-0 prose-headings:mt-0 prose-blockquote:border-l-[#4D4DFF] prose-blockquote:bg-[#161B22]/60 prose-blockquote:p-4 prose-blockquote:rounded-r-md"
                     dangerouslySetInnerHTML={{ 
-                      __html: post[0].content.rendered
-                        // Remove duplicate headers (match h1, h2, h3 tags with similar content)
-                        .replace(/<h1.*?>Cloud Infrastructure!?<\/h1>/, '')
-                        .replace(/<h2.*?>Cloud Infrastructure<\/h2>/, '')
-                        // Remove large space after title 
-                        .replace(/<\/h3>\s*<p>/g, '</h3><p class="mt-0">')
-                        .replace(/<\/h2>\s*<p>/g, '</h2><p class="mt-0">')
-                        .replace(/<\/h1>\s*<p>/g, '</h1><p class="mt-0">')
-                        // Enhance code blocks
-                        .replace(/<pre>/g, '<pre class="rounded-md p-4 bg-[#0D1117] border border-[#30363D]">')
-                        // Add line height to paragraphs
-                        .replace(/<p>/g, '<p class="mb-4 leading-8">')
+                      __html: processPostContent(post[0].content.rendered, post[0].title.rendered)
                     }}
                   />
                   
