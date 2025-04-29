@@ -226,7 +226,7 @@ const BlogPostPage = () => {
   return (
     <>
       <Header />
-      <main className="min-h-screen pt-16">
+      <main className="min-h-screen pt-10">
         {/* Ambient background effects */}
         <div className="fixed inset-0 w-full h-full overflow-hidden pointer-events-none">
           <FloatingOrbs 
@@ -276,7 +276,7 @@ const BlogPostPage = () => {
               </motion.div>
             </div>
           ) : post && post.length > 0 ? (
-            <div className="flex flex-col lg:flex-row gap-8 py-8">
+            <div className="flex flex-col lg:flex-row gap-6 py-6">
               {/* Main article column */}
               <motion.div 
                 className="w-full lg:w-3/4 lg:pr-8"
@@ -285,7 +285,7 @@ const BlogPostPage = () => {
                 transition={{ duration: 0.5 }}
               >
                 {/* Back to blog link */}
-                <div className="mb-8">
+                <div className="mb-4">
                   <a 
                     href="/blog" 
                     className="inline-flex items-center gap-2 text-[#00A0B0] hover:text-[#4D4DFF] transition-colors"
@@ -296,13 +296,13 @@ const BlogPostPage = () => {
                 </div>
                 
                 {/* Article header */}
-                <header className="mb-8">
+                <header className="mb-6">
                   <h1 
-                    className="text-3xl md:text-5xl font-poppins font-bold mb-6 gradient-text-animated leading-tight"
+                    className="text-3xl md:text-5xl font-poppins font-bold mb-4 gradient-text-animated leading-tight"
                     dangerouslySetInnerHTML={{ __html: post[0].title.rendered }}
                   />
                   
-                  <div className="flex flex-wrap items-center gap-6 text-sm text-[#8B949E]">
+                  <div className="flex flex-wrap items-center gap-4 text-sm text-[#8B949E]">
                     <div className="flex items-center gap-2">
                       <Calendar className="h-4 w-4" />
                       <span>{formatDate(post[0].date)}</span>
@@ -329,13 +329,13 @@ const BlogPostPage = () => {
                       animate={{ opacity: 1, height: 'auto' }}
                       exit={{ opacity: 0, height: 0 }}
                       transition={{ duration: 0.3 }}
-                      className="mb-8 overflow-hidden"
+                      className="mb-4 overflow-hidden"
                     >
-                      <div className="p-6 rounded-xl bg-gradient-to-br from-[#161B22]/90 to-[#0D1117]/90 border border-[#30363D]">
-                        <h2 className="text-xl font-bold mb-4">Table of Contents</h2>
+                      <div className="p-4 rounded-xl bg-gradient-to-br from-[#161B22]/90 to-[#0D1117]/90 border border-[#30363D]">
+                        <h2 className="text-xl font-bold mb-2">Table of Contents</h2>
                         <div className="blog-toc-content">
                           {/* TOC would be generated here - placeholder for now */}
-                          <ul className="space-y-2">
+                          <ul className="space-y-1">
                             <li>
                               <a href="#introduction" className="text-[#00A0B0] hover:text-[#4D4DFF] transition-colors">
                                 Introduction
@@ -372,7 +372,7 @@ const BlogPostPage = () => {
                   />
                   
                   {/* Article footer with sharing options */}
-                  <div className="mt-16 mb-8 pt-8 border-t border-[#30363D]/50">
+                  <div className="mt-10 mb-6 pt-6 border-t border-[#30363D]/50">
                     <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                       <div className="flex items-center gap-3">
                         <span className="text-[#8B949E]">Share this article:</span>
@@ -432,15 +432,15 @@ const BlogPostPage = () => {
                 </article>
                 
                 {/* Calendly Call-to-Action */}
-                <div className="mt-12 mb-8 px-8 py-10 rounded-xl bg-gradient-to-br from-[#161B22]/90 to-[#0D1117]/90 border border-[#30363D] relative overflow-hidden">
+                <div className="mt-8 mb-6 px-6 py-6 rounded-xl bg-gradient-to-br from-[#161B22]/90 to-[#0D1117]/90 border border-[#30363D] relative overflow-hidden">
                   <div className="absolute inset-0 opacity-20">
                     <div className="absolute -right-10 top-10 rounded-full w-40 h-40 bg-[#4D4DFF]/20 blur-3xl"></div>
                     <div className="absolute -left-10 bottom-10 rounded-full w-40 h-40 bg-[#00A0B0]/20 blur-3xl"></div>
                   </div>
                   
                   <div className="relative z-10">
-                    <h3 className="text-2xl md:text-3xl font-poppins font-bold mb-4">Need help implementing solutions like this?</h3>
-                    <p className="text-[#8B949E] mb-8 max-w-2xl text-lg">
+                    <h3 className="text-xl md:text-2xl font-poppins font-bold mb-3">Need help implementing solutions like this?</h3>
+                    <p className="text-[#8B949E] mb-4 max-w-2xl">
                       Schedule a free consultation with our experts to discuss your project needs and discover 
                       how Digital Studio Labs can help bring your vision to life.
                     </p>
@@ -465,10 +465,10 @@ const BlogPostPage = () => {
               >
                 <div className="sticky top-24 w-full">
                   {/* Author profile */}
-                  <div className="p-6 rounded-xl bg-[#161B22]/40 backdrop-blur-sm border border-[#30363D] mb-6">
-                    <h3 className="text-lg font-semibold mb-4">About the Author</h3>
-                    <div className="flex items-center gap-4 mb-4">
-                      <div className="h-12 w-12 rounded-full bg-gradient-to-br from-[#00A0B0] to-[#4D4DFF] flex items-center justify-center text-white font-bold text-xl">
+                  <div className="p-4 rounded-xl bg-[#161B22]/40 backdrop-blur-sm border border-[#30363D] mb-4">
+                    <h3 className="text-lg font-semibold mb-3">About the Author</h3>
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="h-10 w-10 rounded-full bg-gradient-to-br from-[#00A0B0] to-[#4D4DFF] flex items-center justify-center text-white font-bold text-lg">
                         D
                       </div>
                       <div>
@@ -483,9 +483,9 @@ const BlogPostPage = () => {
                   </div>
                   
                   {/* Related content */}
-                  <div className="p-6 rounded-xl bg-[#161B22]/40 backdrop-blur-sm border border-[#30363D] mb-6">
-                    <h3 className="text-lg font-semibold mb-4">Related Articles</h3>
-                    <ul className="space-y-4">
+                  <div className="p-4 rounded-xl bg-[#161B22]/40 backdrop-blur-sm border border-[#30363D] mb-4">
+                    <h3 className="text-lg font-semibold mb-3">Related Articles</h3>
+                    <ul className="space-y-3">
                       <li>
                         <a href="/blog/cloud-infrastructure" className="group">
                           <h4 className="font-medium group-hover:text-[#00A0B0] transition-colors">Cloud Infrastructure</h4>
@@ -508,14 +508,14 @@ const BlogPostPage = () => {
                   </div>
                   
                   {/* Newsletter signup */}
-                  <div className="p-6 rounded-xl bg-gradient-to-br from-[#161B22]/90 to-[#0D1117]/90 border border-[#30363D] relative overflow-hidden">
+                  <div className="p-4 rounded-xl bg-gradient-to-br from-[#161B22]/90 to-[#0D1117]/90 border border-[#30363D] relative overflow-hidden">
                     <div className="absolute -right-10 bottom-0 rounded-full w-32 h-32 bg-[#4D4DFF]/10 blur-3xl"></div>
                     <div className="relative z-10">
                       <h3 className="text-lg font-semibold mb-2">Stay Updated</h3>
-                      <p className="text-sm text-[#8B949E] mb-4">
+                      <p className="text-sm text-[#8B949E] mb-3">
                         Subscribe to our newsletter for the latest insights and articles.
                       </p>
-                      <div className="flex flex-col gap-3">
+                      <div className="flex flex-col gap-2">
                         <input 
                           type="email" 
                           placeholder="Your email address" 
