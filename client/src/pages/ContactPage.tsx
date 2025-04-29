@@ -260,7 +260,7 @@ const ContactPage = () => {
                     Choose a convenient time for a 30-minute consultation with our team.
                   </p>
                   <a 
-                    href="https://calendly.com/nalamaui30/30min" 
+                    href="https://calendly.com/digitalstudiolabs/free-consultation" 
                     target="_blank" 
                     rel="noreferrer"
                     className="block text-center gradient-bg gradient-bg-hover py-3 rounded-md font-medium transition-all duration-300 glow-hover"

@@ -348,7 +348,7 @@ const ContactSection = () => {
               </div>
               <div className="flex justify-center">
                 <StarButton 
-                  href="https://calendly.com/nalamaui30/30min"
+                  href="https://calendly.com/digitalstudiolabs/free-consultation"
                   size="md"
                   target="_blank"
                   rel="noopener noreferrer"
