@@ -130,16 +130,50 @@ const BlogPostPage = () => {
                 </div>
                 
                 <div className="bg-transparent backdrop-blur-sm overflow-hidden">
+                  {/* Process content to fix headers styling */}
                   <div 
-                    className="prose dark:prose-invert prose-lg max-w-none prose-headings:font-poppins prose-a:text-[#00A0B0] hover:prose-a:text-[#4D4DFF] prose-img:rounded-xl prose-p:text-[#8B949E]/90 prose-p:leading-relaxed prose-headings:gradient-text"
-                    dangerouslySetInnerHTML={{ __html: post[0].content.rendered }}
+                    className="prose dark:prose-invert prose-lg max-w-none prose-headings:font-poppins prose-a:text-[#00A0B0] hover:prose-a:text-[#4D4DFF] prose-img:rounded-xl prose-p:text-[#8B949E]/90 prose-p:leading-relaxed prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl prose-headings:font-bold prose-headings:mb-4 prose-headings:mt-8 prose-blockquote:border-l-[#4D4DFF] prose-blockquote:bg-[#161B22]/60 prose-blockquote:p-4 prose-blockquote:rounded-r-md"
+                    dangerouslySetInnerHTML={{ 
+                      __html: post[0].content.rendered
+                        // Remove duplicate headers (match h1, h2, h3 tags with similar content)
+                        .replace(/<h1.*?>Cloud Infrastructure!?<\/h1>/, '')
+                        .replace(/<h2.*?>Cloud Infrastructure<\/h2>/, '')
+                        // Enhance code blocks
+                        .replace(/<pre>/g, '<pre class="rounded-md p-4 bg-[#0D1117] border border-[#30363D]">')
+                        // Add line height to paragraphs
+                        .replace(/<p>/g, '<p class="mb-5 leading-8">')
+                    }}
                   />
                 </div>
                 
-                <div className="mt-16 flex justify-center">
-                  <StarButton href="/blog" size="md">
-                    Back to Blog
-                  </StarButton>
+                {/* Calendly Call-to-Action */}
+                <div className="mt-16 mb-8 px-6 py-8 rounded-xl bg-gradient-to-br from-[#161B22]/90 to-[#0D1117]/90 border border-[#30363D] relative overflow-hidden">
+                  <div className="absolute inset-0 opacity-20">
+                    <div className="absolute -right-10 top-10 rounded-full w-40 h-40 bg-[#4D4DFF]/20 blur-3xl"></div>
+                    <div className="absolute -left-10 bottom-10 rounded-full w-40 h-40 bg-[#00A0B0]/20 blur-3xl"></div>
+                  </div>
+                  
+                  <div className="relative z-10">
+                    <h3 className="text-xl md:text-2xl font-poppins font-bold mb-4">Need help implementing solutions like this?</h3>
+                    <p className="text-[#8B949E] mb-6 max-w-2xl">Schedule a free consultation with our experts to discuss your project needs and discover how Digital Studio Labs can help bring your vision to life.</p>
+                    <div className="flex flex-wrap gap-4">
+                      <StarButton 
+                        href="https://calendly.com/digitalstudiolabs/free-consultation" 
+                        size="lg"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Schedule Free Consultation
+                      </StarButton>
+                      <StarButton 
+                        href="/blog" 
+                        size="md"
+                        variant="outline"
+                      >
+                        Back to Blog
+                      </StarButton>
+                    </div>
+                  </div>
                 </div>
               </motion.div>
             ) : (

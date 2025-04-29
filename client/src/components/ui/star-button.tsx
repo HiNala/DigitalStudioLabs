@@ -9,6 +9,7 @@ interface StarButtonProps {
   className?: string;
   type?: 'button' | 'submit';
   size?: 'sm' | 'md' | 'lg';
+  variant?: 'default' | 'outline';
   target?: string;
   rel?: string;
   external?: boolean;
@@ -275,10 +276,15 @@ const StarButton = ({
   className = '',
   type = 'button',
   size = 'md',
+  variant = 'default',
   target,
   rel,
   external = false
 }: StarButtonProps) => {
+  // Add outline variant class
+  const variantClass = variant === 'outline' 
+    ? '!bg-transparent !text-[#00A0B0] !border !border-[#00A0B0]' 
+    : '';
   // SVG for star shape
   const StarSVG = () => (
     <svg xmlns="http://www.w3.org/2000/svg" xmlSpace="preserve" version="1.1" 
@@ -313,7 +319,7 @@ const StarButton = ({
   // For external links
   if (href && isExternal) {
     return (
-      <StyledWrapper className={className}>
+      <StyledWrapper className={`${className} ${variantClass}`}>
         <a 
           href={href} 
           className={`size-${size}`} 
@@ -330,7 +336,7 @@ const StarButton = ({
   // For internal links
   if (href) {
     return (
-      <StyledWrapper className={className}>
+      <StyledWrapper className={`${className} ${variantClass}`}>
         <Link href={href} className={`size-${size}`}>
           {buttonContent}
         </Link>
@@ -340,7 +346,7 @@ const StarButton = ({
 
   // For buttons
   return (
-    <StyledWrapper className={className}>
+    <StyledWrapper className={`${className} ${variantClass}`}>
       <button type={type} onClick={onClick} className={`size-${size}`}>
         {buttonContent}
       </button>
