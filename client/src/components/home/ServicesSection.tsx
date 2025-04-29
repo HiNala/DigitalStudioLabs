@@ -151,7 +151,7 @@ const ServicesSection = () => {
                 {service.description}
               </p>
               
-              <StarButton href={`/services#${service.id}`} size="sm" className="!bg-transparent !text-[#00A0B0] !border !border-[#00A0B0] !py-2 !px-4">
+              <StarButton href={`/services/${service.title.toLowerCase().replace(/\s+/g, '-')}`} size="sm" className="!bg-transparent !text-[#00A0B0] !border !border-[#00A0B0] !py-2 !px-4">
                 Explore Details
               </StarButton>
             </motion.div>

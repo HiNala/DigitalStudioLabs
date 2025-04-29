@@ -286,7 +286,7 @@ const ServicesPage = () => {
                       </div>
                       <div className="mt-8">
                         <Link 
-                          href="/contact" 
+                          href={`/services/${service.title.toLowerCase().replace(/\s+/g, '-')}`}
                           className="inline-flex items-center text-[#00A0B0] hover:text-[#4D4DFF] font-medium transition-colors"
                         >
                           Learn more about {service.title.toLowerCase()} <ArrowRight className="ml-2 h-4 w-4" />

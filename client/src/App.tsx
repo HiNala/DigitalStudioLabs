@@ -11,6 +11,7 @@ import { ThemeProvider } from "@/providers/ThemeProvider";
 import HomePage from "@/pages/HomePage";
 import AltHomePage from "@/pages/AltHomePage";
 import ServicesPage from "@/pages/ServicesPage";
+import ServiceDetailPage from "@/pages/ServiceDetailPage";
 import PortfolioPage from "@/pages/PortfolioPage";
 import ProcessPage from "@/pages/ProcessPage";
 import AboutPage from "@/pages/AboutPage";
@@ -30,6 +31,7 @@ function Router() {
       <Route path="/" component={HomePage} />
       <Route path="/alt" component={AltHomePage} />
       <Route path="/services" component={ServicesPage} />
+      <Route path="/services/:slug" component={ServiceDetailPage} />
       <Route path="/portfolio" component={PortfolioPage} />
       <Route path="/process" component={ProcessPage} />
       <Route path="/about" component={AboutPage} />
