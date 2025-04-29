@@ -132,16 +132,20 @@ const BlogPostPage = () => {
                 <div className="bg-transparent backdrop-blur-sm overflow-hidden">
                   {/* Process content to fix headers styling */}
                   <div 
-                    className="prose dark:prose-invert prose-lg max-w-none prose-headings:font-poppins prose-a:text-[#00A0B0] hover:prose-a:text-[#4D4DFF] prose-img:rounded-xl prose-p:text-[#8B949E]/90 prose-p:leading-relaxed prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl prose-headings:font-bold prose-headings:mb-4 prose-headings:mt-6 prose-blockquote:border-l-[#4D4DFF] prose-blockquote:bg-[#161B22]/60 prose-blockquote:p-4 prose-blockquote:rounded-r-md"
+                    className="prose dark:prose-invert prose-lg max-w-none prose-headings:font-poppins prose-a:text-[#00A0B0] hover:prose-a:text-[#4D4DFF] prose-img:rounded-xl prose-p:text-[#8B949E]/90 prose-p:leading-relaxed prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl prose-headings:font-bold prose-headings:mb-2 prose-headings:mt-4 prose-blockquote:border-l-[#4D4DFF] prose-blockquote:bg-[#161B22]/60 prose-blockquote:p-4 prose-blockquote:rounded-r-md"
                     dangerouslySetInnerHTML={{ 
                       __html: post[0].content.rendered
                         // Remove duplicate headers (match h1, h2, h3 tags with similar content)
                         .replace(/<h1.*?>Cloud Infrastructure!?<\/h1>/, '')
                         .replace(/<h2.*?>Cloud Infrastructure<\/h2>/, '')
+                        // Remove large space after title 
+                        .replace(/<\/h3>\s*<p>/g, '</h3><p class="mt-0">')
+                        .replace(/<\/h2>\s*<p>/g, '</h2><p class="mt-0">')
+                        .replace(/<\/h1>\s*<p>/g, '</h1><p class="mt-0">')
                         // Enhance code blocks
                         .replace(/<pre>/g, '<pre class="rounded-md p-4 bg-[#0D1117] border border-[#30363D]">')
                         // Add line height to paragraphs
-                        .replace(/<p>/g, '<p class="mb-5 leading-8">')
+                        .replace(/<p>/g, '<p class="mb-4 leading-8">')
                     }}
                   />
                   

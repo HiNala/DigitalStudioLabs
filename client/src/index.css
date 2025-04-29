@@ -281,4 +281,20 @@
     outline: none !important;
     box-shadow: none !important;
   }
+  
+  /* Fix blog spacing issues */
+  .prose h1 + p,
+  .prose h2 + p,
+  .prose h3 + p {
+    margin-top: 0 !important;
+  }
+  
+  .prose p {
+    margin-bottom: 1rem !important;
+  }
+  
+  .prose h1, .prose h2, .prose h3 {
+    margin-bottom: 0.5rem !important;
+    margin-top: 1.5rem !important;
+  }
 }
