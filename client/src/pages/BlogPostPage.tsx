@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useRoute } from 'wouter';
 import { useQuery } from '@tanstack/react-query';
 import { motion } from 'framer-motion';
+import { Calendar, Clock } from 'lucide-react';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { SpotlightLayout } from '@/components/layout/SpotlightLayout';
@@ -76,9 +77,13 @@ const BlogPostPage = () => {
           />
         </div>
         
-        {/* Blog Post Content */}
-        <section className="py-16 md:py-24">
-          <div className="container mx-auto px-4">
+        {/* Blog Post Hero */}
+        <section className="relative pb-20 pt-8 md:pt-12">
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0D1117] to-transparent h-64 z-0 opacity-70"></div>
+          <div className="absolute right-0 top-1/4 rounded-full w-64 h-64 bg-[#4D4DFF]/5 blur-3xl -z-10"></div>
+          <div className="absolute left-0 top-1/3 rounded-full w-64 h-64 bg-[#00A0B0]/5 blur-3xl -z-10"></div>
+          
+          <div className="container mx-auto px-4 relative z-10">
             {isLoading ? (
               <div className="flex justify-center items-center h-64">
                 <Spinner size="lg" />
@@ -100,27 +105,38 @@ const BlogPostPage = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
               >
-                <div className="mb-8">
-                  <StarButton href="/blog" size="sm" className="mb-6">
-                    ← Back to Blog
-                  </StarButton>
+                <div className="mb-12 md:mb-16">
+                  <div className="flex items-center justify-between mb-6">
+                    <StarButton href="/blog" size="sm">
+                      ← Back to Blog
+                    </StarButton>
+                    
+                    <div className="flex items-center gap-4 text-sm dark:text-[#8B949E] light:text-gray-500">
+                      <div className="flex items-center gap-2">
+                        <Calendar className="h-4 w-4" />
+                        <span>{formatDate(post[0].date)}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Clock className="h-4 w-4" />
+                        <span>5 min read</span>
+                      </div>
+                    </div>
+                  </div>
+                  
                   <h1 
-                    className="text-3xl md:text-5xl font-poppins font-bold mb-4"
+                    className="text-3xl md:text-5xl font-poppins font-bold mb-6 gradient-text-animated gradient-text-glow"
                     dangerouslySetInnerHTML={{ __html: post[0].title.rendered }}
                   />
-                  <div className="text-sm dark:text-[#8B949E] light:text-gray-500 mb-6">
-                    {formatDate(post[0].date)}
-                  </div>
                 </div>
                 
-                <div className="dark:bg-[#161B22]/80 light:bg-white/60 backdrop-blur-md rounded-xl overflow-hidden border dark:border-[#30363D] light:border-gray-200/70 shadow-lg p-6 md:p-10">
+                <div className="bg-transparent backdrop-blur-sm overflow-hidden">
                   <div 
-                    className="prose dark:prose-invert prose-lg max-w-none prose-headings:font-poppins prose-a:text-[#00A0B0] hover:prose-a:text-[#4D4DFF] prose-img:rounded-xl"
+                    className="prose dark:prose-invert prose-lg max-w-none prose-headings:font-poppins prose-a:text-[#00A0B0] hover:prose-a:text-[#4D4DFF] prose-img:rounded-xl prose-p:text-[#8B949E]/90 prose-p:leading-relaxed prose-headings:gradient-text"
                     dangerouslySetInnerHTML={{ __html: post[0].content.rendered }}
                   />
                 </div>
                 
-                <div className="mt-10 flex justify-center">
+                <div className="mt-16 flex justify-center">
                   <StarButton href="/blog" size="md">
                     Back to Blog
                   </StarButton>
