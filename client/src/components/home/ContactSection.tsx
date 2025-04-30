@@ -64,22 +64,34 @@ const ContactSection = () => {
     
     try {
       console.log('Submitting form from home page...');
+      console.log('Message content before sending:', formData.message);
       
       if (!formRef.current) {
         throw new Error('Form reference is not available');
       }
       
-      // Convert form data to object structure expected by sendEmail
-      const emailData = {
-        name: formData.from_name,
+      // Use direct EmailJS send instead of form submission
+      console.log('Using direct EmailJS send method');
+      
+      const templateParams = {
+        from_name: formData.from_name,
+        reply_to: formData.reply_to,
         email: formData.reply_to,
-        phone: formData.phone,
-        service: formData.service,
-        message: formData.message
+        phone: formData.phone || 'N/A',
+        service: formData.service || 'Not specified',
+        message: formData.message,
+        title: formData.message, // Key field for the template
+        to_name: 'Digital Studio Labs',
+        subject: `New inquiry about ${formData.service || 'your services'}`
       };
       
-      // Use the helper function that works with footer subscription
-      const response = await sendEmail(emailData);
+      console.log('Sending with parameters:', templateParams);
+      
+      const response = await emailjs.send(
+        EMAIL_JS_CONFIG.SERVICE_ID,
+        EMAIL_JS_CONFIG.TEMPLATE_ID,
+        templateParams
+      );
       
       console.log('Form submission successful from home page:', response);
       

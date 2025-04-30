@@ -1,3 +1,5 @@
+import StarButton from '../ui/star-button';
+
           <div className="flex gap-4 lg:gap-6 flex-col sm:flex-row mt-8">
             <a 
               href="https://calendly.com/nalamaui30/30min" 
