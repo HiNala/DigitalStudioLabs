@@ -6,6 +6,8 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { CursorSpotlight } from "@/components/ui/cursor-spotlight";
 import NotFound from "@/pages/not-found";
 import { ThemeProvider } from "@/providers/ThemeProvider";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
 // Pages
 import HomePage from "@/pages/HomePage";
@@ -60,6 +62,10 @@ function App() {
             <CursorSpotlight />
             <Toaster />
             <Router />
+            
+            {/* Vercel Analytics and Speed Insights */}
+            <Analytics />
+            <SpeedInsights />
           </div>
         </TooltipProvider>
       </QueryClientProvider>
